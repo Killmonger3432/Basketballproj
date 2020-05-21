@@ -156,6 +156,7 @@ while running:
                     activeplayer(p4,p4x,p4y)
         elif player=="sg":
                     activeplayer(p5,p5x,p5y)            
-           
-        
+        pygame.display.update()  
+   
+         
 
