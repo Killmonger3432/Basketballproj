@@ -1,8 +1,3 @@
-import pygame
-import math
-import random
-import mysql.connector
-from sys import exit
 s=pygame.display.set_mode([1450,800])
 px,py=35,200
 p2x,p2y=1050,45
