@@ -9,5 +9,3 @@ o2=pygame.image.load("opp2.png").convert()
 o3=pygame.image.load("opp3.png").convert()
 o4=pygame.image.load("opp4.png").convert()
 o5=pygame.image.load("opp5.png").convert()
-
-
