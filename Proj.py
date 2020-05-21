@@ -46,4 +46,50 @@ while running:
         s.blit(o3,(o3x,o3y))
         s.blit(o4,(o4x,o4y))
         s.blit(o5,(o5x,o5y))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.MOUSEMOTION:
+                    pchangex=0
+                    pchangey=0
+            if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT:                  
+                            pchangex=-20
+                            pchangey=0
+                    elif event.key== pygame.K_a:
+                            pchangex=-7
+                            pchangey=0      
+                    elif event.key == pygame.K_RIGHT:        
+                            pchangex=20
+                            pchangey=0
+                    elif event.key== pygame.K_d:
+                            pchangex=7
+                            pchangey=0        
+                    elif event.key == pygame.K_UP:
+                            pchangey=-7
+                            pchangex=0
+                    elif event.key== pygame.K_w:
+                            pchangex=0
+                            pchangey=-7
+                    elif event.key == pygame.K_DOWN:
+                            pchangey=20
+                            pchangex=0
+                    elif event.key== pygame.K_s:
+                            pchangex=0
+                            pchangey=7      
+                    elif event.key==pygame.K_1:
+                            player= "pg"
+                    elif event.key==pygame.K_2:
+                            player= "sg"
+                    elif event.key==pygame.K_3:
+                            player= "sf"
+                    elif event.key==pygame.K_4:
+                            player= "pf"
+                    elif event.key==pygame.K_5:
+                            player= "c"         
+                      
+                    else:
+                            pchangex,pchangey=0,0
+        
 
