@@ -33,4 +33,17 @@ def distance(x1,x2,y1,y2):
 player="pg"
 pchangex=0
 pchangey=0    
+while running:
+        s.fill([30,0,0])
+        s.blit(b,(0,0))
+        s.blit(p1,(px,py))
+        s.blit(p2,(p2x,p2y))
+        s.blit(p3,(p3x,p3y))
+        s.blit(p4,(p4x,p4y))
+        s.blit(p5,(p5x,p5y))
+        s.blit(o1,(ox,oy))
+        s.blit(o2,(o2x,o2y))
+        s.blit(o3,(o3x,o3y))
+        s.blit(o4,(o4x,o4y))
+        s.blit(o5,(o5x,o5y))
 
