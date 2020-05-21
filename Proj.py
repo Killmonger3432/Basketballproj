@@ -91,5 +91,61 @@ while running:
                       
                     else:
                             pchangex,pchangey=0,0
+            if player=="pg":
+                    px += pchangex
+                    py += pchangey
+                    if px >=1365:
+                            px=1365
+                    if px<=30:
+                            px=30
+                    if py<=15:
+                            py=15
+                    if py>= 390:
+                            py = 390
+            elif player=="sg":
+                    p2x += pchangex
+                    p2y += pchangey
+                    if p2x >=1365:
+                            p2x=1365
+                    if p2x<=30:
+                            p2x=30
+                    if p2y<=15:
+                            p2y=15
+                    if p2y>= 387:
+                            p2y = 387
+            elif player=="sf":
+                    p3x += pchangex
+                    p3y += pchangey
+                    if p3x >=1365:
+                            p3x=1365
+                    if p3x<=30:
+                            p3x=30
+                    if p3y<=15:
+                            p3y=15
+                    if p3y>= 387:
+                            p3y = 387
+            elif player=="pf":
+                    p4x += pchangex
+                    p4y += pchangey
+                    if p4x >=1365:
+                            p4x=1365
+                    if p4x<=30:
+                            p4x=30
+                    if p4y<=15:
+                            p4y=15
+                    if p4y>= 390:
+                            p4y = 390
+            elif player=="c":
+                    p5x += pchangex
+                    p5y += pchangey
+                    if p5x >=1365:
+                            p5x=1365
+                    if p5x<=30:
+                            p5x=30
+                    if p5y<=15:
+                            p5y=15
+                    if p5y>= 390:
+                            p5y = 390
+           
         
 
