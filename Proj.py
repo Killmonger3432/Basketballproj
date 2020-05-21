@@ -25,5 +25,10 @@ o2=pygame.image.load("opp2.png").convert()
 o3=pygame.image.load("opp3.png").convert()
 o4=pygame.image.load("opp4.png").convert()
 o5=pygame.image.load("opp5.png").convert()
+def activeplayer(p,x,y):
+                s.blit(p,(x,y))
+def distance(x1,x2,y1,y2):
+        d = ((((x1-y1)**2)+(x2-y2)**2))**0.5
+        return d
 
 
