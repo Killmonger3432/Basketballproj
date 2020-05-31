@@ -4,6 +4,7 @@ import random
 import mysql.connector
 from sys import exit
 s=pygame.display.set_mode([1450,800])
+pygame.display.set_caption("Basketball Game")
 px,py=35,200
 p2x,p2y=1050,45
 p3x,p3y=1050,360
@@ -26,8 +27,9 @@ o1=pygame.image.load("opp.png").convert()
 o2=pygame.image.load("opp2.png").convert()
 o3=pygame.image.load("opp3.png").convert()
 o4=pygame.image.load("opp4.png").convert()
-o5=pygame.ima
-ge.load("opp5.png").convert()
+o5=pygame.image.load("opp5.png").convert()
+icon=pygame.image.load("bb.png").convert()
+pygame.display.set_icon(icon)
 player="pg"
 pchangex=0
 pchangey=0
