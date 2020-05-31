@@ -38,8 +38,7 @@ def activeplayer(p,x,y):
 def distance(x1,x2,y1,y2):
         d = ((((x1-y1)**2)+(x2-y2)**2))**0.5
         return d
-running= True
-while running:
+def imginloop():
         s.fill([30,0,0])
         s.blit(b,(0,0))
         s.blit(p1,(px,py))
@@ -52,6 +51,10 @@ while running:
         s.blit(o3,(o3x,o3y))
         s.blit(o4,(o4x,o4y))
         s.blit(o5,(o5x,o5y))
+        pygame.display.update()  
+running= True
+while running:
+        imginloop()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -160,6 +163,5 @@ while running:
                     activeplayer(p3,p3x,p3y)
         elif player=="pf":
                     activeplayer(p4,p4x,p4y)
-        elif player=="sg":
+        elif player=="c":
                     activeplayer(p5,p5x,p5y)         
-        pygame.display.update()  
