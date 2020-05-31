@@ -155,13 +155,3 @@ while running:
                             p5y=15
                     if p5y>= 390:
                             p5y = 390
-        if player == "pg":
-                activeplayer(p1,px,py)
-        elif player=="sg":
-                    activeplayer(p2,p2x,p2y)
-        elif player=="sf":
-                    activeplayer(p3,p3x,p3y)
-        elif player=="pf":
-                    activeplayer(p4,p4x,p4y)
-        elif player=="c":
-                    activeplayer(p5,p5x,p5y)         
