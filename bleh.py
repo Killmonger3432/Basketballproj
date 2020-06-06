@@ -192,7 +192,7 @@ class opponent(pygame.sprite.Sprite):
                 s.blit(f4,(o4x,o4y))
                 s.blit(f1,(ox,oy))
 RUN=True
-pygame.display.set_caption("Basketball Game")    
+pygame.display.set_caption("SWISH SWISH BISH")    
 b=pygame.image.load("Courtn2.png").convert()
 icon=pygame.image.load("bb.png").convert()
 pygame.display.set_icon(icon)
