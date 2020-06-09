@@ -1,0 +1,64 @@
+import mysql.connector
+from tkinter import *
+root=Tk()
+root.title('select employees')
+root.geometry("400x400")
+db=mysql.connector.connect(host='localhost',
+                                         database='user',
+                                         user='root',
+                                         password='mysqlpswrd4321')
+
+
+cursor=db.cursor()
+def showall():
+    showall=Tk()
+    showall.title("players availible")
+    showall.geometry("200x200")
+    sb = Scrollbar(showall)
+    sb.pack(side=RIGHT, fill=Y)
+
+    mylist = Listbox(showall, yscrollcommand=sb.set,selectmode=MULTIPLE)
+    sb.config(command=mylist.yview)
+
+    sql="select * from players"
+    cursor.execute(sql)
+    result=cursor.fetchall()
+    for i in result:
+        mylist.insert(END,i[1])
+    mylist.pack(side=LEFT)
+    sb.config(command=mylist.yview)
+def deletefn():
+    mylist.delete(ANCHOR)
+
+
+
+
+def select():
+    val=namebox.get()
+    print(val)
+    print(type(val))
+def clearall():
+    namebox.delete(0,END)
+
+#cursor.execute("select * from employee")
+#result=cursor.fetchall()
+#for i in result:
+ #   print(i[0])
+
+firstlabel=Label(root,text="employee database",font=("Helvetica",16))
+firstlabel.grid(row=0,column=0,columnspan=2,pady=10)
+label1=Label(root,text='name').grid(row=1,column=0,sticky=W,padx=10)
+namebox=Entry(root)
+namebox.grid(row=1,column=1)
+btn=Button(root,text='select player',command=select,bg="red",fg="yellow")
+btn.grid(row=3,column=0)
+showall=Button(root,text='see available players',command=showall,bg="black",fg="yellow",padx=10)
+showall.grid(row=3,column=2)
+
+
+clear_button=Button(root,text='clear fields',command=clearall,bg="purple",fg="yellow",padx=10)
+clear_button.grid(row=3,column=1)
+delete=Button(showall,text="delete",command=deletefn)
+delete.pack(pady=10)
+
+root.mainloop()
