@@ -117,7 +117,7 @@ def collside(x1,x2,y1,y2):
         else:
             h1=-1
             L1=-1
-    return [h1,L1]
+    return [h1,L1]    
 def nonpcollide():
     global ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y
     global px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y        
@@ -264,7 +264,7 @@ def coll2():
             o5y+=3
     elif a1==2:
         if  pygame.sprite.collide_rect(o1,o5):
-            if seconds<=8:
+            if sec<=8:
                 o5x+=3
             else:
                 oy+=3
@@ -276,7 +276,7 @@ def coll2():
             oy-=3
     elif a1==5:
         if pygame.sprite.collide_rect(o2,o4):
-            if seconds<=7:
+            if sec<=7:
                 o4y+=3
             else:
                 o4y-=3
@@ -880,14 +880,15 @@ class opponent(pygame.sprite.Sprite):
                                 opponent.shot2(activeopp(),curvalO(),plycurval())
 
         def score(self):
-            global stat1,RUN,shoot,status,movement
+            global stat1,RUN,shoot,status,movement,blittime,k1,k2,k3,k4,k5
             if status == 'DEFENSE':
                 if shoot==False:
                     if movement==True:
                        opponent.shot(self,curvalO(),plycurval())
-            if seconds==19:
-                self.Z=random.randint(1,26)
-            global F2
+                if sec==18:
+                    self.Z=25
+                    
+                    
             score=0
             if TPD(opponent.activecoord(self)[0],opponent.activecoord(self)[1]):
                 self.K=True
@@ -898,7 +899,7 @@ class opponent(pygame.sprite.Sprite):
                 stat1="B"
             
             elif self.Z>0:
-                if movement==True:
+                if movement:
                     if coll==False:
                         shoot=True
                         if self.Z>=23:
@@ -911,11 +912,23 @@ class opponent(pygame.sprite.Sprite):
                         else:
                             stat1="M"
                             score=0
+                        if offopp=="pg":
+                            k1+=score
+                        elif offopp=="sg":
+                            k2+=score
+                        elif offopp=="sf":
+                            k3+=score
+                        elif offopp=="pf":
+                            k4+=score
+                        elif offopp=="c":
+                            k5+=score
                         ball.movement(b1,cx,cy)
                         movement=False
-                        print(self.Z,self.shotprob,self.defprob,self.dis,stat1)
+                        blittime=pygame.time.get_ticks()+1500
+                        
 
             return score
+
         def win(self):
             if sc >=21:
                 wintext= "YOU LOSE"
@@ -924,7 +937,7 @@ class opponent(pygame.sprite.Sprite):
                 wintext2="Exit window to close game"
                 winblit2=winfont2.render(wintext2,True,[0,0,0],[155,0,0])
                 s.blit(winblit2,wincenter2)
-                return True
+                
         def update(self):
             global ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y
             global oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo
@@ -1230,36 +1243,31 @@ class player(pygame.sprite.Sprite):
             self.block = False
             defprob=8+random.randint(0,2)
         self.shotchance= shotprob+defprob+dis
+        self.shotchance=25
+        
         print(self.shotchance,shotprob,defprob,dis)
     def score(self):
         global status,stat1
-        if self.block==True:
-            self.score =0
-            stat1="B"
-        elif self.shotchance>=23:
-            if self.K:
-                stat1="3P"
-                self.score=3
-            else:
-                self.score =2
-                stat1="2P"
-        elif self.shotchance<23:
-            stat1="M"
-            self.score=0
-        notransit= False
+        if status=="OFFENSE":
+            if sec<=3:
+                self.shotchance=random.randint(5,30)
+            if self.block==True:
+                self.score =0
+                stat1="B"
+            elif self.shotchance>=23:
+                if self.K:
+                    stat1="3P"
+                    self.score=25
+                else:
+                    self.score =2
+                    
+                    stat1="2P"
+            elif self.shotchance<23:
+                stat1="M"
+                self.score=0
+            notransit= False
         
-        return self.score
-    def win(self):
-        if scp >=21:
-            wintext= "YOU WIN"
-            winblit = winfont.render(wintext,True, [0,0,0], [155,0,0])
-            s.blit(winblit,wincenter)
-            wintext2="Exit window to close game"
-            winblit2=winfont2.render(wintext2,True,[0,0,0],[155,0,0])
-            s.blit(winblit2,wincenter2)
-            self.movey=0
-            self.movex=0
-            return True
+            return self.score
     def update(self):
         global px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y
         global pxo,pyo,p2xo,p2yo,p3xo,p3yo,p4xo,p4yo,p5xo,p5yo
@@ -1282,6 +1290,7 @@ class player(pygame.sprite.Sprite):
             if notransit:
                 player.boundaryD(self)
         elif status=="OFFENSE":
+            
             if activeplayer=="pg":
                 pxo+=self.movex
                 pyo+=self.movey
@@ -1299,7 +1308,6 @@ class player(pygame.sprite.Sprite):
                 p5yo+=self.movey
             if notransit:
                 player.boundaryO(self)
-        player.win(self)
         if status=="DEFENSE":
             if notransit:
                 pass
@@ -1333,8 +1341,8 @@ class ball:
         self.state="P"
         self.number=0
     def boundaryO(self):
-        if self.x>=1365:
-            self.x=1365
+        if self.x>=1375:
+            self.x=1375
         if self.x<=30:
             self.x=30
         if self.y<=15:
@@ -1350,8 +1358,10 @@ class ball:
                 self.y=15
             if self.y>=390:
                 self.y=390
-    def state(self):
-        return self.x,self.y
+    def state(self,x):
+        self.state=x
+    def state2(self):
+        return self.state
     def collision(self,x2,y2):
         if math.dist((self.x,self.y),(x2,y2))<20:
                 self.ballmovex=0
@@ -1363,8 +1373,13 @@ class ball:
                 self.ballmovex=0
                 self.ballmovey=0
                 return True
+    def collisionO(self,x2,y2):
+        if math.dist((self.x,self.y),(x2,y2))<=10:
+            self.ballmovex,self.ballmovey=0,0
+            return True
     def movement(self,x2,y2):
         global disfn
+        
         self.number=max(abs(x2-self.x),abs(y2-self.y))
         self.ballmovex=float(x2-self.x)/self.number
         self.ballmovey=float(y2-self.y)/self.number
@@ -1379,38 +1394,46 @@ class ball:
                 disfn="T3"
         else:
             disfn="T0"
+
+    def cor(self):
+        return [self.x,self.y]
     def draw(self):
-        global shoot,movement,status,coll
+        global shoot,movement,status,coll,collo,setO,setD,stat1,blittime
         if status=="DEFENSE":
             if shoot == False:
-                if self.state=="M":
-                    if ball.collision(self,px,py):
-                        self.state="D1"
-                        coll=True
-                    elif ball.collision(self,p2x,p2y):
-                        self.state="D2"
-                        coll=True
-                    elif ball.collision(self,p3x,p3y):
-                        self.state="D3"
-                        coll=True
-                    elif ball.collision(self,p4x,p4y):
-                        self.state="D4"
-                        coll=True
-                    elif ball.collision(self,p5x,p5y):
-                        self.state="D5"
-                        coll=True
-                if ball.collision(self,ox,oy) or ball.collision(self,o2x,o2y) or ball.collision(self,o3x,o3y) or ball.collision(self,o4x,o4y)or ball.collision(self,o5x,o5y) :
-                    self.state="P"
-                    movement=True
+                if notransit==True:
+                    if self.state=="M":
+                        if ball.collision(self,px,py):
+                            self.state="D1"
+                            coll=True
+                        elif ball.collision(self,p2x,p2y):
+                            self.state="D2"
+                            coll=True
+                        elif ball.collision(self,p3x,p3y):
+                            self.state="D3"
+                            coll=True
+                        elif ball.collision(self,p4x,p4y):
+                            self.state="D4"
+                            coll=True
+                        elif ball.collision(self,p5x,p5y):
+                            self.state="D5"
+                            coll=True
+                    if ball.collision(self,ox,oy) or ball.collision(self,o2x,o2y) or ball.collision(self,o3x,o3y) or ball.collision(self,o4x,o4y)or ball.collision(self,o5x,o5y) :
+                        self.state="P"
+                        movement=True
+                if coll:
+                    blittime=pygame.time.get_ticks()+1500
+                    stat1="I"
             if ball.collisionb(self,cx,cy):
-                    self.x=90
-                    self.y=220
-                    transition()
-            ball.boundaryD(self)
-            if coll==True:
+                setD=True
+            if setD==True:
+                self.state="D1"
                 transition()
-            
+                
+                
+            ball.boundaryD(self)            
             if self.state=="M":
+                
                 if disfn=="T1":
                     fx=1.5
                 elif disfn=="T2":
@@ -1421,6 +1444,7 @@ class ball:
                     fx=1.5
                 self.x+=self.ballmovex*1.5
                 self.y+=self.ballmovey*1.5
+                
             elif self.state=="P":
                 if offopp=="pg":
                     self.x=ox
@@ -1439,47 +1463,58 @@ class ball:
                     self.y=o5y+20
             else:
                 if self.state=="D1":
-                    self.x=px
+                    self.x=px+50
                     self.y=py+20
                     defplayer="pg"
                 elif self.state=="D2":
-                    self.x=p2x
+                    self.x=p2x+50
                     self.y=p2y+20
                     defplayer="sg"
                 elif self.state=="D3":
-                    self.x=p3x
+                    self.x=p3x+50
                     self.y=p3y+20
                     defplayer="sf"
                 elif self.state=="D4":
-                    self.x=p4x
+                    self.x=p4x+50
                     self.y=p4y+20
                     defplayer="pf"
                 elif self.state=="D5":
-                    self.x=p5x
+                    self.x=p5x+50
                     self.y=p5y+20
                     defplayer="c"
-                tst=fontst.render(itext,True, [0,0,0], [155,0,0])
-                s.blit(tst,icenter)
+                transition()
+            
         elif status=="OFFENSE":
             if shoot == False:
-                if self.state=="M":
-                    if ball.collision(self,oxo,oyo):
-                        self.state="D1"
-                    elif ball.collision(self,o2xo,o2yo):
-                        self.state="D2"
-                    elif ball.collision(self,o3xo,o3yo):
-                        self.state="D3"
-                    elif ball.collision(self,o4xo,o4yo):
-                        self.state="D4"
-                    elif ball.collision(self,o5xo,o5yo):
-                        self.state="D5"
-                if ball.collision(self,pxo,pyo) or ball.collision(self,p2xo,p2yo) or ball.collision(self,p3xo,p3yo) or ball.collision(self,p4xo,p4yo)or ball.collision(self,p5xo,p5yo) :
-                    self.state="P"
-            if ball.collisionb(self,c2x,c2y):
-                    #self.x=pxo
-                    #self.y=pyo
-                    transition()
-
+                if notransit==True:
+                    if self.state=="M":
+                        if ball.collision(self,oxo,oyo):
+                            self.state="D1"
+                            collo=True
+                        elif ball.collision(self,o2xo,o2yo):
+                            self.state="D2"
+                            collo=True
+                        elif ball.collision(self,o3xo,o3yo):
+                            self.state="D3"
+                            collo=True
+                        elif ball.collision(self,o4xo,o4yo):
+                            self.state="D4"
+                            collo=True
+                        elif ball.collision(self,o5xo,o5yo):
+                            self.state="D5"
+                            collo=True
+                    if ball.collision(self,pxo,pyo) or ball.collision(self,p2xo,p2yo) or ball.collision(self,p3xo,p3yo) or ball.collision(self,p4xo,p4yo)or ball.collision(self,p5xo,p5yo) :
+                        self.state="P"
+                if collo==True:
+                    blittime=pygame.time.get_ticks()+1500
+                    stat1="I"
+                    
+            if ball.collisionO(self,c2x,c2y):
+                setO=True
+            if setO==True:
+                transition()
+                self.x=oxo
+                self.y=oyo+20
             ball.boundaryO(self)
             if self.state=="M":
                 if disfn=="T1":
@@ -1524,52 +1559,53 @@ class ball:
                 elif self.state=="D5":
                     self.x=o5xo
                     self.y=o5yo
-                #transition()
-                tst=fontst.render(itext,True, [0,0,0], [155,0,0])
-                s.blit(tst,icenter)
+                transition()
         pygame.draw.circle(s,(255,140,0),[self.x,self.y],self.rad)
 def curvalD():
     if activedefender()==o1:
-        return valo1[2:4]
+        return valo1[3:5]
     elif activedefender()==o2:
-        return valo2[2:4]
+        return valo2[3:5]
     elif activedefender()==o3:
-        return valo3[2:4]
+        return valo3[3:5]
     elif activedefender()==o4:
-        return valo4[2:4]
+        return valo4[3:5]
     elif activedefender()==o5:
-        return valo5[2:4]
+        return valo5[3:5]
 def curvalO():
     if offopp=='pg':
-        return valo1[0:2]
+        return valo1[1:3]
     elif offopp=='sg':
-        return valo2[0:2]
+        return valo2[1:3]
     elif offopp=='sf':
-        return valo3[0:2]
+        return valo3[1:3]
     elif offopp=='pf':
-        return valo4[0:2]
+        return valo4[1:3]
     elif offopp=='c':
-        return valo5[0:2]
+        return valo5[1:3]
 def plycurval():
     if curopp()=='pg':
-        return valp1[2:4]
+        return valp1[3:5]
     elif curopp()=='sg':
-        return valp2[2:4]
+        return valp2[3:5]
     elif curopp()=='sf':
-        return valp3[2:4]
+        return valp3[3:5]
     elif curopp()=='pf':
-        return valp4[2:4]
+        return valp4[3:5]
     elif curopp()=='c':
-        return valp5[2:4]
+        return valp5[3:5]
 def transition():
     global px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y
     global ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y
     global oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo
     global pxo,pyo,p2xo,p2yo,p3xo,p3yo,p4xo,p4yo,p5xo,p5yo
-    global status,coll
-    global notransit,shoot
+    global status,coll,setO,setD,sec,a1,collo,stat1
+    global notransit,shoot,dtime,otime,activeplayer,movement
+    
     notransit=False
     if status=="DEFENSE":
+        coll=False
+        shoot=False
         ax,ay=725,200
         bx,by=1050,40
         cx,cy=1050,360
@@ -1642,16 +1678,23 @@ def transition():
             o5x+=(jx-o5x)/step10
             o5y+=(jy-o5y)/step10
         if step1==0 and step2==0 and step3==0 and step4==0 and step5==0 and step6==0 and step7==0 and step8==0 and step9==0 and step10==0:
+            coll=False
+            setD=False
             notransit=True
+            ball.state(B2,"P")
+            dtime=0
+            movement=True
+            activeplayer="pg"
+            otime=pygame.time.get_ticks()+21000
             status="OFFENSE"
             px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y=500,200,285,90,285,320,85,160,85,255
             ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y=675,200,365,35,370,370,145,120,145,290
-            ball.x=1
-            ball.y=1
-            coll=False
+            
             
             
     if status=="OFFENSE":
+        sec=5
+        collo=False
         shoot=False
         ax,ay=500,200
         bx,by=285,90
@@ -1728,12 +1771,114 @@ def transition():
             o5yo+=(jy-o5yo)/step10
         if step1==0 and step2==0 and step3==0 and step4==0 and step5==0 and step6==0 and step7==0 and step8==0 and step9==0 and step10==0:
             notransit=True
+            a1=random.randint(1,10)
+            dtime=pygame.time.get_ticks()+21000
+            otime=0
+            o4x,o5x=o4xo,o5xo
+            o4y,o5y=o4yo,o5yo
+            o3x,o3y,o2x,o2y,ox,oy=o3xo,o3yo,o2xo,o2yo,oxo,oyo
+            defplayer="pg"
+            ball.state(b1,"P")
+            activeopp="pg"
+            setO=False
+            stat1="P"
             status="DEFENSE"
             pxo,pyo,p2xo,p2yo,p3xo,p3yo,p4xo,p4yo,p5xo,p5yo=725,200,1050,40,1050,360,1250,120,1250,290
             oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo=925,200,1100,90,1100,320,1300,160,1300,255
             
 
-    
+def over():
+    global OVER
+    if sc>21:
+        OVER=True
+        wintext= "YOU LOSE"
+        wintext2="Exit window to close game"
+        Playsc="PLAYER SCORECARD"
+        Oppsc="OPPONENT SCORECARD"
+        sL1=valp1[0]+" -  "+str(s1)
+        sL2=valp2[0]+" -  "+str(s2)
+        sL3=valp3[0]+" -  "+str(s3)
+        sL4=valp4[0]+" -  "+str(s4)
+        sL5=valp5[0]+" - "+str(s5)
+        sM5=valo5[0]+" -  "+str(k5)
+        sM4=valo4[0]+" -  "+str(k4)
+        sM3=valo3[0]+" -  "+str(k3)
+        sM2=valo2[0]+" -  "+str(k2)
+        sM1=valo1[0]+" - "+str(k1)
+        winblit = winfont.render(wintext,True, [0,0,0], [155,0,0])
+        winblit2=winfont2.render(wintext2,True,[0,0,0],[155,0,0])
+        splblit=scoresh.render(Playsc,True,[0,0,0],[155,0,0])
+        sopblit=scoresh.render(Oppsc,True,[0,0,0],[155,0,0])
+        sblit1=cardfont.render(sL1,True,[0,0,0],[155,0,0])
+        sblit2=cardfont.render(sL2,True,[0,0,0],[155,0,0])
+        sblit3=cardfont.render(sL3,True,[0,0,0],[155,0,0])
+        sblit4=cardfont.render(sL4,True,[0,0,0],[155,0,0])
+        sblit5=cardfont.render(sL5,True,[0,0,0],[155,0,0])
+        opblit1=cardfont.render(sM1,True,[0,0,0],[155,0,0])
+        opblit2=cardfont.render(sM2,True,[0,0,0],[155,0,0])
+        opblit3=cardfont.render(sM3,True,[0,0,0],[155,0,0])
+        opblit4=cardfont.render(sM4,True,[0,0,0],[155,0,0])
+        opblit5=cardfont.render(sM5,True,[0,0,0],[155,0,0])
+        s.blit(splblit,(cardcenter[0]-80,cardcenter[1]-60))
+        s.blit(sblit1,cardcenter)
+        s.blit(sblit2,(cardcenter[0],cardcenter[1]+40))
+        s.blit(sblit3,(cardcenter[0],cardcenter[1]+80))
+        s.blit(sblit4,(cardcenter[0],cardcenter[1]+120))
+        s.blit(sblit5,(cardcenter[0],cardcenter[1]+160))
+        s.blit(sopblit,(1000,90))
+        s.blit(opblit1,(1100,150))
+        s.blit(opblit2,(1100,190))
+        s.blit(opblit3,(1100,230))
+        s.blit(opblit4,(1100,270))
+        s.blit(opblit5,(1100,310))
+        s.blit(winblit,wincenter)
+        s.blit(winblit2,wincenter2)
+        
+    elif scp>21:
+        OVER=True
+        wintext= "YOU WIN"
+        wintext2="Exit window to close game"
+        Playsc="PLAYER SCORECARD"
+        Oppsc="OPPONENT SCORECARD"
+        sL1=valp1[0]+" -  "+str(s1)
+        sL2=valp2[0]+" -  "+str(s2)
+        sL3=valp3[0]+" -  "+str(s3)
+        sL4=valp4[0]+" -  "+str(s4)
+        sL5=valp5[0]+" - "+str(s5)
+        sM5=valo5[0]+" -  "+str(k5)
+        sM4=valo4[0]+" -  "+str(k4)
+        sM3=valo3[0]+" -  "+str(k3)
+        sM2=valo2[0]+" -  "+str(k2)
+        sM1=valo1[0]+" - "+str(k1)
+        winblit2=winfont2.render(wintext2,True,[0,0,0],[155,0,0])
+        winblit = winfont.render(wintext,True, [0,0,0], [155,0,0])
+        splblit=scoresh.render(Playsc,True,[0,0,0],[155,0,0])
+        sopblit=scoresh.render(Oppsc,True,[0,0,0],[155,0,0])
+        sblit1=cardfont.render(sL1,True,[0,0,0],[155,0,0])
+        sblit2=cardfont.render(sL2,True,[0,0,0],[155,0,0])
+        sblit3=cardfont.render(sL3,True,[0,0,0],[155,0,0])
+        sblit4=cardfont.render(sL4,True,[0,0,0],[155,0,0])
+        sblit5=cardfont.render(sL5,True,[0,0,0],[155,0,0])
+        opblit1=cardfont.render(sM1,True,[0,0,0],[155,0,0])
+        opblit2=cardfont.render(sM2,True,[0,0,0],[155,0,0])
+        opblit3=cardfont.render(sM3,True,[0,0,0],[155,0,0])
+        opblit4=cardfont.render(sM4,True,[0,0,0],[155,0,0])
+        opblit5=cardfont.render(sM5,True,[0,0,0],[155,0,0])
+        s.blit(splblit,(cardcenter[0]-80,cardcenter[1]-60))
+        s.blit(sblit1,cardcenter)
+        s.blit(sblit2,(cardcenter[0],cardcenter[1]+40))
+        s.blit(sblit3,(cardcenter[0],cardcenter[1]+80))
+        s.blit(sblit4,(cardcenter[0],cardcenter[1]+120))
+        s.blit(sblit5,(cardcenter[0],cardcenter[1]+160))
+        s.blit(sopblit,(1000,90))
+        s.blit(opblit1,(1100,150))
+        s.blit(opblit2,(1100,190))
+        s.blit(opblit3,(1100,230))
+        s.blit(opblit4,(1100,270))
+        s.blit(opblit5,(1100,310))
+        s.blit(winblit,wincenter)
+        s.blit(winblit2,wincenter2)
+        
 
 RUN= True
 s=pygame.display.set_mode([1450,800])
@@ -1757,16 +1902,16 @@ img3=pygame.image.load("PG2.png").convert()
 img4,img5=pygame.image.load("PF.png").convert(),pygame.image.load("C.png").convert()
 con=mysql.connector.connect(host="localhost",user="root",password="Agasthya0112",database="project")
 cursor=con.cursor(buffered=True)
-sql1="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Kyrie Irving'"
-sql2="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'James Harden'"
-sql3="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Damian Lillard'"
-sql4="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Jayson Tatum'"
-sql5="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Steven Adams'"
-sql6="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'PG' order by rand() limit 1"
-sql7="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'SG' order by rand() limit 1"
-sql8="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'SF' order by rand() limit 1"
-sql9="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'PF' order by rand() limit 1"
-sql10="Select Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'C' order by rand() limit 1"
+sql1="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Kyrie Irving'"
+sql2="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'James Harden'"
+sql3="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Damian Lillard'"
+sql4="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Jayson Tatum'"
+sql5="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Steven Adams'"
+sql6="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'PG' and name not like 'Kyrie Irving' and name not like 'Damian Lillard' order by rand() limit 1"
+sql7="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'SG' and name not like 'James Harden' order by rand() limit 1"
+sql8="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'SF' and name not like 'Damian Lillard' order by rand() limit 1"
+sql9="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'PF' and name not like 'Jayson Tatum' order by rand() limit 1"
+sql10="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'C' and name not like 'Steven Adams' order by rand() limit 1"
 cursor.execute(sql1)
 valp1=cursor.fetchall()[0]
 cursor.execute(sql2)
@@ -1804,9 +1949,13 @@ a1=random.randint(1,10)
 block=False
 shoot=False
 coll=False
+collo=False
 movement=True
 move=True
 fin=False
+setO=False
+setD=False
+OVER=False
 scp=0
 sc=0
 start_ticks=pygame.time.get_ticks()
@@ -1815,10 +1964,13 @@ font=pygame.font.SysFont(fontdef,40)
 textcenter = (675,450)
 fontdef2=pygame.font.get_fonts()[3]
 winfont=pygame.font.SysFont(fontdef2,90)
-wincenter=(570,500)
+wincenter=(560,160)
+cardfont=pygame.font.SysFont(fontdef2,30)
+cardcenter=(200,150)
+scoresh=pygame.font.SysFont(fontdef2,40)
 fontdef3=pygame.font.get_fonts()[0]
 winfont2=pygame.font.SysFont(fontdef3,30)
-wincenter2=(568,590)
+wincenter2=(560,270)
 tfont=pygame.font.SysFont(fontdef3,30)
 tcenter=(1180,450)
 stat1="P"
@@ -1830,12 +1982,13 @@ thptext="3 POINTER MADE!"
 thpcenter=(540,40)
 tptext="2 POINTER MADE!"
 tpcenter=(540,40)
+sc1=0
 bltext="BLOCKED!"
 shothap=0
 blcenter=(620,40)
 itext="INTERCEPTED"
 icenter=(580,40)
-status= 'DEFENSE'
+status= 'OFFENSE'
 notransit=True
 px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y=500,200,285,90,285,320,85,160,85,255
 ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y=675,200,365,35,370,370,145,120,145,290
@@ -1846,11 +1999,15 @@ oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo=925,200,1100,90,1100,320,1300,16
 B2=ball(pxo,pyo)
 c2x,c2y=1375,225
 blittime=None
+dtime=22000
+otime=22000
 i = True
 coord=[]
 b,b2=280,130
 count=0
 a=465
+s1,s2,s3,s4,s5=0,0,0,0,0
+k1,k2,k3,k4,k5=0,0,0,0,0
 while i:
     if a<285:
         break
@@ -1942,19 +2099,17 @@ while RUN:
     o3=opponent("opp3.png",o3x,o3y,o3xo,o3yo)
     o4=opponent("opp4.png",o4x,o4y,o4xo,o4yo)
     o5=opponent("opp5.png",o5x,o5y,o5xo,o5yo)
-    scoretxt=str(sc)+ " - " +str(scp)
+    scoretxt=str(scp)+ " - " +str(sc)
     zpr=[[ox,oy],[o2x,o2y],[o3x,o3y],[o4x,o4y],[o5x,o5y]]
     text = font.render(scoretxt,True, [155,0,0], [0,0,0])
-    seconds=(pygame.time.get_ticks()-start_ticks)//1000
-    #nonpcollide()
+    nonpcollide()
     s.blit(text,textcenter)
     for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()                                
             elif event.type == pygame.KEYDOWN:
-                #if shoot==False:
-                    if notransit==True:
+                if notransit==True:
                         if status=='DEFENSE':
                             if event.key == pygame.K_LEFT or event.key == pygame.K_a:                  
                                 player.movement(curplayer(),-20,0)
@@ -2009,43 +2164,32 @@ while RUN:
                                             activeplayer="c"
                                             kpr="c"
                             if event.key == pygame.K_SPACE:
-                                if scp<21:
-                                    shoot=True
-                                    ball.movement(B2,c2x,c2y)
-                                    if activeplayer=="pg":
-                                        player.shot(useplayer(),valp1[0:2],curvalD(),activedefender())
-                                    elif activeplayer=="sg":
-                                            player.shot(useplayer(),valp2[0:2],curvalD(),activedefender())
-                                    elif activeplayer=="sf":
-                                            player.shot(useplayer(),valp3[0:2],curvalD(),activedefender())
-                                    elif activeplayer=="pf":
-                                            player.shot(useplayer(),valp4[0:2],curvalD(),activedefender())
-                                    elif activeplayer=="c":
-                                            player.shot(useplayer(),valp5[0:2],curvalD(),activedefender())
-                                    scp+=player.score(useplayer())
-                                    shothap+=1
-                                    blittime=pygame.time.get_ticks()+1500
-                    if event.key == pygame.K_o:
-                       print(coll)
+                                if ball.state2(B2)!="M":
+                                    if scp<21:
+                                        shoot=True
+                                        if activeplayer=="pg":
+                                            player.shot(useplayer(),valp1[1:3],curvalD(),activedefender())
+                                            s1,scp=s1+player.score(useplayer()),scp+player.score(useplayer())
+                                        elif activeplayer=="sg":
+                                                player.shot(useplayer(),valp2[1:3],curvalD(),activedefender())
+                                                s2,scp=s2+player.score(useplayer()),scp+player.score(useplayer())
+                                        elif activeplayer=="sf":
+                                                player.shot(useplayer(),valp3[1:3],curvalD(),activedefender())
+                                                s3,scp=s3+player.score(useplayer()),scp+player.score(useplayer())
+                                        elif activeplayer=="pf":
+                                                player.shot(useplayer(),valp4[1:3],curvalD(),activedefender())
+                                                s4,scp=s4+player.score(useplayer()),scp+player.score(useplayer())
+                                        elif activeplayer=="c":
+                                                player.shot(useplayer(),valp5[1:3],curvalD(),activedefender())
+                                                s5,scp=s5+player.score(useplayer()),scp+player.score(useplayer())
+                                        if player.activecoord(useplayer())[1]>202:
+                                            ball.movement(B2,1375,250)
+                                        else:
+                                            ball.movement(B2,1375,225)
+                                        blittime=pygame.time.get_ticks()+1500
+                    
                                     
-    if status=="DEFENSE":
-        sc+=opponent.score(activeopp())
-        if pass1:
-            if seconds==pass1dur:
-                opponent.opppass(activeopp())
-                pass1=False
-        if pass2:
-            if seconds==pass2dur:
-                opponent.opppass(activeopp())
-                pass2=False
-        if pass3:
-            if seconds==pass3dur:
-                opponent.opppass(activeopp())
-                pass3=False
-        if pass4:
-            if seconds==pass4dur:
-                opponent.opppass(activeopp())
-                pass4=False
+
     if stat1=="M":
         if blittime:
             tst=fontst.render(mtext,True, [0,0,0], [155,0,0])
@@ -2073,22 +2217,59 @@ while RUN:
             s.blit(tst,blcenter)
             if pygame.time.get_ticks()>=blittime:
                 blittime=None
-    tleft="Time Left is : " + str(20-seconds)
-    tblit = tfont.render(tleft,True, [155,0,0], [0,0,0])
-    s.blit(tblit,tcenter)
-    if status=="DEFENSE":
-        ball.draw(b1)
-    elif status=="OFFENSE":
-        ball.draw(B2)
-    if status == "DEFENSE":
-        player.update(curplayer())
-        opponent.update(activeopp())
-    elif status == "OFFENSE":
-        player.update(useplayer())
-        opponent.update(activedefender())
-    if seconds>90000:
-        RUN= False
-        move=False
+    elif stat1=="I":
+        if blittime:
+            tst=fontst.render(itext,True, [0,0,0], [155,0,0])
+            s.blit(tst,icenter)
+            if pygame.time.get_ticks()>=blittime:
+                blittime=None
+    if notransit==False:
+        sec=5
+        tleft="Time Left is : " + str(sec)
+    else:
+        if status=="OFFENSE":
+            sec=((otime-pygame.time.get_ticks())//1000)
+            tleft="Time Left is : " + str(sec)
+        elif status=="DEFENSE":
+            sec=((dtime-pygame.time.get_ticks())//1000)
+            tleft="Time Left is : " + str(sec)
+            if pass1:
+                if (20-sec)==pass1dur:
+                    opponent.opppass(activeopp())
+                    pass1=False
+            if pass2:
+                if (20-sec)==pass2dur:
+                    opponent.opppass(activeopp())
+                    pass2=False
+            if pass3:
+                if (20-sec)==pass3dur:
+                    opponent.opppass(activeopp())
+                    pass3=False
+            if pass4:
+                if (20-sec)==pass4dur:
+                    opponent.opppass(activeopp())
+                    pass4=False
+    
+    
+    
+    sc+=opponent.score(activeopp())
+    
+    over()
+    if OVER!=True:
+        tblit = tfont.render(tleft,True, [155,0,0], [0,0,0])
+        s.blit(tblit,tcenter)
+    if OVER==False:
+        if status=="DEFENSE":
+            ball.draw(b1)
+        elif status=="OFFENSE":
+            ball.draw(B2)
+        if status == "DEFENSE":
+            player.update(curplayer())
+            opponent.update(activeopp())
+        elif status == "OFFENSE":
+            player.update(useplayer())
+            opponent.update(activedefender())
+
     pygame.display.update()
     if RUN== False:
         pygame.quit() 
