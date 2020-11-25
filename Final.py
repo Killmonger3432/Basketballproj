@@ -1243,8 +1243,7 @@ class player(pygame.sprite.Sprite):
             self.block = False
             defprob=8+random.randint(0,2)
         self.shotchance= shotprob+defprob+dis
-        self.shotchance=25
-        
+        self.shotchance=30
         print(self.shotchance,shotprob,defprob,dis)
     def score(self):
         global status,stat1
@@ -1257,7 +1256,7 @@ class player(pygame.sprite.Sprite):
             elif self.shotchance>=23:
                 if self.K:
                     stat1="3P"
-                    self.score=25
+                    self.score=30
                 else:
                     self.score =2
                     
@@ -1878,14 +1877,15 @@ def over():
         s.blit(opblit5,(1100,310))
         s.blit(winblit,wincenter)
         s.blit(winblit2,wincenter2)
-        
-
 RUN= True
 s=pygame.display.set_mode([1450,800])
 pygame.display.set_caption("Swisheroo")    
 COURT=pygame.image.load("Courtn2.png").convert()
 icon=pygame.image.load("icon2.jpeg").convert()
 pygame.display.set_icon(icon)
+con=mysql.connector.connect(host='localhost',
+                                         database='project',
+                                         user='root',password='Agasthya0112')
 l1=pygame.image.load("ply.png").convert()
 l2=pygame.image.load("ply2.png").convert()
 l3=pygame.image.load("ply3.png").convert()
@@ -1896,41 +1896,41 @@ f2=pygame.image.load("opp2.png").convert()
 f3=pygame.image.load("opp3.png").convert()
 f4=pygame.image.load("opp4.png").convert()
 f5=pygame.image.load("opp5.png").convert()
-img1=pygame.image.load("PG1.png").convert()
-img2=pygame.image.load("SG.png").convert()
-img3=pygame.image.load("PG2.png").convert()
-img4,img5=pygame.image.load("PF.png").convert(),pygame.image.load("C.png").convert()
-con=mysql.connector.connect(host="localhost",user="root",password="Agasthya0112",database="project")
 cursor=con.cursor(buffered=True)
-sql1="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Kyrie Irving'"
-sql2="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'James Harden'"
-sql3="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Damian Lillard'"
-sql4="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Jayson Tatum'"
-sql5="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where name = 'Steven Adams'"
-sql6="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'PG' and name not like 'Kyrie Irving' and name not like 'Damian Lillard' order by rand() limit 1"
-sql7="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'SG' and name not like 'James Harden' order by rand() limit 1"
-sql8="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'SF' and name not like 'Damian Lillard' order by rand() limit 1"
-sql9="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'PF' and name not like 'Jayson Tatum' order by rand() limit 1"
-sql10="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where position = 'C' and name not like 'Steven Adams' order by rand() limit 1"
+sql1="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'PG' order by rand() limit 1"
+sql2="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'SG' order by rand() limit 1"
+sql3="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'SF' order by rand() limit 1"
+sql4="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'PF' order by rand() limit 1"
+sql5="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'C' order by rand() limit 1"
+sql6="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "PG" """
+sql7="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "SG" """
+sql8="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "SF" """
+sql9="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "PF" """
+sql10="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "C" """
 cursor.execute(sql1)
 valp1=cursor.fetchall()[0]
+img1=pygame.image.load(str(valp1[5])).convert()
 cursor.execute(sql2)
 valp2=cursor.fetchall()[0]
+img2=pygame.image.load(str(valp2[5])).convert()
 cursor.execute(sql3)
 valp3=cursor.fetchall()[0]
+img3=pygame.image.load(str(valp3[5])).convert()
 cursor.execute(sql4)
 valp4=cursor.fetchall()[0]
+img4=pygame.image.load(str(valp4[5])).convert()
 cursor.execute(sql5)
 valp5=cursor.fetchall()[0]
-cursor.execute(sql6)
+img5=pygame.image.load(str(valp5[5])).convert()
+cursor.execute(sql6,(valp1[0],))
 valo1=cursor.fetchall()[0]
-cursor.execute(sql7)
+cursor.execute(sql7,(valp2[0],))
 valo2=cursor.fetchall()[0]
-cursor.execute(sql8)
+cursor.execute(sql8,(valp3[0],))
 valo3=cursor.fetchall()[0]
-cursor.execute(sql9)
+cursor.execute(sql9,(valp4[0],))
 valo4=cursor.fetchall()[0]
-cursor.execute(sql10)
+cursor.execute(sql10,(valp5[0],))
 valo5=cursor.fetchall()[0]
 offopp="pg"
 defplayer="pg"
