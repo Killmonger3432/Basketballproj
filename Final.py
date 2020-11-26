@@ -3,6 +3,7 @@ import random
 import math
 import mysql.connector
 from sys import exit
+from over import *
 import warnings
 warnings.filterwarnings("ignore")
 pygame.init()
@@ -773,10 +774,8 @@ class opponent(pygame.sprite.Sprite):
                 if shoot==False:
                     if movement==True:
                        opponent.shot(self,curvalO(),plycurval())
-                if sec==18:
-                    self.Z=25
-                    
-                    
+                if sec==3:
+                    self.Z=random.randint(13,23)
             score=0
             if TPD(opponent.activecoord(self)[0],opponent.activecoord(self)[1]):
                 self.K=True
@@ -792,7 +791,7 @@ class opponent(pygame.sprite.Sprite):
                         shoot=True
                         if self.Z>=23:
                             if self.K:
-                                score=3
+                                score=30
                                 stat1='3P'
                             else:
                                 score = 2
@@ -1120,19 +1119,18 @@ class player(pygame.sprite.Sprite):
             self.block = False
             defprob=8+random.randint(0,2)
         self.shotchance= shotprob+defprob+dis
-        self.shotchance=30
     def score(self):#player score increm
         global status,stat1
         if status=="OFFENSE":
             if sec<=3:
-                self.shotchance=random.randint(5,30)
+                self.shotchance=random.randint(10,25)
             if self.block==True:
                 self.score =0
                 stat1="B"
             elif self.shotchance>=23:
                 if self.K:
                     stat1="3P"
-                    self.score=30
+                    self.score=3
                 else:
                     self.score =2
                     
@@ -1663,96 +1661,8 @@ def transition(): #transition bw offesne and defense
             
 
 def over(): # after game finisheds
-    global OVER
-    if sc>21:
-        OVER=True
-        wintext= "YOU LOSE"
-        wintext2="Exit window to close game"
-        Playsc="PLAYER SCORECARD"
-        Oppsc="OPPONENT SCORECARD"
-        sL1=valp1[0]+" -  "+str(s1)
-        sL2=valp2[0]+" -  "+str(s2)
-        sL3=valp3[0]+" -  "+str(s3)
-        sL4=valp4[0]+" -  "+str(s4)
-        sL5=valp5[0]+" - "+str(s5)
-        sM5=valo5[0]+" -  "+str(k5)
-        sM4=valo4[0]+" -  "+str(k4)
-        sM3=valo3[0]+" -  "+str(k3)
-        sM2=valo2[0]+" -  "+str(k2)
-        sM1=valo1[0]+" - "+str(k1)
-        winblit = winfont.render(wintext,True, [0,0,0], [155,0,0])
-        winblit2=winfont2.render(wintext2,True,[0,0,0],[155,0,0])
-        splblit=scoresh.render(Playsc,True,[0,0,0],[155,0,0])
-        sopblit=scoresh.render(Oppsc,True,[0,0,0],[155,0,0])
-        sblit1=cardfont.render(sL1,True,[0,0,0],[155,0,0])
-        sblit2=cardfont.render(sL2,True,[0,0,0],[155,0,0])
-        sblit3=cardfont.render(sL3,True,[0,0,0],[155,0,0])
-        sblit4=cardfont.render(sL4,True,[0,0,0],[155,0,0])
-        sblit5=cardfont.render(sL5,True,[0,0,0],[155,0,0])
-        opblit1=cardfont.render(sM1,True,[0,0,0],[155,0,0])
-        opblit2=cardfont.render(sM2,True,[0,0,0],[155,0,0])
-        opblit3=cardfont.render(sM3,True,[0,0,0],[155,0,0])
-        opblit4=cardfont.render(sM4,True,[0,0,0],[155,0,0])
-        opblit5=cardfont.render(sM5,True,[0,0,0],[155,0,0])
-        s.blit(splblit,(cardcenter[0]-80,cardcenter[1]-60))
-        s.blit(sblit1,cardcenter)
-        s.blit(sblit2,(cardcenter[0],cardcenter[1]+40))
-        s.blit(sblit3,(cardcenter[0],cardcenter[1]+80))
-        s.blit(sblit4,(cardcenter[0],cardcenter[1]+120))
-        s.blit(sblit5,(cardcenter[0],cardcenter[1]+160))
-        s.blit(sopblit,(1000,90))
-        s.blit(opblit1,(1100,150))
-        s.blit(opblit2,(1100,190))
-        s.blit(opblit3,(1100,230))
-        s.blit(opblit4,(1100,270))
-        s.blit(opblit5,(1100,310))
-        s.blit(winblit,wincenter)
-        s.blit(winblit2,wincenter2)
-        
-    elif scp>21:
-        OVER=True
-        wintext= "YOU WIN"
-        wintext2="Exit window to close game"
-        Playsc="PLAYER SCORECARD"
-        Oppsc="OPPONENT SCORECARD"
-        sL1=valp1[0]+" -  "+str(s1)
-        sL2=valp2[0]+" -  "+str(s2)
-        sL3=valp3[0]+" -  "+str(s3)
-        sL4=valp4[0]+" -  "+str(s4)
-        sL5=valp5[0]+" - "+str(s5)
-        sM5=valo5[0]+" -  "+str(k5)
-        sM4=valo4[0]+" -  "+str(k4)
-        sM3=valo3[0]+" -  "+str(k3)
-        sM2=valo2[0]+" -  "+str(k2)
-        sM1=valo1[0]+" - "+str(k1)
-        winblit2=winfont2.render(wintext2,True,[0,0,0],[155,0,0])
-        winblit = winfont.render(wintext,True, [0,0,0], [155,0,0])
-        splblit=scoresh.render(Playsc,True,[0,0,0],[155,0,0])
-        sopblit=scoresh.render(Oppsc,True,[0,0,0],[155,0,0])
-        sblit1=cardfont.render(sL1,True,[0,0,0],[155,0,0])
-        sblit2=cardfont.render(sL2,True,[0,0,0],[155,0,0])
-        sblit3=cardfont.render(sL3,True,[0,0,0],[155,0,0])
-        sblit4=cardfont.render(sL4,True,[0,0,0],[155,0,0])
-        sblit5=cardfont.render(sL5,True,[0,0,0],[155,0,0])
-        opblit1=cardfont.render(sM1,True,[0,0,0],[155,0,0])
-        opblit2=cardfont.render(sM2,True,[0,0,0],[155,0,0])
-        opblit3=cardfont.render(sM3,True,[0,0,0],[155,0,0])
-        opblit4=cardfont.render(sM4,True,[0,0,0],[155,0,0])
-        opblit5=cardfont.render(sM5,True,[0,0,0],[155,0,0])
-        s.blit(splblit,(cardcenter[0]-80,cardcenter[1]-60))
-        s.blit(sblit1,cardcenter)
-        s.blit(sblit2,(cardcenter[0],cardcenter[1]+40))
-        s.blit(sblit3,(cardcenter[0],cardcenter[1]+80))
-        s.blit(sblit4,(cardcenter[0],cardcenter[1]+120))
-        s.blit(sblit5,(cardcenter[0],cardcenter[1]+160))
-        s.blit(sopblit,(1000,90))
-        s.blit(opblit1,(1100,150))
-        s.blit(opblit2,(1100,190))
-        s.blit(opblit3,(1100,230))
-        s.blit(opblit4,(1100,270))
-        s.blit(opblit5,(1100,310))
-        s.blit(winblit,wincenter)
-        s.blit(winblit2,wincenter2)
+    if scp>=21 or sc>=21:
+        abc(s1,s2,s3,s4,s5,k1,k2,k3,k4,k5)
 RUN=False
 from tkinter import *
 from tkinter import ttk
@@ -1971,9 +1881,10 @@ def draft(): #draft
                 messagebox.showerror("ERROR","You must select 5 players before proceeding")
                 new.destroy()
             else:
-                messagebox.showerror("READY","By pressing ok you will close the entire draft section and move to game. Press only if you are ready")
+                messagebox.showerror("READY","By pressing ok you will close the entire draft section and move to game. Music will be queued from this point and you will not be able to change it in-game. Press yes only if you are ready")
                 new.destroy()
                 root.destroy()
+                #pygame.mixer.music.load()
                 RUN=True
         
             
@@ -1983,9 +1894,11 @@ def draft(): #draft
         canvas_container.pack(side=RIGHT)
         myscrollbar.pack(side=RIGHT, fill=Y)
         b1=Button(new,text="Proceed", command=mainl)
-        b1.place(x=800,y=350,height=50,width=150)
+        b1.place(x=800,y=150,height=50,width=150)
         b2=Button(new,text="Delete",state="disabled",command=dele)
-        b2.place(x=800,y=550,height=50,width=150)
+        b2.place(x=800,y=450,height=50,width=150)
+        m=Button(new,text="Music Settings",command=q)
+        m.place(x=800,y=750,height=50,width=150)
         frame_container.pack()
 
 
@@ -2299,6 +2212,44 @@ def draft(): #draft
         myscrollbar.pack(side=RIGHT, fill=Y)
         frame_container.pack()
     
+    def q():
+        
+        new=Toplevel(root)
+        new.geometry('600x600')
+        new.title("Music Settings")
+        new.attributes("-topmost", True)
+        width,height=600,600
+        img = Image.open("Courtn2.png")
+        img = img.resize((width,height), Image.ANTIALIAS)
+        Img =  ImageTk.PhotoImage(img)
+        background_label =Label(new, image=Img)
+        background_label.Img = Img
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        z=StringVar()
+        i=[("Imperial March - Darth Vader Theme","Imp"),("In The End - Linkin Park","ITE"),("We Are the Champions - Queen","CHA"),("Enter Sandman - Metallica","ENS"),("New Divide - Linkin Park","NEW"),("Teenagers - My Chemical Romance","TEN"),("Welcome to the Black Parade- MCR","TBP"),("Sweet Child O' Mine - Guns N' Roses","SCM"),("Don't Cry - Guns N' Roses","DOC"),("Star Wars Main Theme","STW"),("Papercut - Linkin Park","PAP"),("Rap God - Eminem","RAP"),("Lose Yourself - Eminem","LOY"),("Boulevard of Broken Dreams - Green Day","BBD"),("Jesus of Suburbia - Green Day","JSB"),("Why Do We Fall? - Hanz Zimmer","WDW"),("S.T.A.Y - Hans Zimmer (Interstellar Theme)","INT"),("Humble - Kendrick Lamar","HUM"),("DNA - Kendrick Lamar","DNA"),("Master Of Puppets - Metallica","MOP"),("Smells Like Teen Spirit - Nirvana","SLT"),("Sound of Silence - Simon and Garfunkel","SOS")]                                                                                                                                                                                                                                                                                                
+        k=[]
+        for y in i:
+            m=str(y[1]+str('.mp3'))
+            pygame.mixer.music.queue(str(m))
+        def play():
+            pygame.mixer.music.unload()
+            o=str(z.get())+ str('.mp3')
+            pygame.mixer.music.load(o)
+            pygame.mixer.music.play()
+        for r in range(0,len(i)):
+            k.append(Radiobutton(new,variable=z,command=play,value=str(i[r][1]),text=str(i[r][0])))
+        j=0
+        f=11
+        while j<=10:
+            if j==0:
+                k[0].place(x=40,y=50)
+            else:
+                k[j].place(x=40,y=int(50*(j+1)))
+            j+=1
+        while f>10 and f<=21:
+            k[f].place(x=300,y=int(50*(f-10)))
+            f+=1
+        messagebox.showinfo("Guide","Click on any radio button to change the song")
     pg=Button(root,text="Choose a Point Guard", command=pg)
     pg.place(x=90,y=90,height=50,width=150)
     center=Button(root,text="Choose a Center",command=center)
@@ -2309,12 +2260,16 @@ def draft(): #draft
     sf.place(x=600,y=90,height=50,width=150)
     pf=Button(root,text="Choose a Power Forward", command=pf)
     pf.place(x=600,y=700,height=50,width=150)
-    MYTEAM=Button(root,text="Check your team", command=myteam)
-    MYTEAM.place(x=330,y=600,height=50,width=150)
+    MYTEAM=Button(root,text="Check your team and proceed", command=myteam)
+    MYTEAM.place(x=305,y=600,height=75,width=200)
+    m=Button(root,text="Music Settings",command=q)
+    m.place(x=330,y=200,height=50,width=150)
     root.deiconify()
 root=Tk()
 root.title("Welcome Page")
 root.geometry('1000x1000')
+pygame.mixer.music.load("STW.mp3")
+pygame.mixer.music.play() 
 def resize_image(event):
     new_width = event.width
     new_height = event.height
@@ -2324,13 +2279,51 @@ def resize_image(event):
     label.image = photo 
 def k():
     abox=messagebox.askquestion("Are you ready?","Press Yes to start the draft")
-    if abox=="yes":
+    if abox=="yes": 
         root.destroy()
         draft()
 def s():
     abox=messagebox.askquestion("Exit","Press Yes to exit game")
     if abox=="yes":
         root.destroy()
+def q():
+    
+    new=Toplevel(root)
+    new.geometry('600x600')
+    new.title("Music Settings")
+    new.attributes("-topmost", True)
+    width,height=600,600
+    img = Image.open("Courtn2.png")
+    img = img.resize((width,height), Image.ANTIALIAS)
+    Img =  ImageTk.PhotoImage(img)
+    background_label =Label(new, image=Img)
+    background_label.Img = Img
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+    z=StringVar()
+    i=[("Imperial March - Darth Vader Theme","Imp"),("In The End - Linkin Park","ITE"),("We Are the Champions - Queen","CHA"),("Enter Sandman - Metallica","ENS"),("New Divide - Linkin Park","NEW"),("Teenagers - My Chemical Romance","TEN"),("Welcome to the Black Parade- MCR","TBP"),("Sweet Child O' Mine - Guns N' Roses","SCM"),("Don't Cry - Guns N' Roses","DOC"),("Star Wars Main Theme","STW"),("Papercut - Linkin Park","PAP"),("Rap God - Eminem","RAP"),("Lose Yourself - Eminem","LOY"),("Boulevard of Broken Dreams - Green Day","BBD"),("Jesus of Suburbia - Green Day","JSB"),("Why Do We Fall? - Hanz Zimmer","WDW"),("S.T.A.Y - Hans Zimmer (Interstellar Theme)","INT"),("Humble - Kendrick Lamar","HUM"),("DNA - Kendrick Lamar","DNA"),("Master Of Puppets - Metallica","MOP"),("Smells Like Teen Spirit - Nirvana","SLT"),("Sound of Silence - Simon and Garfunkel","SOS")]                                                                                                                                                                                                                                                                                                
+    k=[]
+    for y in i:
+        m=str(y[1]+str('.mp3'))
+        pygame.mixer.music.queue(str(m))
+    def play():
+        pygame.mixer.music.unload()
+        o=str(z.get())+ str('.mp3')
+        pygame.mixer.music.load(o)
+        pygame.mixer.music.play()
+    for r in range(0,len(i)):
+        k.append(Radiobutton(new,variable=z,command=play,value=str(i[r][1]),text=str(i[r][0])))
+    j=0
+    f=11
+    while j<=10:
+        if j==0:
+            k[0].place(x=40,y=50)
+        else:
+            k[j].place(x=40,y=int(50*(j+1)))
+        j+=1
+    while f>10 and f<=21:
+        k[f].place(x=300,y=int(50*(f-10)))
+        f+=1
+    messagebox.showinfo("Guide","Click on any radio button to change the song")
 image = Image.open('courtn2.png')
 copy_of_image = image.copy()
 photo = ImageTk.PhotoImage(image)
@@ -2338,12 +2331,13 @@ label = ttk.Label(root, image = photo)
 label.bind('<Configure>', resize_image)
 label.pack(fill=BOTH, expand = YES)
 a=Button(root,text="BEGIN GAME",command=k)
-a.place(x=380,y=700,height=75,width=250)
+a.place(x=380,y=500,height=100,width=250)
 n=Button(root,text="Quit",command=s)
-n.place(x=850,y=900,height=50,width=75)
+n.place(x=830,y=40,height=40,width=150)
+m=Button(root,text="Music Settings",command=q)
+m.place(x=425,y=650,height=50,width=150)
 root.mainloop()
-    
-
+RUN2=False
 if RUN==True:
     s=pygame.display.set_mode([1450,800])
     pygame.display.set_caption("Swisheroo")    
@@ -2471,6 +2465,7 @@ if RUN==True:
     b,b2=280,130
     count=0
     a=465
+    tt1=False
     s1,s2,s3,s4,s5=0,0,0,0,0
     k1,k2,k3,k4,k5=0,0,0,0,0
     while i:
@@ -2545,35 +2540,39 @@ if RUN==True:
         if TP==True:
             return True      
 
-while RUN:
-    s.fill([0,0,0])
-    s.blit(COURT,(0,0))
-    s.blit(img1,(0,520))
-    s.blit(img2,(312,520))
-    s.blit(img3,(624,520))
-    s.blit(img4,(936,520))
-    s.blit(img5,(1250,520))
-    p1=player("ply.png",px ,py,pxo,pyo)
-    p2=player("ply2.png",p2x,p2y,p2xo,p2yo)    
-    p3=player("ply3.png",p3x,p3y,p3xo,p3yo)
-    p4=player("ply4.png",p4x,p4y,p4xo,p4yo)
-    p5=player("ply5.png",p5x,p5y,p5xo,p5yo)
-    o1=opponent("opp.png",ox,oy,oxo,oyo)
-    o2=opponent("opp2.png",o2x,o2y,o2xo,o2yo)
-    o3=opponent("opp3.png",o3x,o3y,o3xo,o3yo)
-    o4=opponent("opp4.png",o4x,o4y,o4xo,o4yo)
-    o5=opponent("opp5.png",o5x,o5y,o5xo,o5yo)
-    scoretxt=str(scp)+ " - " +str(sc)
-    zpr=[[ox,oy],[o2x,o2y],[o3x,o3y],[o4x,o4y],[o5x,o5y]]
-    text = font.render(scoretxt,True, [155,0,0], [0,0,0])
-    nonpcollide()
-    s.blit(text,textcenter)
-    for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()                                
-            elif event.type == pygame.KEYDOWN:
-                if notransit==True:
+    while RUN:
+        s.fill([0,0,0])
+        s.blit(COURT,(0,0))
+        s.blit(img1,(0,520))
+        s.blit(img2,(312,520))
+        s.blit(img3,(624,520))
+        s.blit(img4,(936,520))
+        s.blit(img5,(1250,520))
+        
+        p1=player("ply.png",px ,py,pxo,pyo)
+        p2=player("ply2.png",p2x,p2y,p2xo,p2yo)    
+        p3=player("ply3.png",p3x,p3y,p3xo,p3yo)
+        p4=player("ply4.png",p4x,p4y,p4xo,p4yo)
+        p5=player("ply5.png",p5x,p5y,p5xo,p5yo)
+        o1=opponent("opp.png",ox,oy,oxo,oyo)
+        o2=opponent("opp2.png",o2x,o2y,o2xo,o2yo)
+        o3=opponent("opp3.png",o3x,o3y,o3xo,o3yo)
+        o4=opponent("opp4.png",o4x,o4y,o4xo,o4yo)
+        o5=opponent("opp5.png",o5x,o5y,o5xo,o5yo)
+        scoretxt=str(scp)+ " - " +str(sc)
+        zpr=[[ox,oy],[o2x,o2y],[o3x,o3y],[o4x,o4y],[o5x,o5y]]
+        text = font.render(scoretxt,True, [155,0,0], [0,0,0])
+        nonpcollide()
+        s.blit(text,textcenter)
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.display.quit()
+                    exit()                                
+                elif event.type == pygame.KEYDOWN:
+                    if notransit==True:
+                        if event.key == pygame.K_p:
+                            RUN=False
+                            
                         if status=='DEFENSE':
                             if event.key == pygame.K_LEFT or event.key == pygame.K_a:                  
                                 player.movement(curplayer(),-20,0)
@@ -2651,90 +2650,84 @@ while RUN:
                                         else:
                                             ball.movement(B2,1375,225)
                                         blittime=pygame.time.get_ticks()+1500
-                    
-                                    
-
-    if stat1=="M":
-        if blittime:
-            tst=fontst.render(mtext,True, [0,0,0], [155,0,0])
-            s.blit(tst,mcenter)
-            if pygame.time.get_ticks()>=blittime:
-                blittime=None
-        
-    elif stat1=="2P":
-        if blittime:
-            tst=fontst.render(tptext,True, [0,0,0], [155,0,0])
-            s.blit(tst,tpcenter)
-            if pygame.time.get_ticks()>=blittime:
-                blittime=None
-    elif stat1=="3P":        
-        if blittime:
-            tst=fontst.render(thptext,True, [0,0,0], [155,0,0])
-            s.blit(tst,thpcenter)
-            if pygame.time.get_ticks()>=blittime:
-                blittime=None
-
-        
-    elif stat1=="B":
-        if blittime:
-            tst=fontst.render(bltext,True, [0,0,0], [155,0,0])
-            s.blit(tst,blcenter)
-            if pygame.time.get_ticks()>=blittime:
-                blittime=None
-    elif stat1=="I":
-        if blittime:
-            tst=fontst.render(itext,True, [0,0,0], [155,0,0])
-            s.blit(tst,icenter)
-            if pygame.time.get_ticks()>=blittime:
-                blittime=None
-    if notransit==False:
-        sec=5
-        tleft="Time Left is : " + str(sec)
-    else:
-        if status=="OFFENSE":
-            sec=((otime-pygame.time.get_ticks())//1000)
+                        
+                                        
+        if stat1=="M":
+            if blittime:
+                tst=fontst.render(mtext,True, [0,0,0], [155,0,0])
+                s.blit(tst,mcenter)
+                if pygame.time.get_ticks()>=blittime:
+                    blittime=None
+            
+        elif stat1=="2P":
+            if blittime:
+                tst=fontst.render(tptext,True, [0,0,0], [155,0,0])
+                s.blit(tst,tpcenter)
+                if pygame.time.get_ticks()>=blittime:
+                    blittime=None
+        elif stat1=="3P":        
+            if blittime:
+                tst=fontst.render(thptext,True, [0,0,0], [155,0,0])
+                s.blit(tst,thpcenter)
+                if pygame.time.get_ticks()>=blittime:
+                    blittime=None
+        elif stat1=="B":
+            if blittime:
+                tst=fontst.render(bltext,True, [0,0,0], [155,0,0])
+                s.blit(tst,blcenter)
+                if pygame.time.get_ticks()>=blittime:
+                    blittime=None
+        elif stat1=="I":
+            if blittime:
+                tst=fontst.render(itext,True, [0,0,0], [155,0,0])
+                s.blit(tst,icenter)
+                if pygame.time.get_ticks()>=blittime:
+                    blittime=None
+        if notransit==False:
+            sec=5
             tleft="Time Left is : " + str(sec)
-        elif status=="DEFENSE":
-            sec=((dtime-pygame.time.get_ticks())//1000)
-            tleft="Time Left is : " + str(sec)
-            if pass1:
-                if (20-sec)==pass1dur:
-                    opponent.opppass(activeopp())
-                    pass1=False
-            if pass2:
-                if (20-sec)==pass2dur:
-                    opponent.opppass(activeopp())
-                    pass2=False
-            if pass3:
-                if (20-sec)==pass3dur:
-                    opponent.opppass(activeopp())
-                    pass3=False
-            if pass4:
-                if (20-sec)==pass4dur:
-                    opponent.opppass(activeopp())
-                    pass4=False
-    
-    
-    
-    sc+=opponent.score(activeopp())
-    
-    over()
-    if OVER!=True:
-        tblit = tfont.render(tleft,True, [155,0,0], [0,0,0])
-        s.blit(tblit,tcenter)
-    if OVER==False:
-        if status=="DEFENSE":
-            ball.draw(b1)
-        elif status=="OFFENSE":
-            ball.draw(B2)
-        if status == "DEFENSE":
-            player.update(curplayer())
-            opponent.update(activeopp())
-        elif status == "OFFENSE":
-            player.update(useplayer())
-            opponent.update(activedefender())
-
-    pygame.display.update()
-    if RUN== False:
-        pygame.quit() 
-    
+        else:
+            if status=="OFFENSE":
+                sec=((otime-pygame.time.get_ticks())//1000)
+                tleft="Time Left is : " + str(sec)
+            elif status=="DEFENSE":
+                sec=((dtime-pygame.time.get_ticks())//1000)
+                tleft="Time Left is : " + str(sec)
+                if pass1:
+                    if (20-sec)==pass1dur:
+                        opponent.opppass(activeopp())
+                        pass1=False
+                if pass2:
+                    if (20-sec)==pass2dur:
+                        opponent.opppass(activeopp())
+                        pass2=False
+                if pass3:
+                    if (20-sec)==pass3dur:
+                        opponent.opppass(activeopp())
+                        pass3=False
+                if pass4:
+                    if (20-sec)==pass4dur:
+                        opponent.opppass(activeopp())
+                        pass4=False
+        
+        
+        
+        sc+=opponent.score(activeopp())
+        over()
+        if OVER!=True:
+            tblit = tfont.render(tleft,True, [155,0,0], [0,0,0])
+            s.blit(tblit,tcenter)
+            if status=="DEFENSE":
+                ball.draw(b1)
+            elif status=="OFFENSE":
+                ball.draw(B2)
+            if status == "DEFENSE":
+                player.update(curplayer())
+                opponent.update(activeopp())
+            elif status == "OFFENSE":
+                player.update(useplayer())
+                opponent.update(activedefender())
+        
+        pygame.display.update()
+        if RUN== False:
+            pygame.quit()
