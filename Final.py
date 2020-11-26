@@ -6,7 +6,7 @@ from sys import exit
 import warnings
 warnings.filterwarnings("ignore")
 pygame.init()
-def activeopp():
+def activeopp(): #current opponent with ball
     if offopp=="pg":
         return o1
     elif offopp=="sg":
@@ -17,8 +17,7 @@ def activeopp():
         return o4
     elif offopp=="c":
         return o5
-def activedefender():
-
+def activedefender(): #calculates nearest defender when we have ball
     z=player.activecoord(useplayer())
     b=min(math.dist(z,[oxo,oyo]),math.dist(z,[o2xo,o2yo]),math.dist(z,[o3xo,o3yo]),math.dist(z,[o4xo,o4yo]),math.dist(z,[o5xo,o5yo]))
     if b==math.dist(z,[oxo,oyo]):
@@ -31,7 +30,7 @@ def activedefender():
         return o4
     else:
         return o5
-def activepp():
+def activepp(): #calculates nearest player to ball when opponent have ball, meant to help with player shot
     z=opponent.activecoord(activeopp())
     b=min(math.dist(z,[px,py]),math.dist(z,[p2x,p2y]),math.dist(z,[p3x,p3y]),math.dist(z,[p4x,p4y]),math.dist(z,[p5x,p5y]))
     if b==math.dist(z,[px,py]):
@@ -44,7 +43,7 @@ def activepp():
         return p4
     else:
         return p5
-def curopp():
+def curopp(): #returns nearest player
     if activepp()==p1:
         return "pg"
     elif activepp()==p2:
@@ -55,7 +54,7 @@ def curopp():
         return "pf"
     elif activepp()==p5:
         return "c"
-def plah():
+def plah(): #returns nearest defender when we have ball
     if activedefender()==o1:
         return "pg"
     elif activedefender()==o2:
@@ -66,7 +65,7 @@ def plah():
         return "pf"
     elif activedefender()==o5:
         return "c"
-def curplayer():
+def curplayer(): #returns current player when they have ball
     if defplayer=="pg":
         return p1
     elif defplayer=="sg":
@@ -77,7 +76,7 @@ def curplayer():
         return p4
     elif defplayer=="c":
         return p5
-def useplayer():
+def useplayer(): #returns current player when we have ball
     if activeplayer=="pg":
         return p1
     elif activeplayer=="sg":
@@ -88,7 +87,7 @@ def useplayer():
         return p4
     elif activeplayer=="c":
         return p5
-def collside(x1,x2,y1,y2): 
+def collside(x1,x2,y1,y2): #what happens when 2 opp collide
     global h1,L1,h2
     if x1>y1:
         if x2>y2:
@@ -118,7 +117,7 @@ def collside(x1,x2,y1,y2):
             h1=-1
             L1=-1
     return [h1,L1]    
-def nonpcollide():
+def nonpcollide(): #detecting collision bw two opp
     global ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y
     global px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y        
     
@@ -227,117 +226,7 @@ def nonpcollide():
     if pygame.sprite.collide_rect(o5,p5):
         o5y+=collside(o5x,o5y,p5x,p5y)[0]
         o5x+=collside(o5x,o5y,p5x,p5y)[1]
-    if pygame.sprite.collide_rect(p1,p2):
-        collside(px,py,p2x,p2y)
-    if pygame.sprite.collide_rect(p1,p3):
-        collside(px,py,p3x,p3y)
-    if pygame.sprite.collide_rect(p1,p4):
-        collside(px,py,p4x,p4y)
-    if pygame.sprite.collide_rect(p1,p5):
-        collside(px,py,p5x,p5y)  
-    if pygame.sprite.collide_rect(p3,p2):
-        collside(p2x,p2y,p3x,p3y) 
-    if pygame.sprite.collide_rect(p4,p2):
-        collside(p2x,p2y,p4x,p4y) 
-    if pygame.sprite.collide_rect(p5,p2):
-        collside(p2x,p2y,p5x,p5y) 
-    if pygame.sprite.collide_rect(p3,p4):
-        collside(p3x,p3y,p4x,p4y) 
-    if pygame.sprite.collide_rect(p4,p5):
-        collside(p4x,p4y,p5x,p5y) 
-    if pygame.sprite.collide_rect(p3,p5):
-        collside(p3x,p3y,p5x,p5y)
-def coll2():
-    global ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y
-    if a1==1:
-        if pygame.sprite.collide_rect(o1,o4):
-            o4x-=3
-        if pygame.sprite.collide_rect(o2,o4):
-            o4x+=3
-            o4y-=3
-        if  pygame.sprite.collide_rect(o2,o1):
-            o2x-=3
-            o2y+=3
-        if  pygame.sprite.collide_rect(o2,o3):
-            o3y+=5
-        if  pygame.sprite.collide_rect(o5,o4):
-            o5y+=3
-    elif a1==2:
-        if  pygame.sprite.collide_rect(o1,o5):
-            if sec<=8:
-                o5x+=3
-            else:
-                oy+=3
-        if  pygame.sprite.collide_rect(o3,o5):
-            o5x-=3
-            o5y+=3
-        if  pygame.sprite.collide_rect(o3,o1):
-            o3x-=3
-            oy-=3
-    elif a1==5:
-        if pygame.sprite.collide_rect(o2,o4):
-            if sec<=7:
-                o4y+=3
-            else:
-                o4y-=3
-        if  pygame.sprite.collide_rect(o1,o5):
-            o5y-=3
-    elif a1==6:
-        if  pygame.sprite.collide_rect(o3,o5):
-                    o5y-=3
-    elif a1==8:
-        if  pygame.sprite.collide_rect(o1,o4):
-            o4x-=3
-    elif a1==9:
-        if  pygame.sprite.collide_rect(o2,o5):
-            o5x-=3
-    elif a1==10:
-        if  pygame.sprite.collide_rect(o2,o3):
-            o3x+=5
-        if  pygame.sprite.collide_rect(o3,o4):
-            o4x-=5
-def boundforall():
-    global px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y 
-    if px>=675:
-        px=675
-    if px<=30:
-        px=30
-    if py<=15:
-        py=15
-    if py>=390:
-        py=390
-    if p2x>=675:
-        p2x=675
-    if p2x<=30:
-        p2x=30
-    if p2y<=15:
-        p2y=15
-    if p2y>=390:
-        p2y=390
-    if p3x>=675:
-        p3x=675
-    if p3x<=30:
-        p3x=30
-    if p3y<=15:
-        p3y=15
-    if p3y>=390:
-        p3y=390
-    if p4x>=675:
-        p4x=675
-    if p4x<=30:
-        p4x=30
-    if p4y<=15:
-        p4y=15
-    if p4y>=390:
-        p4y=390
-    if p5x>=675:
-        p5x=675
-    if p5x<=30:
-        p5x=30
-    if p5y<=15:
-        p5y=15
-    if p5y>=390:
-        p5y=390
+
 class opponent(pygame.sprite.Sprite):
         def __init__(self,imagefile,x,y,xo,yo):
             super().__init__()
@@ -355,7 +244,7 @@ class opponent(pygame.sprite.Sprite):
                 
             self.Z= 0
             self.shotprob,self.dis,self.defprob=0,0,0
-        def boundaryD(self):
+        def boundaryD(self): #boundary on defense
                 if self.rect.x>=675:
                     self.rect.x=675
                 if self.rect.x<=30:
@@ -364,7 +253,7 @@ class opponent(pygame.sprite.Sprite):
                     self.rect.y=15
                 if self.rect.y>=390:
                     self.rect.y=390
-        def boundaryO(self):
+        def boundaryO(self): #boundary on offense
             if self.rect.x>=1365:
                 self.rect.x=1365
             if self.rect.x<=725:
@@ -373,7 +262,7 @@ class opponent(pygame.sprite.Sprite):
                 self.rect.y=15
             if self.rect.y>=390:
                 self.rect.y=390
-        def oppmove(self):
+        def oppmove(self): #moves opponent on offense
             global ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y
             global fin
             hoopdis=math.dist([self.rect.x,self.rect.y],[65,202.5])
@@ -561,7 +450,7 @@ class opponent(pygame.sprite.Sprite):
                 else:
                     ox+=((ax-ox)/step)*1.2
                     oy+=((ay-oy)/step)*1.2
-        def move_towards_player(self):
+        def move_towards_player(self): #moves opponent on defense
             global oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo
             dx=0
             dy=0
@@ -587,7 +476,7 @@ class opponent(pygame.sprite.Sprite):
             if plah()=="c":
                 o5xo += (dx/3) 
                 o5yo += (dy/3)
-        def activecoord(x):
+        def activecoord(x): #returns coordinate of current opponent
             if status=="DEFENSE":
                 if x==o1:
                     z=[ox,oy]
@@ -612,7 +501,7 @@ class opponent(pygame.sprite.Sprite):
                 elif x==o5:
                     z=[o5xo,o5yo]
                 return z
-        def opppass(self):
+        def opppass(self): #opponent passing on offense
                 global offopp,movement
                 pos1=zpr[0]
                 pos2=zpr[1]
@@ -677,8 +566,7 @@ class opponent(pygame.sprite.Sprite):
                         elif offopp=="c":
                             ball.movement(b1,o5x,o5y)
                         movement=False
-                        print(offopp,prob1,prob2,moveball[0],moveball[1])
-        def shot2(self,x,y):
+        def shot2(self,x,y): #calculates when to shoot
             if TPD(opponent.activecoord(self)[0],opponent.activecoord(self)[1]):
                 self.K=True
             else:
@@ -762,7 +650,7 @@ class opponent(pygame.sprite.Sprite):
                             block = False
             self.Z=self.shotprob+self.defprob+self.dis
                 
-        def shot(self,x,y):
+        def shot(self,x,y): #calculates shot chance
             global RUN
             if TPD(opponent.activecoord(self)[0],opponent.activecoord(self)[1]):
                 self.K=True
@@ -879,7 +767,7 @@ class opponent(pygame.sprite.Sprite):
                             if chance ==1:
                                 opponent.shot2(activeopp(),curvalO(),plycurval())
 
-        def score(self):
+        def score(self): #score increment
             global stat1,RUN,shoot,status,movement,blittime,k1,k2,k3,k4,k5
             if status == 'DEFENSE':
                 if shoot==False:
@@ -929,16 +817,7 @@ class opponent(pygame.sprite.Sprite):
 
             return score
 
-        def win(self):
-            if sc >=21:
-                wintext= "YOU LOSE"
-                winblit = winfont.render(wintext,True, [0,0,0], [155,0,0])
-                s.blit(winblit,wincenter)
-                wintext2="Exit window to close game"
-                winblit2=winfont2.render(wintext2,True,[0,0,0],[155,0,0])
-                s.blit(winblit2,wincenter2)
-                
-        def update(self):
+        def update(self): #opponent updated in loop
             global ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y
             global oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo
             if status == 'DEFENSE':
@@ -985,7 +864,7 @@ class player(pygame.sprite.Sprite):
             self.rect.x=xo
             self.rect.y=yo
         self.score=0
-    def boundaryD(self):
+    def boundaryD(self): #boundary on defense
             global px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y
             if px>=675:
                 px=675
@@ -1027,7 +906,7 @@ class player(pygame.sprite.Sprite):
                 p5y=15
             if p5y>=390:
                 p5y=390
-    def boundaryO(self):
+    def boundaryO(self): #boundary on offense
             global pxo,pyo,p2xo,p2yo,p3xo,p3yo,p4xo,p4yo,p5xo,p5yo
             if pxo>=1365:
                 pxo=1365
@@ -1070,7 +949,7 @@ class player(pygame.sprite.Sprite):
             if p5yo>=390:
                 p5yo=390
             
-    def collide(self,y,x2,y2):
+    def collide(self,y,x2,y2): #detects collision
         if pygame.sprite.collide_rect(self,y):
             if self.rect.x <x2:
                 self.movex=-20
@@ -1080,7 +959,7 @@ class player(pygame.sprite.Sprite):
                 self.movey=-20
             elif self.rect.y>y2:
                 self.movey=20
-    def activecoord(self):
+    def activecoord(self): #returns player coord
         if status=="DEFENSE":
             if self==p1:
                 z=[px,py]
@@ -1105,9 +984,7 @@ class player(pygame.sprite.Sprite):
             elif self==p5:
                 z=[p5xo,p5yo]
             return z
-    def sta(self):
-        return self.rect.x,self.rect.y
-    def movement(self,x,y):
+    def movement(self,x,y): #player movement+collison handler
         self.movex += x
         self.movey +=y
         if status=="DEFENSE":
@@ -1174,7 +1051,7 @@ class player(pygame.sprite.Sprite):
                 player.collide(self,p3,p3xo,p3yo)
                 player.collide(self,p4,p4xo,p4yo)
                 player.collide(self,p2,p2xo,p2yo)
-    def shot(self,x,y,opponent):
+    def shot(self,x,y,opponent): #player shot%
         shotprob=0
         if TPO(player.activecoord(useplayer())[0],player.activecoord(useplayer())[1]):
             self.K=True
@@ -1244,8 +1121,7 @@ class player(pygame.sprite.Sprite):
             defprob=8+random.randint(0,2)
         self.shotchance= shotprob+defprob+dis
         self.shotchance=30
-        print(self.shotchance,shotprob,defprob,dis)
-    def score(self):
+    def score(self):#player score increm
         global status,stat1
         if status=="OFFENSE":
             if sec<=3:
@@ -1267,7 +1143,7 @@ class player(pygame.sprite.Sprite):
             notransit= False
         
             return self.score
-    def update(self):
+    def update(self): #player loop update
         global px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y
         global pxo,pyo,p2xo,p2yo,p3xo,p3yo,p4xo,p4yo,p5xo,p5yo
         if status == "DEFENSE":
@@ -1339,7 +1215,7 @@ class ball:
         self.screen=s
         self.state="P"
         self.number=0
-    def boundaryO(self):
+    def boundaryO(self): #ball boundary
         if self.x>=1375:
             self.x=1375
         if self.x<=30:
@@ -1357,26 +1233,26 @@ class ball:
                 self.y=15
             if self.y>=390:
                 self.y=390
-    def state(self,x):
+    def state(self,x): #
         self.state=x
     def state2(self):
         return self.state
-    def collision(self,x2,y2):
+    def collision(self,x2,y2): # ball collision with player
         if math.dist((self.x,self.y),(x2,y2))<20:
                 self.ballmovex=0
                 self.ballmovey=0
                 return True
-    def collisionb(self,x2,y2):
+    def collisionb(self,x2,y2): #ball collision with board
         if math.dist([self.x],[x2])<=10:
             if math.dist([self.y],[y2])<=5:
                 self.ballmovex=0
                 self.ballmovey=0
                 return True
-    def collisionO(self,x2,y2):
+    def collisionO(self,x2,y2): #for interception
         if math.dist((self.x,self.y),(x2,y2))<=10:
             self.ballmovex,self.ballmovey=0,0
             return True
-    def movement(self,x2,y2):
+    def movement(self,x2,y2): #ball movement
         global disfn
         
         self.number=max(abs(x2-self.x),abs(y2-self.y))
@@ -1394,9 +1270,9 @@ class ball:
         else:
             disfn="T0"
 
-    def cor(self):
+    def cor(self): #returns ball coord
         return [self.x,self.y]
-    def draw(self):
+    def draw(self): #bll loop update
         global shoot,movement,status,coll,collo,setO,setD,stat1,blittime
         if status=="DEFENSE":
             if shoot == False:
@@ -1560,7 +1436,7 @@ class ball:
                     self.y=o5yo
                 transition()
         pygame.draw.circle(s,(255,140,0),[self.x,self.y],self.rad)
-def curvalD():
+def curvalD(): 
     if activedefender()==o1:
         return valo1[3:5]
     elif activedefender()==o2:
@@ -1593,7 +1469,7 @@ def plycurval():
         return valp4[3:5]
     elif curopp()=='c':
         return valp5[3:5]
-def transition():
+def transition(): #transition bw offesne and defense
     global px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y
     global ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y
     global oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo
@@ -1786,7 +1662,7 @@ def transition():
             oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo=925,200,1100,90,1100,320,1300,160,1300,255
             
 
-def over():
+def over(): # after game finisheds
     global OVER
     if sc>21:
         OVER=True
@@ -1877,209 +1753,797 @@ def over():
         s.blit(opblit5,(1100,310))
         s.blit(winblit,wincenter)
         s.blit(winblit2,wincenter2)
-RUN= True
-s=pygame.display.set_mode([1450,800])
-pygame.display.set_caption("Swisheroo")    
-COURT=pygame.image.load("Courtn2.png").convert()
-icon=pygame.image.load("icon2.jpeg").convert()
-pygame.display.set_icon(icon)
-con=mysql.connector.connect(host='localhost',
-                                         database='project',
-                                         user='root',password='Agasthya0112')
-l1=pygame.image.load("ply.png").convert()
-l2=pygame.image.load("ply2.png").convert()
-l3=pygame.image.load("ply3.png").convert()
-l4=pygame.image.load("ply4.png").convert()
-l5=pygame.image.load("ply5.png").convert()
-f1=pygame.image.load("opp.png").convert()
-f2=pygame.image.load("opp2.png").convert()
-f3=pygame.image.load("opp3.png").convert()
-f4=pygame.image.load("opp4.png").convert()
-f5=pygame.image.load("opp5.png").convert()
-cursor=con.cursor(buffered=True)
-sql1="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'PG' order by rand() limit 1"
-sql2="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'SG' order by rand() limit 1"
-sql3="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'SF' order by rand() limit 1"
-sql4="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'PF' order by rand() limit 1"
-sql5="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from players where position = 'C' order by rand() limit 1"
-sql6="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "PG" """
-sql7="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "SG" """
-sql8="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "SF" """
-sql9="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "PF" """
-sql10="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "C" """
-cursor.execute(sql1)
-valp1=cursor.fetchall()[0]
-img1=pygame.image.load(str(valp1[5])).convert()
-cursor.execute(sql2)
-valp2=cursor.fetchall()[0]
-img2=pygame.image.load(str(valp2[5])).convert()
-cursor.execute(sql3)
-valp3=cursor.fetchall()[0]
-img3=pygame.image.load(str(valp3[5])).convert()
-cursor.execute(sql4)
-valp4=cursor.fetchall()[0]
-img4=pygame.image.load(str(valp4[5])).convert()
-cursor.execute(sql5)
-valp5=cursor.fetchall()[0]
-img5=pygame.image.load(str(valp5[5])).convert()
-cursor.execute(sql6,(valp1[0],))
-valo1=cursor.fetchall()[0]
-cursor.execute(sql7,(valp2[0],))
-valo2=cursor.fetchall()[0]
-cursor.execute(sql8,(valp3[0],))
-valo3=cursor.fetchall()[0]
-cursor.execute(sql9,(valp4[0],))
-valo4=cursor.fetchall()[0]
-cursor.execute(sql10,(valp5[0],))
-valo5=cursor.fetchall()[0]
-offopp="pg"
-defplayer="pg"
-activeplayer="pg"
-pass1=True
-pass2=True
-pass3=True
-pass4=True
-pass5=True
-pass1dur = 1
-pass2dur = random.randint(7,9)
-pass3dur = random.randint(11,13)
-pass4dur=  random.randint(15,17)
-pass5dur=random.randint(3,5)
-a1=random.randint(1,10)
-block=False
-shoot=False
-coll=False
-collo=False
-movement=True
-move=True
-fin=False
-setO=False
-setD=False
-OVER=False
-scp=0
-sc=0
-start_ticks=pygame.time.get_ticks()
-fontdef=pygame.font.get_fonts()[23]
-font=pygame.font.SysFont(fontdef,40) 
-textcenter = (675,450)
-fontdef2=pygame.font.get_fonts()[3]
-winfont=pygame.font.SysFont(fontdef2,90)
-wincenter=(560,160)
-cardfont=pygame.font.SysFont(fontdef2,30)
-cardcenter=(200,150)
-scoresh=pygame.font.SysFont(fontdef2,40)
-fontdef3=pygame.font.get_fonts()[0]
-winfont2=pygame.font.SysFont(fontdef3,30)
-wincenter2=(560,270)
-tfont=pygame.font.SysFont(fontdef3,30)
-tcenter=(1180,450)
-stat1="P"
-fontdefst=pygame.font.get_fonts()[12]
-fontst=pygame.font.SysFont(fontdefst,50)
-mtext="MISS!"
-mcenter=(665,40)
-thptext="3 POINTER MADE!"
-thpcenter=(540,40)
-tptext="2 POINTER MADE!"
-tpcenter=(540,40)
-sc1=0
-bltext="BLOCKED!"
-shothap=0
-blcenter=(620,40)
-itext="INTERCEPTED"
-icenter=(580,40)
-status= 'OFFENSE'
-notransit=True
-px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y=500,200,285,90,285,320,85,160,85,255
-ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y=675,200,365,35,370,370,145,120,145,290
-b1=ball(ox,oy+40)
-cx,cy=85,217
-pxo,pyo,p2xo,p2yo,p3xo,p3yo,p4xo,p4yo,p5xo,p5yo=725,200,1050,40,1050,360,1250,120,1250,290
-oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo=925,200,1100,90,1100,320,1300,160,1300,255
-B2=ball(pxo,pyo)
-c2x,c2y=1375,225
-blittime=None
-dtime=22000
-otime=22000
-i = True
-coord=[]
-b,b2=280,130
-count=0
-a=465
-s1,s2,s3,s4,s5=0,0,0,0,0
-k1,k2,k3,k4,k5=0,0,0,0,0
-while i:
-    if a<285:
-        break
-    coord.append([a,b])
-    coord.append([a,b2])
-    if a==305:
-        a-=5
-    elif count>=5:
-        a-=20
-    else:
-        a-=10
-    b +=10
-    b2 -=10
-    count+=1
-def TPD(x,y):
-    TP= False
-    if y==390:
-        TP= True
-    elif y==15:
-        TP= True
-    elif x>=285:
-        TP= True
-    for i in coord:
-        if y<=130:
-            if y==i[1] or y == i[1]-5 or y==i[1]+5:
-                if x>=i[0]:
-                    TP=True
-        elif y>=280:
-            if y==i[1] or y == i[1]+5:
-                if x>=i[0]:
-                    TP=True
-    if TP==True:
-        return True
+RUN=False
+from tkinter import *
+from tkinter import ttk
+from tkinter.ttk import *
+from tkinter import messagebox
+import mysql.connector
+from pil import ImageTk,Image
+def draft(): #draft
+    root=Tk()
+    root.title("Draft")
+    root.geometry('800x800')
+    width=800
+    height=800
+    img = Image.open("Courtn2.png")
+    width,height=800,800
+    img = img.resize((width,height), Image.ANTIALIAS)
+    Img =  ImageTk.PhotoImage(img)
+    background_label =Label(root, image=Img)
+    background_label.Img = Img
+    background_label.place(x=0, y=0, relwidth=1, relheight=1)
+    db=mysql.connector.connect(host='localhost',database='project',user='root',password='Agasthya0112')
+    mycur=db.cursor()
+    im1 = ImageTk.PhotoImage(Image.open("stephcurry.png"))
+    im2 = ImageTk.PhotoImage(Image.open("russelwestbrook.png"))
+    im3 = ImageTk.PhotoImage(Image.open("kyrieirving.png"))
+    im4 = ImageTk.PhotoImage(Image.open("chrispaul.png"))
+    im5 = ImageTk.PhotoImage(Image.open("damianlillard.png"))
+    im6 = ImageTk.PhotoImage(Image.open("kembawalker.png"))
+    im7 = ImageTk.PhotoImage(Image.open("traeyoung.png"))
+    im8 = ImageTk.PhotoImage(Image.open("bensimmons.png"))
+    im9 = ImageTk.PhotoImage(Image.open("deaaronfox.png"))
+    im10 = ImageTk.PhotoImage(Image.open("kylelowry.png"))
+    im11 = ImageTk.PhotoImage(Image.open("jamorant.png"))
+    im12=ImageTk.PhotoImage(Image.open("dangelorussel.png"))
 
-a=945
-b,b2=280,130
-count=0
-while i:
-    if a>1105:
-        break
-    coord.append([a,b])
+    i1 = ImageTk.PhotoImage(Image.open("joelembid.png"))
+    i2 = ImageTk.PhotoImage(Image.open("nikolajokic.png"))
+    i3 = ImageTk.PhotoImage(Image.open("karlanthonytowns.png"))
+    i4 = ImageTk.PhotoImage(Image.open("rudygobert.png"))
+    i5 = ImageTk.PhotoImage(Image.open("hassanwhiteside.png"))
+    i6 = ImageTk.PhotoImage(Image.open("kristapsporzingis.png"))
+    i7 = ImageTk.PhotoImage(Image.open("bamadabeyo.png"))
+    i8 = ImageTk.PhotoImage(Image.open("clintcapela.png"))
+    i9=ImageTk.PhotoImage(Image.open("nikolavucevic.png"))
+    i10=ImageTk.PhotoImage(Image.open("stevenadams.png"))
+    i11=ImageTk.PhotoImage(Image.open("andredrummond.png"))
+    i12=ImageTk.PhotoImage(Image.open("montrezlharrel.png"))
+
+    a1 = ImageTk.PhotoImage(Image.open('jamesharden.png'))
+    a2 = ImageTk.PhotoImage(Image.open("lukadoncic.png"))
+    a3 = ImageTk.PhotoImage(Image.open("paulgeorge.png"))
+    a4 = ImageTk.PhotoImage(Image.open("bradleybeal.png"))
+    a5 = ImageTk.PhotoImage(Image.open("klaythompson.png"))
+    a6 = ImageTk.PhotoImage(Image.open("devinbooker.png"))
+    a7 = ImageTk.PhotoImage(Image.open("cjmcollum.png"))
+    a8 = ImageTk.PhotoImage(Image.open("donovanmitchell.png"))
+    a9 = ImageTk.PhotoImage(Image.open("victoroladipo.png"))
+    a10 = ImageTk.PhotoImage(Image.open("zachlavine.png"))
+    a11 = ImageTk.PhotoImage(Image.open("jaylenbrown.png"))
+    a12 = ImageTk.PhotoImage(Image.open("shaigalexander.png"))
+
+    pf1 = ImageTk.PhotoImage(Image.open('gantetokounmpo.png'))
+    pf2 = ImageTk.PhotoImage(Image.open("anthonydavis.png"))
+    pf3 = ImageTk.PhotoImage(Image.open("pascalsiakam.png"))
+    pf4 = ImageTk.PhotoImage(Image.open("jaysontatum.png"))
+    pf5 = ImageTk.PhotoImage(Image.open("zionwilliamson.png"))
+    pf6 = ImageTk.PhotoImage(Image.open("johncollins.png"))
+    pf7 = ImageTk.PhotoImage(Image.open("blakegriffin.png"))
+    pf8 = ImageTk.PhotoImage(Image.open("domantassabonis.png"))
+    pf9 = ImageTk.PhotoImage(Image.open("danilogallinari.png"))
+    pf10 = ImageTk.PhotoImage(Image.open("jarenjacksonjr.png"))
+    pf11 = ImageTk.PhotoImage(Image.open("alhorford.png"))
+    pf12 = ImageTk.PhotoImage(Image.open("kevinlove.png"))
+
+    ar1 = ImageTk.PhotoImage(Image.open('lebronjames.png'))
+    ar2 = ImageTk.PhotoImage(Image.open("kevindurant.png"))
+    ar3 = ImageTk.PhotoImage(Image.open("kawhileonard.png"))
+    ar4 = ImageTk.PhotoImage(Image.open("jimmybutler.png"))
+    ar5 = ImageTk.PhotoImage(Image.open("khrismiddleton.png"))
+    ar6 = ImageTk.PhotoImage(Image.open("demarderozan.png"))
+    ar7 = ImageTk.PhotoImage(Image.open("brandoningram.png"))
+    ar8 = ImageTk.PhotoImage(Image.open("tobiasharris.png"))
+    ar9 = ImageTk.PhotoImage(Image.open("gordonhayward.png"))
+    ar10 = ImageTk.PhotoImage(Image.open("andrewwiggins.png"))
+    ar11 = ImageTk.PhotoImage(Image.open("tjwarren.png"))
+    ar12 = ImageTk.PhotoImage(Image.open("jonathanisaac.png"))
+
+    sflist=[ar1,ar2,ar3,ar4,ar5,ar6,ar7,ar8,ar9,ar10,ar11,ar12]
+    pflist=[pf1,pf2,pf3,pf4,pf5,pf6,pf7,pf8,pf9,pf10,pf11,pf12]
+    sglist=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12]
+    centerlist=[i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12]
+    l3 = [im1, im2, im3, im4, im5, im6, im7, im8, im9, im10, im11,im12]
+    x=im1.height()
+    y=im1.width()
+    sql = "select * from players where position='C' order by Overall desc"
+    mycur.execute(sql)
+    result = mycur.fetchall()
+    l = list(result)
+    l4 = []
+    for i in range(len(l)):
+        l4.append("\'{}\'".format(l[i][1]))
+    listc = l4[:12]
+    nlist=[]
+    sql = "select * from players where position='SG' order by Overall desc"
+    mycur.execute(sql)
+    result = mycur.fetchall()
+    l = list(result)
+    l4 = []
+    for i in range(len(l)):
+        l4.append("\'{}\'".format(l[i][1]))
+    listsg = l4[:12]
+    nlist=[]
+    pos=-1
+    def myteam():
+        global pos,RUN
+        
+        new = Toplevel(root)
+        new.geometry('1000x900')
+        img = Image.open("Courtn2.png")
+        width,height=1000,1000
+        img = img.resize((width,height), Image.ANTIALIAS)
+        Img =  ImageTk.PhotoImage(img)
+        background_label =Label(new, image=Img)
+        background_label.Img = Img
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        new.title("MY TEAM")
+        frame_container = Frame(new)
+        
+        canvas_container = Canvas(frame_container, height=800, width=1500)
+        frame2 = Frame(canvas_container)
+        myscrollbar = Scrollbar(frame_container, orient="vertical",
+                                command=canvas_container.yview)  # will be visible if the frame2 is to to big for the canvas
+        canvas_container.create_window((0, 0), window=frame2, anchor='nw')
+        sql="select * from myteam"
+        mycur.execute(sql)
+        res=mycur.fetchall()
+        name=[]
+        index=[]
+        for i in range(len(res)):
+            name.append("\'{}\'".format(res[i][1]))
+            index.append("\"{}\"".format(res[i][9]))
+        imgs=[]
+        l2 = []
+        def dele():
+            sql="""DELETE FROM myteam where Name = %s"""
+            
+            if pos==0:
+                mycur.execute(sql,(name[0],))
+                
+            if pos==1:
+                mycur.execute(sql,(name[1],))
+                
+            if pos==2:
+                mycur.execute(sql,(name[2],))
+                
+            if pos==3:
+                mycur.execute(sql,(name[3],))
+                
+            if pos==4:
+                mycur.execute(sql,(name[4],))
+                
+            db.commit()
+            messagebox.showinfo("ALERT","This player has been removed,select a new player")
+            new.destroy()
+            
+        def change():
+            global pos
+            if j.get()==0:
+                b2['state']='NORMAL'
+                pos=0
+            elif j.get()==1:
+                b2['state']='NORMAL'
+                pos=1
+            elif j.get()==2:
+                b2['state']='NORMAL'
+                pos=2
+            elif j.get()==3:
+                b2['state']='NORMAL'
+                pos=3
+            elif j.get()==4:
+                b2['state']='NORMAL'
+                pos=4
+        for i in range(0,len(name)):
+            name[i]=name[i].strip("\'")
+        for i in index:
+            i = i.strip('\"')
+            imgs.append(ImageTk.PhotoImage(Image.open(i)))
+        j=IntVar()
+        for i in range(0,len(index)):
+            l2.append(Radiobutton(new,variable=j,value=i,image=imgs[i],state=ACTIVE,command = change))
+        
+        try:
+            l2[0].grid(row=2,column=1)
+        except:
+            pass
+        try:
+            l2[1].grid(row=2, column=200)
+        except:
+            pass
+        try:
+            l2[2].grid(row=10, column=5)
+        except:
+            pass
+        try:
+            l2[3].grid(row=30, column=1)
+        except:
+            pass
+        try:
+            l2[4].grid(row=30, column=200)
+        except:
+            pass
+        
+        def mainl():
+            global RUN
+            if len(name)<=4:
+                messagebox.showerror("ERROR","You must select 5 players before proceeding")
+                new.destroy()
+            else:
+                messagebox.showerror("READY","By pressing ok you will close the entire draft section and move to game. Press only if you are ready")
+                new.destroy()
+                root.destroy()
+                RUN=True
+        
+            
+            
+        frame2.update()
+        canvas_container.configure(yscrollcommand=myscrollbar.set, scrollregion="0 0 0 %s" % frame2.winfo_height())
+        canvas_container.pack(side=RIGHT)
+        myscrollbar.pack(side=RIGHT, fill=Y)
+        b1=Button(new,text="Proceed", command=mainl)
+        b1.place(x=800,y=350,height=50,width=150)
+        b2=Button(new,text="Delete",state="disabled",command=dele)
+        b2.place(x=800,y=550,height=50,width=150)
+        frame_container.pack()
+
+
+
+    def sg():
+        new2=Toplevel(root)
+        new2.title("Shooting Guard")
+        frame_container = Frame(new2)
+        canvas_container = Canvas(frame_container,height=850,width=1300)
+        frame2 = Frame(canvas_container)
+        myscrollbar = Scrollbar(frame_container, orient="vertical",command=canvas_container.yview)  # will be visible if the frame2 is to to big for the canvas
+        canvas_container.create_window((0, 0), window=frame2, anchor='nw')
+        def clicked(value):
+            sql2="select * from myteam"
+            mycur.execute(sql2)
+            res=mycur.fetchall()
+            count=0
+            for i in res:
+                if i[2]=="SG":
+                    count+=1
+            if count<1:
+                sql = "insert into myteam(Jersey_number,Name,Position,Overall,Shooting_Outside,Shooting_inside,Defense_outside,Defense_inside,Passing,image) select * from players where position='SG' and Name like {}".format(value)
+                mycur.execute(sql)
+                db.commit()
+                messagebox.showinfo("new team member","{} is now in your team".format(value))
+            else:
+                messagebox.showerror("error", "You already have a Shooting Guard")
+            new2.destroy()
+        new2.grab_set()
+        #new.grab_release()
+        r=StringVar()
+        bn=-1
+        img = Image.open("Courtn2.png")
+        img = img.resize((1300,1200), Image.ANTIALIAS)
+        Img =  ImageTk.PhotoImage(img)
+        background_label =Label(frame2, image=Img)
+        background_label.Img = Img
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        l2=[]
+        for i in range(0,12):
+            l2.append(Radiobutton(frame2,variable=r,value=listsg[i],command=lambda : clicked(r.get()),image=sglist[i]))
+        l2[0].grid(row=0,column=1)
+        l2[1].grid(row=0,column=3)
+        l2[2].grid(row=0, column=5)
+        l2[3].grid(row=1, column=2)
+        l2[4].grid(row=1, column=4)
+        l2[5].grid(row=1, column=6)
+        l2[6].grid(row=2, column=1)
+        l2[7].grid(row=2, column=3)
+        l2[8].grid(row=2, column=5)
+        l2[9].grid(row=3, column=2)
+        l2[10].grid(row=3,column=4)
+        l2[11].grid(row=3, column=6)
+        
+        
+        frame2.update()
+        canvas_container.configure(yscrollcommand=myscrollbar.set,scrollregion="0 0 0 %s" % frame2.winfo_height())
+        canvas_container.pack(side=RIGHT)
+        myscrollbar.pack(side=RIGHT, fill=Y)
+        frame_container.pack()
+
+    sql = "select * from players where position = 'PF' order by Overall desc"
+    mycur.execute(sql)
+    result = mycur.fetchall()
+    l = list(result)
+    listpf = []
+    for i in range(len(l)):
+        listpf.append("\'{}\'".format(l[i][1]))
+    nlist=[]
+    def pf():
+        new2=Toplevel(root)
+        new2.title("Power Forward")
+        frame_container = Frame(new2)
+        canvas_container = Canvas(frame_container,height=850,width=1300)
+        frame2 = Frame(canvas_container)
+        myscrollbar = Scrollbar(frame_container, orient="vertical",command=canvas_container.yview)  # will be visible if the frame2 is to to big for the canvas
+        canvas_container.create_window((0, 0), window=frame2, anchor='nw')
+        def clicked(value):
+            sql2="select * from myteam"
+            mycur.execute(sql2)
+            res=mycur.fetchall()
+            count=0
+            for i in res:
+                if i[2]=="PF":
+                    count+=1
+            if count<1:
+                sql = "insert into myteam(Jersey_number,Name,Position,Overall,Shooting_Outside,Shooting_inside,Defense_outside,Defense_inside,Passing,image) select * from players where position='PF' and Name like {}".format(value)
+                mycur.execute(sql)
+                db.commit()
+                messagebox.showinfo("new team member","{} is now in your team".format(value))
+            else:
+                messagebox.showerror("error", "You already have a Power Forward")
+            new2.destroy()
+        new2.grab_set()
+        #new.grab_release()
+        r=StringVar()
+        bn=-1
+        img = Image.open("Courtn2.png")
+        img = img.resize((1300,1200), Image.ANTIALIAS)
+        Img =  ImageTk.PhotoImage(img)
+        background_label =Label(frame2, image=Img)
+        background_label.Img = Img
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        l2=[]
+        for i in range(0,12):
+            l2.append(Radiobutton(frame2,variable=r,value=listpf[i],command=lambda : clicked(r.get()),image=pflist[i]))
+        l2[0].grid(row=0,column=1)
+        l2[1].grid(row=0,column=3)
+        l2[2].grid(row=0, column=5)
+        l2[3].grid(row=1, column=2)
+        l2[4].grid(row=1, column=4)
+        l2[5].grid(row=1, column=6)
+        l2[6].grid(row=2, column=1)
+        l2[7].grid(row=2, column=3)
+        l2[8].grid(row=2, column=5)
+        l2[9].grid(row=3, column=2)
+        l2[10].grid(row=3, column=4)
+        l2[11].grid(row=3, column=6)
+        frame2.update()
+        canvas_container.configure(yscrollcommand=myscrollbar.set,scrollregion="0 0 0 %s" % frame2.winfo_height())
+        canvas_container.pack(side=RIGHT)
+        myscrollbar.pack(side=RIGHT, fill=Y)
+        frame_container.pack()
+
+    def center():
+        new2=Toplevel(root)
+        new2.title("Center")
+        frame_container = Frame(new2)
+        canvas_container = Canvas(frame_container,height=850,width=1300)
+        frame2 = Frame(canvas_container)
+        myscrollbar = Scrollbar(frame_container, orient="vertical",command=canvas_container.yview)  # will be visible if the frame2 is to to big for the canvas
+        canvas_container.create_window((0, 0), window=frame2, anchor='nw')
+        def clicked(value):
+            sql2="select * from myteam"
+            mycur.execute(sql2)
+            res=mycur.fetchall()
+            count=0
+            for i in res:
+                if i[2]=="C":
+                    count+=1
+            if count<1:
+                sql = "insert into myteam(Jersey_number,Name,Position,Overall,Shooting_Outside,Shooting_inside,Defense_outside,Defense_inside,Passing,image) select * from players where position='C' and Name like {}".format(value)
+                mycur.execute(sql)
+                db.commit()
+                messagebox.showinfo("new team member","{} is now in your team".format(value))
+            else:
+                messagebox.showerror("error", "You already have a Center")
+            new2.destroy()
+
+        new2.grab_set()
+        r=StringVar()
+        bn=-1
+        img = Image.open("Courtn2.png")
+        img = img.resize((1300,1200), Image.ANTIALIAS)
+        Img =  ImageTk.PhotoImage(img)
+        background_label =Label(frame2, image=Img)
+        background_label.Img = Img
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        l2=[]
+        for i in range(0,12):
+            l2.append(Radiobutton(frame2,variable=r,value=listc[i],command=lambda : clicked(r.get()),image=centerlist[i]))
+        l2[0].grid(row=0,column=1)
+        l2[1].grid(row=0,column=3)
+        l2[2].grid(row=0, column=5)
+        l2[3].grid(row=1, column=2)
+        l2[4].grid(row=1, column=4)
+        l2[5].grid(row=1, column=6)
+        l2[6].grid(row=2, column=1)
+        l2[7].grid(row=2, column=3)
+        l2[8].grid(row=2, column=5)
+        l2[9].grid(row=3, column=2)
+        l2[10].grid(row=3, column=4)
+        l2[11].grid(row=3, column=6)
+        frame2.update()
+        canvas_container.configure(yscrollcommand=myscrollbar.set,scrollregion="0 0 0 %s" % frame2.winfo_height())
+        canvas_container.pack(side=RIGHT)
+        myscrollbar.pack(side=RIGHT, fill=Y)
+        frame_container.pack()
+
+    sql = "select * from players where position = 'SF' order by Overall desc"
+    mycur.execute(sql)
+    result = mycur.fetchall()
+    l = list(result)
+    l4 = []
+    for i in range(len(l)):
+        l4.append("\'{}\'".format(l[i][1]))
+
+    listsf = l4[:12]
+    nlist=[]
+    def sf():
+        new2=Toplevel(root)
+        new2.title("Small Forward")
+        frame_container = Frame(new2)
+        canvas_container = Canvas(frame_container,height=850,width=1300)
+        frame2 = Frame(canvas_container)
+        myscrollbar = Scrollbar(frame_container, orient="vertical",command=canvas_container.yview)  # will be visible if the frame2 is to to big for the canvas
+        canvas_container.create_window((0, 0), window=frame2, anchor='nw')
+        def clicked(value):
+            sql2="select * from myteam"
+            mycur.execute(sql2)
+            res=mycur.fetchall()
+            count=0
+            for i in res:
+                if i[2]=="SF":
+                    count+=1
+            if count<1:
+                sql = "insert into myteam(Jersey_number,Name,Position,Overall,Shooting_Outside,Shooting_inside,Defense_outside,Defense_inside,Passing,image) select * from players where position='SF' and Name like {}".format(value)
+                mycur.execute(sql)
+                db.commit()
+                messagebox.showinfo("new team member","{} is now in your team".format(value))
+            else:
+                messagebox.showerror("error", "You already have a Small Forward")
+            new2.destroy()
+
+        new2.grab_set()
+        #new.grab_release()
+        r=StringVar()
+        bn=-1
+        img = Image.open("Courtn2.png")
+        img = img.resize((1300,1200), Image.ANTIALIAS)
+        Img =  ImageTk.PhotoImage(img)
+        background_label =Label(frame2, image=Img)
+        background_label.Img = Img
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        l2=[]
+        for i in range(0,12):
+            l2.append(Radiobutton(frame2,variable=r,value=listsf[i],command=lambda : clicked(r.get()),image=sflist[i]))
+        l2[0].grid(row=0,column=1)
+        l2[1].grid(row=0,column=3)
+        l2[2].grid(row=0, column=5)
+        l2[3].grid(row=1, column=2)
+        l2[4].grid(row=1, column=4)
+        l2[5].grid(row=1, column=6)
+        l2[6].grid(row=2, column=1)
+        l2[7].grid(row=2, column=3)
+        l2[8].grid(row=2, column=5)
+        l2[9].grid(row=3, column=2)
+        l2[10].grid(row=3, column=4)
+        l2[11].grid(row=3, column=6)
+        
+        frame2.update()
+        canvas_container.configure(yscrollcommand=myscrollbar.set,scrollregion="0 0 0 %s" % frame2.winfo_height())
+        canvas_container.pack(side=RIGHT)
+        myscrollbar.pack(side=RIGHT, fill=Y)
+        frame_container.pack()
+
+    sql = "select * from players where position = 'PG' order by Overall desc"
+    mycur.execute(sql)
+    result = mycur.fetchall()
+    l = list(result)
+    l4 = []
+    for i in range(len(l)):
+        l4.append("\'{}\'".format(l[i][1]))
+
+    l5 = l4[:12]
+    nlist=[]
+
+    def pg():
+        new3=Toplevel(root)
+        new3.title("Point Guard")
+        frame_container = Frame(new3)
+        canvas_container = Canvas(frame_container,height=850,width=1300)
+        frame3 = Frame(canvas_container)
+        myscrollbar = Scrollbar(frame_container, orient="vertical",command=canvas_container.yview)
+        canvas_container.create_window((0, 0), window=frame3, anchor='nw')
+        def clicked(value):
+            sql2="select * from myteam"
+            mycur.execute(sql2)
+            res=mycur.fetchall()
+            count=0
+            for i in res:
+                if i[2]=="PG":
+                    count+=1
+            if count<1:
+                sql = "insert into myteam(Jersey_number,Name,Position,Overall,Shooting_Outside,Shooting_inside,Defense_outside,Defense_inside,Passing,image) select * from players where position='PG' and Name like {}".format(value)
+                mycur.execute(sql)
+                db.commit()
+                messagebox.showinfo("new team member","{} is now in your team".format(value))
+            else:
+                messagebox.showerror("error", "You already have a Point Guard")
+            new3.destroy()
+        new3.grab_set()
+        #new.grab_release()
+        r=StringVar()
+        bn=-1
+        img = Image.open("Courtn2.png")
+        img = img.resize((1300,1200), Image.ANTIALIAS)
+        Img =  ImageTk.PhotoImage(img)
+        background_label =Label(frame3, image=Img)
+        background_label.Img = Img
+        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        l2=[]
+        for i in range(0,12):
+            l2.append(Radiobutton(frame3,variable=r,value=l5[i],command=lambda : clicked(r.get()),image=l3[i]))
+        l2[0].grid(row=0,column=1)
+        l2[1].grid(row=0,column=3)
+        l2[2].grid(row=0, column=5)
+        l2[3].grid(row=1, column=2)
+        l2[4].grid(row=1, column=4)
+        l2[5].grid(row=1, column=6)
+        l2[6].grid(row=2, column=1)
+        l2[7].grid(row=2, column=3)
+        l2[8].grid(row=2, column=5)
+        l2[9].grid(row=3, column=2)
+        l2[10].grid(row=3, column=4)
+        l2[11].grid(row=3, column=6)
+
+        frame3.update()
+        canvas_container.configure(yscrollcommand=myscrollbar.set,scrollregion="0 0 0 %s" % frame3.winfo_height())
+        canvas_container.pack(side=RIGHT)
+        myscrollbar.pack(side=RIGHT, fill=Y)
+        frame_container.pack()
+    
+    pg=Button(root,text="Choose a Point Guard", command=pg)
+    pg.place(x=90,y=90,height=50,width=150)
+    center=Button(root,text="Choose a Center",command=center)
+    center.place(x=325,y=390,height=50,width=150)
+    sg=Button(root,text="Choose a Shooting Guard", command=sg)
+    sg.place(x=90,y=700,height=50,width=150)
+    sf=Button(root,text="Chose a Small Forward", command=sf)
+    sf.place(x=600,y=90,height=50,width=150)
+    pf=Button(root,text="Choose a Power Forward", command=pf)
+    pf.place(x=600,y=700,height=50,width=150)
+    MYTEAM=Button(root,text="Check your team", command=myteam)
+    MYTEAM.place(x=330,y=600,height=50,width=150)
+    root.deiconify()
+root=Tk()
+root.title("Welcome Page")
+root.geometry('1000x1000')
+def resize_image(event):
+    new_width = event.width
+    new_height = event.height
+    image = copy_of_image.resize((new_width, new_height))
+    photo = ImageTk.PhotoImage(image)
+    label.config(image = photo)
+    label.image = photo 
+def k():
+    abox=messagebox.askquestion("Are you ready?","Press Yes to start the draft")
+    if abox=="yes":
+        root.destroy()
+        draft()
+def s():
+    abox=messagebox.askquestion("Exit","Press Yes to exit game")
+    if abox=="yes":
+        root.destroy()
+image = Image.open('courtn2.png')
+copy_of_image = image.copy()
+photo = ImageTk.PhotoImage(image)
+label = ttk.Label(root, image = photo)
+label.bind('<Configure>', resize_image)
+label.pack(fill=BOTH, expand = YES)
+a=Button(root,text="BEGIN GAME",command=k)
+a.place(x=380,y=700,height=75,width=250)
+n=Button(root,text="Quit",command=s)
+n.place(x=850,y=900,height=50,width=75)
+root.mainloop()
+    
+
+if RUN==True:
+    s=pygame.display.set_mode([1450,800])
+    pygame.display.set_caption("Swisheroo")    
+    COURT=pygame.image.load("Courtn2.png").convert()
+    icon=pygame.image.load("icon2.jpeg").convert()
+    pygame.display.set_icon(icon)
+    con=mysql.connector.connect(host='localhost',database='project',user='root',password='Agasthya0112')
+    l1=pygame.image.load("ply.png").convert()
+    l2=pygame.image.load("ply2.png").convert()
+    l3=pygame.image.load("ply3.png").convert()
+    l4=pygame.image.load("ply4.png").convert()
+    l5=pygame.image.load("ply5.png").convert()
+    f1=pygame.image.load("opp.png").convert()
+    f2=pygame.image.load("opp2.png").convert()
+    f3=pygame.image.load("opp3.png").convert()
+    f4=pygame.image.load("opp4.png").convert()
+    f5=pygame.image.load("opp5.png").convert()
+    cursor=con.cursor(buffered=True)
+    sql1="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'PG' "
+    sql2="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'SG' "
+    sql3="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'SF' "
+    sql4="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'PF' "
+    sql5="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'C'"
+    sql6="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "PG" """
+    sql7="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "SG" """
+    sql8="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "SF" """
+    sql9="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "PF" """
+    sql10="""select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside from players where Name not like %s and position = "C" """
+    cursor.execute(sql1)
+    valp1=cursor.fetchall()[0]
+    img1=pygame.image.load(str(valp1[5])).convert()
+    cursor.execute(sql2)
+    valp2=cursor.fetchall()[0]
+    img2=pygame.image.load(str(valp2[5])).convert()
+    cursor.execute(sql3)
+    valp3=cursor.fetchall()[0]
+    img3=pygame.image.load(str(valp3[5])).convert()
+    cursor.execute(sql4)
+    valp4=cursor.fetchall()[0]
+    img4=pygame.image.load(str(valp4[5])).convert()
+    cursor.execute(sql5)
+    valp5=cursor.fetchall()[0]
+    img5=pygame.image.load(str(valp5[5])).convert()
+    cursor.execute(sql6,(valp1[0],))
+    valo1=cursor.fetchall()[0]
+    cursor.execute(sql7,(valp2[0],))
+    valo2=cursor.fetchall()[0]
+    cursor.execute(sql8,(valp3[0],))
+    valo3=cursor.fetchall()[0]
+    cursor.execute(sql9,(valp4[0],))
+    valo4=cursor.fetchall()[0]
+    cursor.execute(sql10,(valp5[0],))
+    valo5=cursor.fetchall()[0]
+    offopp="pg"
+    defplayer="pg"
+    activeplayer="pg"
+    pass1=True
+    pass2=True
+    pass3=True
+    pass4=True
+    pass5=True
+    pass1dur = 1
+    pass2dur = random.randint(7,9)
+    pass3dur = random.randint(11,13)
+    pass4dur=  random.randint(15,17)
+    pass5dur=random.randint(3,5)
+    a1=random.randint(1,10)
+    block=False
+    shoot=False
+    coll=False
+    collo=False
+    movement=True
+    move=True
+    fin=False
+    setO=False
+    setD=False
+    OVER=False
+    scp=0
+    sc=0
+    start_ticks=pygame.time.get_ticks()
+    fontdef=pygame.font.get_fonts()[23]
+    font=pygame.font.SysFont(fontdef,40) 
+    textcenter = (675,450)
+    fontdef2=pygame.font.get_fonts()[3]
+    winfont=pygame.font.SysFont(fontdef2,90)
+    wincenter=(560,160)
+    cardfont=pygame.font.SysFont(fontdef2,30)
+    cardcenter=(200,150)
+    scoresh=pygame.font.SysFont(fontdef2,40)
+    fontdef3=pygame.font.get_fonts()[0]
+    winfont2=pygame.font.SysFont(fontdef3,30)
+    wincenter2=(560,270)
+    tfont=pygame.font.SysFont(fontdef3,30)
+    tcenter=(1180,450)
+    stat1="P"
+    fontdefst=pygame.font.get_fonts()[12]
+    fontst=pygame.font.SysFont(fontdefst,50)
+    mtext="MISS!"
+    mcenter=(665,40)
+    thptext="3 POINTER MADE!"
+    thpcenter=(540,40)
+    tptext="2 POINTER MADE!"
+    tpcenter=(540,40)
+    sc1=0
+    bltext="BLOCKED!"
+    shothap=0
+    blcenter=(620,40)
+    itext="INTERCEPTED"
+    icenter=(580,40)
+    status= 'OFFENSE'
+    notransit=True
+    px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y=500,200,285,90,285,320,85,160,85,255
+    ox,oy,o2x,o2y,o3x,o3y,o4x,o4y,o5x,o5y=675,200,365,35,370,370,145,120,145,290
+    b1=ball(ox,oy+40)
+    cx,cy=85,217
+    pxo,pyo,p2xo,p2yo,p3xo,p3yo,p4xo,p4yo,p5xo,p5yo=725,200,1050,40,1050,360,1250,120,1250,290
+    oxo,oyo,o2xo,o2yo,o3xo,o3yo,o4xo,o4yo,o5xo,o5yo=925,200,1100,90,1100,320,1300,160,1300,255
+    B2=ball(pxo,pyo)
+    c2x,c2y=1375,225
+    blittime=None
+    dtime=22000
+    otime=22000
+    i = True
+    coord=[]
+    b,b2=280,130
     count=0
-    coord.append([a,b2])
-    if a==1095:
-        a+=5
-    elif count>=5:
-        a+=20
-    else:
-        a+=10
-    b+=10
-    b2-=10
-    count+=1    
-def TPO(x,y):
-    TP= False
-    if y==390:
-        TP= True
-    elif y==15:
-        TP= True
-    elif x<=940:
-        TP= True
-    for i in coord:
-        if y<=130:
-            if y==i[1] or y == i[1]-5 or y==i[1]+5:
-                if x<=i[0]:
-                    TP=True
-        elif y>=280:
-            if y==i[1] or y == i[1]+5:
-                if x<=i[0]:
-                    TP=True
-    if TP==True:
-        return True      
+    a=465
+    s1,s2,s3,s4,s5=0,0,0,0,0
+    k1,k2,k3,k4,k5=0,0,0,0,0
+    while i:
+        if a<285:
+            break
+        coord.append([a,b])
+        coord.append([a,b2])
+        if a==305:
+            a-=5
+        elif count>=5:
+            a-=20
+        else:
+            a-=10
+        b +=10
+        b2 -=10
+        count+=1
+    def TPD(x,y):
+        TP= False
+        if y==390:
+            TP= True
+        elif y==15:
+            TP= True
+        elif x>=285:
+            TP= True
+        for i in coord:
+            if y<=130:
+                if y==i[1] or y == i[1]-5 or y==i[1]+5:
+                    if x>=i[0]:
+                        TP=True
+            elif y>=280:
+                if y==i[1] or y == i[1]+5:
+                    if x>=i[0]:
+                        TP=True
+        if TP==True:
+            return True
 
+    a=945
+    b,b2=280,130
+    count=0
+    while i:
+        if a>1105:
+            break
+        coord.append([a,b])
+        count=0
+        coord.append([a,b2])
+        if a==1095:
+            a+=5
+        elif count>=5:
+            a+=20
+        else:
+            a+=10
+        b+=10
+        b2-=10
+        count+=1    
+    def TPO(x,y):
+        TP= False
+        if y==390:
+            TP= True
+        elif y==15:
+            TP= True
+        elif x<=940:
+            TP= True
+        for i in coord:
+            if y<=130:
+                if y==i[1] or y == i[1]-5 or y==i[1]+5:
+                    if x<=i[0]:
+                        TP=True
+            elif y>=280:
+                if y==i[1] or y == i[1]+5:
+                    if x<=i[0]:
+                        TP=True
+        if TP==True:
+            return True      
 
 while RUN:
     s.fill([0,0,0])
