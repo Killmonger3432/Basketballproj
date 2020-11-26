@@ -796,9 +796,11 @@ class opponent(pygame.sprite.Sprite):
                             else:
                                 score = 2
                                 stat1 = '2P'
+                            pygame.mixer.Sound.play(cheer,maxtime=2000)
                         else:
                             stat1="M"
                             score=0
+                            pygame.mixer.Sound.play(boo,maxtime=2000)
                         if offopp=="pg":
                             k1+=score
                         elif offopp=="sg":
@@ -1135,9 +1137,11 @@ class player(pygame.sprite.Sprite):
                     self.score =2
                     
                     stat1="2P"
+                pygame.mixer.Sound.play(cheer,maxtime=2000)
             elif self.shotchance<23:
                 stat1="M"
                 self.score=0
+                pygame.mixer.Sound.play(boo,maxtime=200)
             notransit= False
         
             return self.score
@@ -2268,7 +2272,7 @@ def draft(): #draft
 root=Tk()
 root.title("Welcome Page")
 root.geometry('1000x1000')
-pygame.mixer.music.load("STW.mp3")
+pygame.mixer.music.load("TBP.mp3")
 pygame.mixer.music.play() 
 def resize_image(event):
     new_width = event.width
@@ -2356,6 +2360,8 @@ if RUN==True:
     f4=pygame.image.load("opp4.png").convert()
     f5=pygame.image.load("opp5.png").convert()
     cursor=con.cursor(buffered=True)
+    cheer=pygame.mixer.Sound("cheer.wav")
+    boo=pygame.mixer.Sound("boo.wav")
     sql1="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'PG' "
     sql2="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'SG' "
     sql3="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'SF' "
