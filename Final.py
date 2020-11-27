@@ -2219,10 +2219,10 @@ def draft(): #draft
     def q():
         
         new=Toplevel(root)
-        new.geometry('600x600')
+        new.geometry('650x650')
         new.title("Music Settings")
         new.attributes("-topmost", True)
-        width,height=600,600
+        width,height=650,650
         img = Image.open("Courtn2.png")
         img = img.resize((width,height), Image.ANTIALIAS)
         Img =  ImageTk.PhotoImage(img)
@@ -2236,10 +2236,14 @@ def draft(): #draft
             m=str(y[1]+str('.mp3'))
             pygame.mixer.music.queue(str(m))
         def play():
+            print(z.get())
             pygame.mixer.music.unload()
             o=str(z.get())+ str('.mp3')
             pygame.mixer.music.load(o)
             pygame.mixer.music.play()
+        def stop():
+            pygame.mixer.music.stop()
+            pygame.mixer.music.unload()
         for r in range(0,len(i)):
             k.append(Radiobutton(new,variable=z,command=play,value=str(i[r][1]),text=str(i[r][0])))
         j=0
@@ -2253,6 +2257,8 @@ def draft(): #draft
         while f>10 and f<=21:
             k[f].place(x=300,y=int(50*(f-10)))
             f+=1
+        l3=Radiobutton(new,command=stop,text="Stop Music")
+        l3.place(x=250,y=600)
         messagebox.showinfo("Guide","Click on any radio button to change the song")
     pg=Button(root,text="Choose a Point Guard", command=pg)
     pg.place(x=90,y=90,height=50,width=150)
@@ -2293,10 +2299,10 @@ def s():
 def q():
     
     new=Toplevel(root)
-    new.geometry('600x600')
+    new.geometry('650x650')
     new.title("Music Settings")
     new.attributes("-topmost", True)
-    width,height=600,600
+    width,height=650,650
     img = Image.open("Courtn2.png")
     img = img.resize((width,height), Image.ANTIALIAS)
     Img =  ImageTk.PhotoImage(img)
@@ -2314,6 +2320,9 @@ def q():
         o=str(z.get())+ str('.mp3')
         pygame.mixer.music.load(o)
         pygame.mixer.music.play()
+    def stop():
+            pygame.mixer.music.stop()
+            pygame.mixer.music.unload()
     for r in range(0,len(i)):
         k.append(Radiobutton(new,variable=z,command=play,value=str(i[r][1]),text=str(i[r][0])))
     j=0
@@ -2327,6 +2336,9 @@ def q():
     while f>10 and f<=21:
         k[f].place(x=300,y=int(50*(f-10)))
         f+=1
+    l3=Radiobutton(new,command=stop,text="Stop Music")
+    l3.place(x=250,y=600)
+
     messagebox.showinfo("Guide","Click on any radio button to change the song")
 image = Image.open('courtn2.png')
 copy_of_image = image.copy()
