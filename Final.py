@@ -77,7 +77,8 @@ def curplayer(): #returns current player when they have ball
         return p4
     elif defplayer=="c":
         return p5
-def useplayer(): #returns current player when we have ball
+def useplayer():
+    global textp #returns current player when we have ball
     if activeplayer=="pg":
         return p1
     elif activeplayer=="sg":
@@ -87,7 +88,86 @@ def useplayer(): #returns current player when we have ball
     elif activeplayer=="pf":
         return p4
     elif activeplayer=="c":
+
         return p5
+def blittext():
+    if status == "OFFENSE":
+        posblit=posfont.render(pgtext,True,[0,0,0],[255,255,255])
+        posblit.set_colorkey((255,255,255))
+        s.blit(posblit,((pxo+15),(pyo+45)))
+        posblit2=posfont.render(sgtext,True,[0,0,0],[255,255,255])
+        posblit2.set_colorkey((255,255,255))
+        s.blit(posblit2,((p2xo+15),(p2yo+45)))
+        posblit3=posfont.render(sftext,True,[0,0,0],[255,255,255])
+        posblit3.set_colorkey((255,255,255))
+        s.blit(posblit3,((p3xo+15),(p3yo+45)))
+        posblit4=posfont.render(pftext,True,[0,0,0],[255,255,255])
+        posblit4.set_colorkey((255,255,255))
+        s.blit(posblit4,((p4xo+15),(p4yo+45)))
+        posblit5=posfont.render(ctext,True,[0,0,0],[255,255,255])
+        posblit5.set_colorkey((255,255,255))
+        s.blit(posblit5,((p5xo+15),(p5yo+45)))
+    elif status == "DEFENSE":
+        posblit=posfont.render(pgtext,True,[0,0,0],[255,255,255])
+        posblit.set_colorkey((255,255,255))
+        s.blit(posblit,((px+15),(py+45)))
+        posblit2=posfont.render(sgtext,True,[0,0,0],[255,255,255])
+        posblit2.set_colorkey((255,255,255))
+        s.blit(posblit2,((p2x+15),(p2y+45)))
+        posblit3=posfont.render(sftext,True,[0,0,0],[255,255,255])
+        posblit3.set_colorkey((255,255,255))
+        s.blit(posblit3,((p3x+15),(p3y+45)))
+        posblit4=posfont.render(pftext,True,[0,0,0],[255,255,255])
+        posblit4.set_colorkey((255,255,255))
+        s.blit(posblit4,((p4x+15),(p4y+45)))
+        posblit5=posfont.render(ctext,True,[0,0,0],[255,255,255])
+        posblit5.set_colorkey((255,255,255))
+        s.blit(posblit5,((p5x+15),(p5y+45)))
+        
+        
+def plytextmaker():
+    if status=="OFFENSE":
+        if activeplayer=="pg" :
+            plytext="Current Player:" + str(valp1[0]) + "(Point Guard)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
+        elif activeplayer=="sg" :
+            plytext="Current Player:" + str(valp2[0]) + "(Shooting Guard)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
+        elif activeplayer=="sf" :
+            plytext="Current Player:" + str(valp3[0]) + "(Small Forward)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
+        elif activeplayer=="pf" :
+            plytext="Current Player:" + str(valp4[0]) + "(Power Forward)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
+        elif activeplayer=="c" :
+            plytext="Current Player:" + str(valp5[0]) + "(Center)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
+    else:
+        if defplayer=="pg" :
+            plytext="Current Player:" + str(valp1[0]) + "(Point Guard)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
+        elif defplayer=="sg" :
+            plytext="Current Player:" + str(valp2[0]) + "(Shooting Guard)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
+        elif defplayer=="sf" :
+            plytext="Current Player:" + str(valp3[0]) + "(Small Forward)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
+        elif defplayer=="pf" :
+            plytext="Current Player:" + str(valp4[0]) + "(Power Forward)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
+        elif defplayer=="c" :
+            plytext="Current Player:" + str(valp5[0]) + "(Center)"
+            plyblit=plyfont.render(plytext,True,[155,0,0],[0,0,0])
+            s.blit(plyblit,plyfontcenter)
 def collside(x1,x2,y1,y2): #what happens when 2 opp collide
     global h1,L1,h2
     if x1>y1:
@@ -796,11 +876,11 @@ class opponent(pygame.sprite.Sprite):
                             else:
                                 score = 2
                                 stat1 = '2P'
-                            pygame.mixer.Sound.play(cheer,maxtime=2000)
+                            pygame.mixer.Sound.play(cheer)
                         else:
                             stat1="M"
                             score=0
-                            pygame.mixer.Sound.play(boo,maxtime=2000)
+                            pygame.mixer.Sound.play(boo)
                         if offopp=="pg":
                             k1+=score
                         elif offopp=="sg":
@@ -1137,13 +1217,12 @@ class player(pygame.sprite.Sprite):
                     self.score =2
                     
                     stat1="2P"
-                pygame.mixer.Sound.play(cheer,maxtime=2000)
+                pygame.mixer.Sound.play(cheer)
             elif self.shotchance<23:
                 stat1="M"
                 self.score=0
-                pygame.mixer.Sound.play(boo,maxtime=200)
+                pygame.mixer.Sound.play(boo)
             notransit= False
-        
             return self.score
     def update(self): #player loop update
         global px,py,p2x,p2y,p3x,p3y,p4x,p4y,p5x,p5y
@@ -1678,6 +1757,9 @@ def draft(): #draft
     root=Tk()
     root.title("Draft")
     root.geometry('800x800')
+    img=Image.open("icon.png")
+    img=ImageTk.PhotoImage(img)
+    root.iconphoto(False,img)
     width=800
     height=800
     img = Image.open("Courtn2.png")
@@ -1785,6 +1867,9 @@ def draft(): #draft
         
         new = Toplevel(root)
         new.geometry('1000x900')
+        img=Image.open("icon.png")
+        img=ImageTk.PhotoImage(img)
+        new.iconphoto(False,img)
         img = Image.open("Courtn2.png")
         width,height=1000,1000
         img = img.resize((width,height), Image.ANTIALIAS)
@@ -1831,6 +1916,8 @@ def draft(): #draft
             db.commit()
             messagebox.showinfo("ALERT","This player has been removed,select a new player")
             new.destroy()
+        def g():
+            messagebox.showinfo("How to play?","Press the arrow keys or W,A,S,D to move your players and the spacebar to shoot, to pass or switch between players use the number key (1 - Point Guard, 2- Shooting Guard, 3- Small Forward, 4- Power Forward, 5- Center). On defense, player movement is NOT automated and you will have to move each player by switching. You can see each player's stats below in the cards and plan accordingly. The first team to reach 21 wins. Good Luck, May the force be with you.")
             
         def change():
             global pos
@@ -1885,11 +1972,11 @@ def draft(): #draft
                 messagebox.showerror("ERROR","You must select 5 players before proceeding")
                 new.destroy()
             else:
-                messagebox.showerror("READY","By pressing ok you will close the entire draft section and move to game. Music will be queued from this point and you will not be able to change it in-game. Press yes only if you are ready")
-                new.destroy()
-                root.destroy()
-                #pygame.mixer.music.load()
-                RUN=True
+                a=messagebox.askquestion("READY","By pressing ok you will close the entire draft section and move to game. Music will be queued from this point and you will not be able to change it in-game. We recommend looking at the instructions first. Press yes only if you are ready")
+                if a == "yes":
+                    new.destroy()
+                    root.destroy()
+                    RUN=True
         
             
             
@@ -1898,17 +1985,22 @@ def draft(): #draft
         canvas_container.pack(side=RIGHT)
         myscrollbar.pack(side=RIGHT, fill=Y)
         b1=Button(new,text="Proceed", command=mainl)
-        b1.place(x=800,y=150,height=50,width=150)
+        b1.place(x=800,y=100,height=50,width=150)
         b2=Button(new,text="Delete",state="disabled",command=dele)
-        b2.place(x=800,y=450,height=50,width=150)
+        b2.place(x=800,y=300,height=50,width=150)
         m=Button(new,text="Music Settings",command=q)
-        m.place(x=800,y=750,height=50,width=150)
+        m.place(x=800,y=500,height=50,width=150)
+        k=Button(new,text="How to Play?",command=g)
+        k.place(x=800,y=700,height=50,width=150)
         frame_container.pack()
 
 
 
     def sg():
         new2=Toplevel(root)
+        img=Image.open("icon.png")
+        img=ImageTk.PhotoImage(img)
+        new2.iconphoto(False,img)
         new2.title("Shooting Guard")
         frame_container = Frame(new2)
         canvas_container = Canvas(frame_container,height=850,width=1300)
@@ -1929,7 +2021,7 @@ def draft(): #draft
                 db.commit()
                 messagebox.showinfo("new team member","{} is now in your team".format(value))
             else:
-                messagebox.showerror("error", "You already have a Shooting Guard")
+                messagebox.showerror("Error", "You already have a Shooting Guard")
             new2.destroy()
         new2.grab_set()
         #new.grab_release()
@@ -1974,6 +2066,9 @@ def draft(): #draft
     nlist=[]
     def pf():
         new2=Toplevel(root)
+        img=Image.open("icon.png")
+        img=ImageTk.PhotoImage(img)
+        new2.iconphoto(False,img)
         new2.title("Power Forward")
         frame_container = Frame(new2)
         canvas_container = Canvas(frame_container,height=850,width=1300)
@@ -1994,7 +2089,7 @@ def draft(): #draft
                 db.commit()
                 messagebox.showinfo("new team member","{} is now in your team".format(value))
             else:
-                messagebox.showerror("error", "You already have a Power Forward")
+                messagebox.showerror("Error", "You already have a Power Forward")
             new2.destroy()
         new2.grab_set()
         #new.grab_release()
@@ -2029,6 +2124,9 @@ def draft(): #draft
 
     def center():
         new2=Toplevel(root)
+        img=Image.open("icon.png")
+        img=ImageTk.PhotoImage(img)
+        new2.iconphoto(False,img)
         new2.title("Center")
         frame_container = Frame(new2)
         canvas_container = Canvas(frame_container,height=850,width=1300)
@@ -2049,7 +2147,7 @@ def draft(): #draft
                 db.commit()
                 messagebox.showinfo("new team member","{} is now in your team".format(value))
             else:
-                messagebox.showerror("error", "You already have a Center")
+                messagebox.showerror("Error", "You already have a Center")
             new2.destroy()
 
         new2.grab_set()
@@ -2094,6 +2192,9 @@ def draft(): #draft
     nlist=[]
     def sf():
         new2=Toplevel(root)
+        img=Image.open("icon.png")
+        img=ImageTk.PhotoImage(img)
+        new2.iconphoto(False,img)
         new2.title("Small Forward")
         frame_container = Frame(new2)
         canvas_container = Canvas(frame_container,height=850,width=1300)
@@ -2114,7 +2215,7 @@ def draft(): #draft
                 db.commit()
                 messagebox.showinfo("new team member","{} is now in your team".format(value))
             else:
-                messagebox.showerror("error", "You already have a Small Forward")
+                messagebox.showerror("Error", "You already have a Small Forward")
             new2.destroy()
 
         new2.grab_set()
@@ -2162,6 +2263,9 @@ def draft(): #draft
 
     def pg():
         new3=Toplevel(root)
+        img=Image.open("icon.png")
+        img=ImageTk.PhotoImage(img)
+        new3.iconphoto(False,img)
         new3.title("Point Guard")
         frame_container = Frame(new3)
         canvas_container = Canvas(frame_container,height=850,width=1300)
@@ -2182,7 +2286,7 @@ def draft(): #draft
                 db.commit()
                 messagebox.showinfo("new team member","{} is now in your team".format(value))
             else:
-                messagebox.showerror("error", "You already have a Point Guard")
+                messagebox.showerror("Error", "You already have a Point Guard")
             new3.destroy()
         new3.grab_set()
         #new.grab_release()
@@ -2219,6 +2323,9 @@ def draft(): #draft
     def q():
         
         new=Toplevel(root)
+        img=Image.open("icon.png")
+        img=ImageTk.PhotoImage(img)
+        new.iconphoto(False,img)
         new.geometry('650x650')
         new.title("Music Settings")
         new.attributes("-topmost", True)
@@ -2278,6 +2385,9 @@ def draft(): #draft
 root=Tk()
 root.title("Welcome Page")
 root.geometry('1000x1000')
+img=Image.open("icon.png")
+img=ImageTk.PhotoImage(img)
+root.iconphoto(False,img)
 pygame.mixer.music.load("TBP.mp3")
 pygame.mixer.music.play() 
 def resize_image(event):
@@ -2299,6 +2409,9 @@ def s():
 def q():
     
     new=Toplevel(root)
+    img=Image.open("icon.png")
+    img=ImageTk.PhotoImage(img)
+    new.iconphoto(False,img)
     new.geometry('650x650')
     new.title("Music Settings")
     new.attributes("-topmost", True)
@@ -2340,20 +2453,19 @@ def q():
     l3.place(x=250,y=600)
 
     messagebox.showinfo("Guide","Click on any radio button to change the song")
-image = Image.open('courtn2.png')
+image = Image.open('courtn3.png')
 copy_of_image = image.copy()
 photo = ImageTk.PhotoImage(image)
 label = ttk.Label(root, image = photo)
 label.bind('<Configure>', resize_image)
 label.pack(fill=BOTH, expand = YES)
 a=Button(root,text="BEGIN GAME",command=k)
-a.place(x=380,y=500,height=100,width=250)
+a.place(x=380,y=600,height=100,width=250)
 n=Button(root,text="Quit",command=s)
 n.place(x=830,y=40,height=40,width=150)
 m=Button(root,text="Music Settings",command=q)
-m.place(x=425,y=650,height=50,width=150)
+m.place(x=425,y=750,height=50,width=150)
 root.mainloop()
-RUN2=False
 if RUN==True:
     s=pygame.display.set_mode([1450,800])
     pygame.display.set_caption("Swisheroo")    
@@ -2450,7 +2562,14 @@ if RUN==True:
     wincenter2=(560,270)
     tfont=pygame.font.SysFont(fontdef3,30)
     tcenter=(1180,450)
+    plyfontdef=pygame.font.get_fonts()[3]
+    posfont=pygame.font.SysFont(plyfontdef,20)
     stat1="P"
+    pgtext="PG"
+    sgtext="SG"
+    sftext="SF"
+    pftext="PF"
+    ctext="C"
     fontdefst=pygame.font.get_fonts()[12]
     fontst=pygame.font.SysFont(fontdefst,50)
     mtext="MISS!"
@@ -2459,6 +2578,9 @@ if RUN==True:
     thpcenter=(540,40)
     tptext="2 POINTER MADE!"
     tpcenter=(540,40)
+    
+    plyfont=pygame.font.SysFont(plyfontdef,35)
+    plyfontcenter=(10,450)
     sc1=0
     bltext="BLOCKED!"
     shothap=0
@@ -2582,6 +2704,7 @@ if RUN==True:
         text = font.render(scoretxt,True, [155,0,0], [0,0,0])
         nonpcollide()
         s.blit(text,textcenter)
+    
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.display.quit()
@@ -2728,7 +2851,8 @@ if RUN==True:
                         opponent.opppass(activeopp())
                         pass4=False
         
-        
+        plytextmaker()
+        blittext()
         
         sc+=opponent.score(activeopp())
         over()
