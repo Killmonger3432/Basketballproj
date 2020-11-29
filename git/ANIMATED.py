@@ -529,8 +529,8 @@ class opponent(pygame.sprite.Sprite):
         step10 = max(abs(e2x - o5x), abs(e2y - o5y))
         if fin == True:
             if math.dist([a2x, a2y], [ox, oy]) <= 3:
-                ox = a2x
-                oy = a2y
+                ox = a2x*clock.tick(20)
+                oy = a2y*clock.tick(20)
                 if math.dist([b2x, b2y], [o2x, o2y]) <= 3:
                     o2x = b2x
                     o2y = b2y
@@ -604,20 +604,20 @@ class opponent(pygame.sprite.Sprite):
             dx = 0
             dy = 0
         if plah() == "pg":
-            oxo += (dx / 2)
-            oyo += (dy / 2)
+            oxo += (dx/3.2)  *clock.tick(20)
+            oyo += (dy/3.2)*clock.tick(20)
         if plah() == "sg":
-            o2xo += (dx / 3)
-            o2yo += (dy / 3)
+            o2xo += (dx/3.2) *clock.tick(20)
+            o2yo += (dy/3.2)*clock.tick(20)
         if plah() == "sf":
-            o3xo += (dx / 3)
-            o3yo += (dy / 3)
+            o3xo += (dx / 3.2)*clock.tick(20)
+            o3yo += (dy / 3.2)*clock.tick(20)
         if plah() == "pf":
-            o4xo += (dx / 3)
-            o4yo += (dy / 3)
+            o4xo += (dx / 3.2)*clock.tick(20)
+            o4yo += (dy / 3.2)*clock.tick(20)
         if plah() == "c":
-            o5xo += (dx / 3)
-            o5yo += (dy / 3)
+            o5xo += (dx / 3.2)*clock.tick(20)
+            o5yo += (dy / 3.2)*clock.tick(20)
 
     def activecoord(x):
         if status == "DEFENSE":
@@ -1118,13 +1118,13 @@ class player(pygame.sprite.Sprite):
     def collide(self, y, x2, y2):
         if pygame.sprite.collide_rect(self, y):
             if self.rect.x < x2:
-                self.movex = -20
+                self.movex = -0.5
             elif self.rect.x > x2:
-                self.movex = 20
+                self.movex = 0.5
             if self.rect.y < y2:
-                self.movey = -20
+                self.movey = -0.5
             elif self.rect.y > y2:
-                self.movey = 20
+                self.movey = 0.5
 
     def activecoord(self):
         if status == "DEFENSE":
@@ -1339,48 +1339,48 @@ class player(pygame.sprite.Sprite):
         if status == "DEFENSE":
             if defplayer == "pg":
                 player1 = True
-                px += self.movex
-                py += self.movey
+                px += self.movex*clock.tick(20)
+                py += self.movey*clock.tick(20)
             elif defplayer == "sg":
                 player2 = True
-                p2x += self.movex
-                p2y += self.movey
+                p2x += self.movex*clock.tick(20)
+                p2y += self.movey*clock.tick(20)
             elif defplayer == "sf":
                 player3 = True
-                p3x += self.movex
-                p3y += self.movey
+                p3x += self.movex*clock.tick(20)
+                p3y += self.movey*clock.tick(20)
             elif defplayer == "pf":
                 player4 = True
-                p4x += self.movex
-                p4y += self.movey
+                p4x += self.movex*clock.tick(20)
+                p4y += self.movey*clock.tick(20)
             elif defplayer == "c":
                 player5 = True
-                p5x += self.movex
-                p5y += self.movey
+                p5x += self.movex*clock.tick(20)
+                p5y += self.movey*clock.tick(20)
             if notransit:
                 player.boundaryD(self)
         elif status == "OFFENSE":
 
             if activeplayer == "pg":
                 player1 = True
-                pxo += self.movex
-                pyo += self.movey
+                pxo += self.movex*clock.tick(20)
+                pyo += self.movey*clock.tick(20)
             elif activeplayer == "sg":
                 player2 = True
-                p2xo += self.movex
-                p2yo += self.movey
+                p2xo += self.movex*clock.tick(20)
+                p2yo += self.movey*clock.tick(20)
             elif activeplayer == "sf":
                 player3 = True
-                p3xo += self.movex
-                p3yo += self.movey
+                p3xo += self.movex*clock.tick(20)
+                p3yo += self.movey*clock.tick(20)
             elif activeplayer == "pf":
                 player4 = True
-                p4xo += self.movex
-                p4yo += self.movey
+                p4xo += self.movex*clock.tick(20)
+                p4yo += self.movey*clock.tick(20)
             elif activeplayer == "c":
                 player5 = True
-                p5xo += self.movex
-                p5yo += self.movey
+                p5xo += self.movex*clock.tick(20)
+                p5yo += self.movey*clock.tick(20)
             if notransit:
                 player.boundaryO(self)
         if status == "DEFENSE":
@@ -1922,16 +1922,8 @@ class ball:
                 self.y = oyo + 20
             ball.boundaryO(self)
             if self.state == "M":
-                if disfn == "T1":
-                    fx = 1.5
-                elif disfn == "T2":
-                    fx = 2
-                elif disfn == "T0":
-                    fx = 3
-                else:
-                    fx = 2
-                self.x += self.ballmovex * fx
-                self.y += self.ballmovey * fx
+                self.x += self.ballmovex*50
+                self.y += self.ballmovey*50
             elif self.state == "P":
                 if activeplayer == "pg":
                     self.x = pxo + 50
@@ -2514,6 +2506,7 @@ blittime = None
 dtime = 22000
 otime = 22000
 i = True
+clock = pygame.time.Clock()
 coord = []
 b, b2 = 280, 130
 count = 0
@@ -2633,9 +2626,9 @@ while RUN:
                         RIGHT = False
                         UP = False
                         DOWN = False
-                        player.movement(curplayer(), -20, 0)
+                        player.movement(curplayer(),0.5, 0)
                     elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                        player.movement(curplayer(), 20, 0)
+                        player.movement(curplayer(), 0.5, 0)
                         RIGHT = True
                         LEFT = False
                         UP = False
@@ -2645,13 +2638,13 @@ while RUN:
                         LEFT = False
                         RIGHT = False
                         DOWN = False
-                        player.movement(curplayer(), 0, -20)
+                        player.movement(curplayer(), 0, -0.5)
                     elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
                         DOWN = True
                         LEFT = False
                         RIGHT = False
                         UP = False
-                        player.movement(curplayer(), 0, 20)
+                        player.movement(curplayer(), 0, 0.5)
                     elif event.key == pygame.K_1:
                         defplayer = "pg"
                     elif event.key == pygame.K_2:
@@ -2668,25 +2661,25 @@ while RUN:
                         RIGHT = False
                         UP = False
                         DOWN = False
-                        player.movement(useplayer(), -20, 0)
+                        player.movement(useplayer(), -0.5, 0)
                     elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                         RIGHT = True
                         LEFT = False
                         UP = False
                         DOWN = False
-                        player.movement(useplayer(), 20, 0)
+                        player.movement(useplayer(), 0.5, 0)
                     elif event.key == pygame.K_UP or event.key == pygame.K_w:
                         UP = True
                         LEFT = False
                         RIGHT = False
                         DOWN = False
-                        player.movement(useplayer(), 0, -20)
+                        player.movement(useplayer(), 0, -0.5)
                     elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
                         DOWN = True
                         LEFT = False
                         RIGHT = False
                         UP = False
-                        player.movement(useplayer(), 0, 20)
+                        player.movement(useplayer(), 0, 0.5)
                     elif event.key == pygame.K_1:
                         if activeplayer != "pg":
                             ball.movement(B2, pxo, pyo)
