@@ -1789,7 +1789,7 @@ class player(pygame.sprite.Sprite):
             else:
                 s.blit(l5[0][0], (p5xo, p5yo))
             
-            if dz +1 == 4 :
+        if dz +1 == 4 :
             dz= 0
         else :
             dz = dz +1
