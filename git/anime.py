@@ -1001,98 +1001,98 @@ class opponent(pygame.sprite.Sprite):
                 opponent.boundaryO(self)
 
         if status == "DEFENSE":
-            if oldox > px and oldoy == oy:
+            if oldox > px  + 5 and oldoy == oy:
                 s.blit(f1[1][dz], (ox, oy))
-            elif oldox < px and oldoy == oy:
+            elif oldox + 5 < px and oldoy == oy:
                 s.blit(f1[2][dz], (ox, oy))
-            elif oldox == ox and oldoy > oy:
+            elif oldox == ox and oldoy < oy + 5:
                 s.blit(f1[0][dz], (ox, oy))
-            elif oldox == ox and oldoy > oy:
+            elif oldox == ox and oldoy > oy + 5:
                 s.blit(f1[3][dz], (ox, oy))
-            elif oldox > ox and oldoy < oy:
+            elif oldox > ox + 5 and oldoy + 5 < oy:
                 s.blit(f1[1][dz], (ox, oy))
-            elif oldox < ox and oldoy > oy:
+            elif oldox + 5 < ox and oldoy > oy + 5:
                 s.blit(f1[2][dz], (ox, oy))
-            elif oldox < ox and oldoy < oy:
+            elif oldox + 5 < ox and oldoy + 5 < oy:
                 s.blit(f1[2][dz], (ox, oy))
-            elif oldox > ox and oldoy > oy:
+            elif oldox > ox + 5 and oldoy > oy + 5:
                 s.blit(f1[1][dz], (ox, oy))
             else:
                 s.blit(f1[0][0], (ox, oy))
 
-            if oldo2x > o2x and oldo2y == o2y:
+            if oldo2x > o2x + 5 and oldo2y == o2y:
                 s.blit(f2[1][dz], (o2x, o2y))
-            elif oldo2x < o2x and oldo2y == o2y:
+            elif oldo2x + 5 < o2x and oldo2y == o2y:
                 s.blit(f2[2][dz], (o2x, o2y))
-            elif oldo2x == o2x and oldo2y > o2y:
+            elif oldo2x == o2x and oldo2y + 5 < o2y :
                 s.blit(f2[0][dz], (o2x, o2y))
-            elif oldo2x == o2x and oldo2y > o2y:
+            elif oldo2x == o2x and oldo2y > o2y + 5:
                 s.blit(f2[3][dz], (o2x, o2y))
-            elif oldo2x > o2x and oldo2y < o2y:
+            elif oldo2x > o2x + 5 and oldo2y + 5 < o2y:
                 s.blit(f2[1][dz], (o2x, o2y))
-            elif oldo2x < o2x and oldo2y > o2y:
+            elif oldo2x + 5 < o2x and oldo2y > o2y + 5:
                 s.blit(f2[2][dz], (o2x, o2y))
-            elif oldo2x < o2x and oldo2y < o2y:
+            elif oldo2x + 5 < o2x and oldo2y + 5 < o2y:
                 s.blit(f2[2][dz], (o2x, o2y))
-            elif oldo2x > o2x and oldo2y > o2y:
+            elif oldo2x > o2x + 5 and oldo2y > o2y + 5:
                 s.blit(f2[1][dz], (o2x, o2y))
             else:
                 s.blit(f2[0][0], (o2x, o2y))
 
-            if oldo3x > o3x and oldo3y == o3y:
+            if oldo3x > o3x + 5 and oldo3y == o3y:
                 s.blit(f3[1][dz], (o3x, o3y))
-            elif oldo3x < o3x and oldo3y == o3y:
+            elif oldo3x + 5 < o3x and oldo3y == o3y:
                 s.blit(f3[2][dz], (o3x, o3y))
-            elif oldo3x == o3x and oldo3y > o3y:
+            elif oldo3x == o3x and oldo3y + 5 < o3y:
                 s.blit(f3[0][dz], (o3x, o3y))
-            elif oldo3x == o3x and oldo3y > o3y:
+            elif oldo3x == o3x and oldo3y > o3y + 5:
                 s.blit(f3[3][dz], (o3x, o3y))
-            elif oldo3x > o3x and oldo3y < o3y:
+            elif oldo3x > o3x + 5 and oldo3y + 5 < o3y:
                 s.blit(f3[1][dz], (o3x, o3y))
-            elif oldo3x < o3x and oldo3y > o3y:
+            elif oldo3x + 5 < o3x and oldo3y > o3y + 5:
                 s.blit(f3[2][dz], (o3x, o3y))
-            elif oldo3x < o3x and oldo3y < o3y:
+            elif oldo3x + 5 < o3x and oldo3y + 5 < o3y:
                 s.blit(f3[2][dz], (o3x, o3y))
-            elif oldo3x > o3x and oldo3y > o3y:
+            elif oldo3x > o3x + 5 and oldo3y > o3y + 5:
                 s.blit(f3[1][dz], (o3x, o3y))
             else:
                 s.blit(f3[0][0], (o3x, o3y))
 
-            if oldo4x > o4x and oldo4y == o4y:
+            if oldo4x > o4x + 5 and oldo4y == o4y:
                 s.blit(f4[1][dz], (o4x, o4y))
-            elif oldo4x < o4x and oldo4y == o4y:
+            elif oldo4x + 5 < o4x and oldo4y == o4y:
                 s.blit(f4[2][dz], (o4x, o4y))
-            elif oldo4x == o4x and oldo4y > o4y:
+            elif oldo4x == o4x and oldo4y + 5 < o4y:
                 s.blit(f4[0][dz], (o4x, o4y))
-            elif oldo4x == o4x and oldo4y > o4y:
+            elif oldo4x == o4x and oldo4y > o4y + 5:
                 s.blit(f4[3][dz], (o4x, o4y))
-            elif oldo4x > o4x and oldo4y < o4y:
+            elif oldo4x > o4x + 5 and oldo4y + 5 < o4y:
                 s.blit(f4[1][dz], (o4x, o4y))
-            elif oldo4x < o4x and oldo4y > o4y:
+            elif oldo4x + 5 < o4x and oldo4y > o4y + 5:
                 s.blit(f4[2][dz], (o4x, o4y))
-            elif oldo4x < o4x and oldo4y < o4y:
+            elif oldo4x + 5 < o4x and oldo4y + 5 < o4y:
                 s.blit(f4[2][dz], (o4x, o4y))
-            elif oldo4x > o4x and oldo4y > o4y:
+            elif oldo4x > o4x + 5 and oldo4y > o4y + 5:
                 s.blit(f4[1][dz], (o4x, o4y))
             else:
                 s.blit(f4[0][0], (o4x, o4y))
 
 
-            if oldo5x > o5x and oldo5y == o5x:
+            if oldo5x > o5x + 5 and oldo5y == o5x:
                 s.blit(f5[1][dz], (o5x, o5x))
-            elif oldo5x < o5x and oldo5y == o5x:
+            elif oldo5x + 5 < o5x and oldo5y == o5x:
                 s.blit(f5[2][dz], (o5x, o5x))
-            elif oldo5x == o5x and oldo5y > o5x:
+            elif oldo5x == o5x and oldo5y + 5 < o5x:
                 s.blit(f5[0][dz], (o5x, o5x))
-            elif oldo5x == o5x and oldo5y > o5x:
+            elif oldo5x == o5x and oldo5y > o5x + 5:
                 s.blit(f5[3][dz], (o5x, o5x))
-            elif oldo5x > o5x and oldo5y < o5x:
+            elif oldo5x > o5x + 5 and oldo5y + 5 < o5x:
                 s.blit(f5[1][dz], (o5x, o5x))
-            elif oldo5x < o5x and oldo5y > o5x:
+            elif oldo5x + 5 < o5x and oldo5y > o5x + 5:
                 s.blit(f5[2][dz], (o5x, o5x))
-            elif oldo5x < o5x and oldo5y < o5x:
+            elif oldo5x + 5 < o5x and oldo5y + 5 < o5x:
                 s.blit(f5[2][dz], (o5x, o5x))
-            elif oldo5x > o5x and oldo5y > o5x:
+            elif oldo5x > o5x + 5 and oldo5y > o5x + 5:
                 s.blit(f5[1][dz], (o5x, o5x))
             else:
                 s.blit(f5[0][0], (o5x, o5x))
@@ -1100,101 +1100,101 @@ class opponent(pygame.sprite.Sprite):
 
 
 
-            if oldoxo > oxo and oldoyo == oyo:
+            if oldoxo > oxo + 5 and oldoyo == oyo:
                 s.blit(f1[1][dz], (oxo, oyo))
-            elif oldoxo < oxo and oldoyo == oyo:
+            elif oldoxo + 5 < oxo and oldoyo == oyo:
                 s.blit(f1[2][dz], (oxo, oyo))
-            elif oldoxo == oxo and oldoyo > oyo:
+            elif oldoxo == oxo and oldoyo + 5 < oyo:
                 s.blit(f1[0][dz], (oxo, oyo))
-            elif oldoxo == oxo and oldoyo > oyo:
+            elif oldoxo == oxo and oldoyo > oyo + 5:
                 s.blit(f1[3][dz], (oxo, oyo))
-            elif oldoxo > oxo and oldoyo < oyo:
+            elif oldoxo > oxo + 5 and oldoyo + 5 < oyo:
                 s.blit(f1[1][dz], (oxo, oyo))
-            elif oldoxo < oxo and oldoyo > oyo:
+            elif oldoxo + 5 < oxo and oldoyo > oyo + 5:
                 s.blit(f1[2][dz], (oxo, oyo))
-            elif oldoxo < oxo and oldoyo < oyo:
+            elif oldoxo + 5 < oxo and oldoyo + 5 < oyo:
                 s.blit(f1[2][dz], (oxo, oyo))
-            elif oldoxo > oxo and oldoyo > oyo:
+            elif oldoxo > oxo + 5 and oldoyo > oyo + 5:
                 s.blit(f1[1][dz], (oxo, oyo))
             else:
                 s.blit(f1[1][dz], (oxo, oyo))
 
 
-            if oldo2xo > o2xo and oldo2yo == o2yo:
+            if oldo2xo > o2xo + 5 and oldo2yo == o2yo:
                 s.blit(f2[1][dz], (o2xo, o2yo))
-            elif oldo2xo < o2xo and oldo2yo == o2yo:
+            elif oldo2xo + 5 < o2xo and oldo2yo == o2yo:
                 s.blit(f2[2][dz], (o2xo, o2yo))
-            elif oldo2xo == o2xo and oldo2yo > o2yo:
+            elif oldo2xo == o2xo and oldo2yo + 5 < o2yo:
                 s.blit(f2[0][dz], (o2xo, o2yo))
-            elif oldo2xo == o2xo and oldo2yo > o2yo:
+            elif oldo2xo == o2xo and oldo2yo > o2yo + 5:
                 s.blit(f2[3][dz], (o2xo, o2yo))
-            elif oldo2xo > o2xo and oldo2yo < o2yo:
+            elif oldo2xo > o2xo + 5 and oldo2yo + 5 < o2yo:
                 s.blit(f2[1][dz], (o2xo, o2yo))
-            elif oldo2xo < o2xo and oldo2yo > o2yo:
+            elif oldo2xo + 5 < o2xo and oldo2yo > o2yo + 5:
                 s.blit(f2[2][dz], (o2xo, o2yo))
-            elif oldo2xo < o2xo and oldo2yo < o2yo:
+            elif oldo2xo + 5 < o2xo and oldo2yo + 5 < o2yo:
                 s.blit(f2[2][dz], (o2xo, o2yo))
-            elif oldo2xo > o2xo and oldo2yo > o2yo:
+            elif oldo2xo > o2xo + 5 and oldo2yo > o2yo + 5:
                 s.blit(f2[1][dz], (o2xo, o2yo))
             else:
                 s.blit(f2[1][dz], (o2xo, o2yo))
 
 
-            if oldo3xo > o3xo and oldo3yo == o3yo:
+            if oldo3xo > o3xo + 5 and oldo3yo == o3yo:
                 s.blit(f3[1][dz], (o3xo, o3yo))
-            elif oldo3xo < o3xo and oldo3yo == o3yo:
+            elif oldo3xo + 5 < o3xo and oldo3yo == o3yo:
                 s.blit(f3[2][dz], (o3xo, o3yo))
-            elif oldo3xo == o3xo and oldo3yo > o3yo:
+            elif oldo3xo == o3xo and oldo3yo + 5 < o3yo:
                 s.blit(f3[0][dz], (o3xo, o3yo))
-            elif oldo3xo == o3xo and oldo3yo > o3yo:
+            elif oldo3xo == o3xo and oldo3yo > o3yo + 5:
                 s.blit(f3[3][dz], (o3xo, o3yo))
-            elif oldo3xo > o3xo and oldo3yo < o3yo:
+            elif oldo3xo > o3xo + 5 and oldo3yo + 5 < o3yo:
                 s.blit(f3[1][dz], (o3xo, o3yo))
-            elif oldo3xo < o3xo and oldo3yo > o3yo:
+            elif oldo3xo + 5 < o3xo and oldo3yo > o3yo + 5:
                 s.blit(f3[2][dz], (o3xo, o3yo))
-            elif oldo3xo < o3xo and oldo3yo < o3yo:
+            elif oldo3xo + 5 < o3xo and oldo3yo + 5 < o3yo:
                 s.blit(f3[2][dz], (o3xo, o3yo))
-            elif oldo3xo > o3xo and oldo3yo > o3yo:
+            elif oldo3xo > o3xo + 5 and oldo3yo > o3yo + 5:
                 s.blit(f3[1][dz], (o3xo, o3yo))
             else:
                 s.blit(f3[1][dz], (o3xo, o3yo))
 
 
-            if oldo4xo > o4xo and oldo4yo == o4yo:
+            if oldo4xo > o4xo + 5 and oldo4yo == o4yo:
                 s.blit(f4[1][dz], (o4xo, o4yo))
-            elif oldo4xo < o4xo and oldo4yo == o4yo:
+            elif oldo4xo + 5 < o4xo and oldo4yo == o4yo:
                 s.blit(f4[2][dz], (o4xo, o4yo))
-            elif oldo4xo == o4xo and oldo4yo > o4yo:
+            elif oldo4xo == o4xo and oldo4yo + 5 < o4yo:
                 s.blit(f4[0][dz], (o4xo, o4yo))
-            elif oldo4xo == o4xo and oldo4yo > o4yo:
+            elif oldo4xo == o4xo and oldo4yo > o4yo + 5:
                 s.blit(f4[3][dz], (o4xo, o4yo))
-            elif oldo4xo > o4xo and oldo4yo < o4yo:
+            elif oldo4xo > o4xo + 5 and oldo4yo + 5 < o4yo:
                 s.blit(f4[1][dz], (o4xo, o4yo))
-            elif oldo4xo < o4xo and oldo4yo > o4yo:
+            elif oldo4xo + 5 < o4xo and oldo4yo > o4yo + 5:
                 s.blit(f4[2][dz], (o4xo, o4yo))
-            elif oldo4xo < o4xo and oldo4yo < o4yo:
+            elif oldo4xo + 5 < o4xo and oldo4yo + 5 < o4yo:
                 s.blit(f4[2][dz], (o4xo, o4yo))
-            elif oldo4xo > o4xo and oldo4yo > o4yo:
+            elif oldo4xo > o4xo + 5 and oldo4yo > o4yo + 5:
                 s.blit(f4[1][dz], (o4xo, o4yo))
             else:
                 s.blit(f4[1][dz], (o4xo, o4yo))
 
 
-            if oldo5xo > o5xo and oldo5yo == o5yo:
+            if oldo5xo > o5xo + 5 and oldo5yo == o5yo:
                 s.blit(f5[1][dz], (o5xo, o5yo))
-            elif oldo5xo < o5xo and oldo5yo == o5yo:
+            elif oldo5xo + 5 < o5xo and oldo5yo == o5yo:
                 s.blit(f5[2][dz], (o5xo, o5yo))
-            elif oldo5xo == o5xo and oldo5yo > o5yo:
+            elif oldo5xo == o5xo and oldo5yo + 5 < o5yo:
                 s.blit(f5[0][dz], (o5xo, o5yo))
-            elif oldo5xo == o5xo and oldo5yo > o5yo:
+            elif oldo5xo == o5xo and oldo5yo > o5yo + 5:
                 s.blit(f5[3][dz], (o5xo, o5yo))
-            elif oldo5xo > o5xo and oldo5yo < o5yo:
+            elif oldo5xo > o5xo + 5 and oldo5yo + 5 < o5yo:
                 s.blit(f5[1][dz], (o5xo, o5yo))
-            elif oldo5xo < o5xo and oldo5yo > o5yo:
+            elif oldo5xo + 5 < o5xo and oldo5yo > o5yo + 5:
                 s.blit(f5[2][dz], (o5xo, o5yo))
-            elif oldo5xo < o5xo and oldo5yo < o5yo:
+            elif oldo5xo + 5 < o5xo and oldo5yo + 5 < o5yo:
                 s.blit(f5[2][dz], (o5xo, o5yo))
-            elif oldo5xo > o5xo and oldo5yo > o5yo:
+            elif oldo5xo > o5xo + 5 and oldo5yo > o5yo + 5:
                 s.blit(f5[1][dz], (o5xo, o5yo))
             else:
                 s.blit(f5[1][dz], (o5xo, o5yo))
@@ -1583,103 +1583,103 @@ class player(pygame.sprite.Sprite):
             else:
                 self.rect.x = player.activecoord(useplayer())[0]
                 self.rect.y = player.activecoord(useplayer())[1]
-            if oldpx > px and oldpy == py:
+            if oldpx > px + 5 and oldpy == py:
                 s.blit(l1[1][dz], (px, py))
-            elif oldpx < px and  oldpy == py:
+            elif oldpx + 5 < px and  oldpy == py:
                 s.blit(l1[2][dz], (px, py))
-            elif oldpx == px and  oldpy > py:
+            elif oldpx == px and  oldpy + 5 < py:
                 s.blit(l1[0][dz], (px, py))
-            elif oldpx == px and  oldpy > py:
+            elif oldpx == px and  oldpy > py + 5:
                 s.blit(l1[3][dz], (px, py))
-            elif oldpx > px and oldpy < py:
+            elif oldpx > px + 5 and oldpy + 5 < py:
                 s.blit(l1[1][dz], (px, py))
-            elif oldpx < px and oldpy > py:
+            elif oldpx + 5 < px and oldpy > py + 5:
                 s.blit(l1[2][dz], (px, py))
-            elif oldpx < px and oldpy < py:
+            elif oldpx + 5 < px and oldpy + 5 < py:
                 s.blit(l1[2][dz], (px, py))
-            elif oldpx > px and oldpy > py:
+            elif oldpx > px + 5 and oldpy > py + 5:
                 s.blit(l1[1][dz], (px, py))
             else:
                 s.blit(l1[0][0], (px, py))
 
 
-            if oldp2x > p2x and oldp2y == p2y:
+            if oldp2x > p2x + 5 and oldp2y == p2y:
                 s.blit(l2[1][dz], (p2x, p2y))
-            elif oldp2x < p2x and  oldp2y == p2y:
+            elif oldp2x + 5 < p2x and  oldp2y == p2y:
                 s.blit(l2[2][dz], (p2x, p2y))
-            elif oldp2x == p2x and  oldp2y > p2y:
+            elif oldp2x == p2x and  oldp2y + 5 < p2y:
                 s.blit(l2[0][dz], (p2x, p2y))
-            elif oldp2x == p2x and  oldp2y > p2y:
+            elif oldp2x == p2x and  oldp2y > p2y + 5:
                 s.blit(l2[3][dz], (p2x, p2y))
-            elif oldp2x > p2x and oldp2y < p2y:
+            elif oldp2x > p2x + 5 and oldp2y + 5 < p2y:
                 s.blit(l2[1][dz], (p2x, p2y))
-            elif oldp2x < p2x and oldp2y > p2y:
+            elif oldp2x + 5 < p2x and oldp2y > p2y + 5:
                 s.blit(l2[2][dz], (p2x, p2y))
-            elif oldp2x < p2x and oldp2y < p2y:
+            elif oldp2x + 5 < p2x and oldp2y + 5 < p2y:
                 s.blit(l2[2][dz], (p2x, p2y))
-            elif oldp2x > p2x and oldp2y > p2y:
+            elif oldp2x > p2x + 5 and oldp2y > p2y + 5:
                 s.blit(l2[1][dz], (p2x, p2y))
             else:
                 s.blit(l2[0][0], (p2x, p2y))
 
 
-            if oldp3x > p3x and oldp3y == p3y:
+            if oldp3x > p3x + 5 and oldp3y == p3y:
                 s.blit(l3[1][dz], (p3x, p3y))
-            elif oldp3x < p3x and  oldp3y == p3y:
+            elif oldp3x + 5 < p3x and  oldp3y == p3y:
                 s.blit(l3[2][dz], (p3x, p3y))
-            elif oldp3x == p3x and  oldp3y > p3y:
+            elif oldp3x == p3x and  oldp3y + 5 < p3y:
                 s.blit(l3[0][dz], (p3x, p3y))
-            elif oldp3x == p3x and  oldp3y > p3y:
+            elif oldp3x == p3x and  oldp3y > p3y + 5:
                 s.blit(l3[3][dz], (p3x, p3y))
-            elif oldp3x > p3x and oldp3y < p3y:
+            elif oldp3x > p3x + 5 and oldp3y + 5 < p3y:
                 s.blit(l3[1][dz], (p3x, p3y))
-            elif oldp3x < p3x and oldp3y > p3y:
+            elif oldp3x + 5 < p3x and oldp3y > p3y + 5:
                 s.blit(l3[2][dz], (p3x, p3y))
-            elif oldp3x < p3x and oldp3y < p3y:
+            elif oldp3x + 5 < p3x and oldp3y + 5 < p3y:
                 s.blit(l3[2][dz], (p3x, p3y))
-            elif oldp3x > p3x and oldp3y > p3y:
+            elif oldp3x > p3x + 5 and oldp3y > p3y + 5:
                 s.blit(l3[1][dz], (p3x, p3y))
             else:
                 s.blit(l3[0][0], (p3x, p3y))
 
 
 
-            if oldp4x > p4x and oldp4y == p4y:
+            if oldp4x > p4x + 5 and oldp4y == p4y :
                 s.blit(l4[1][dz], (p4x, p4y))
-            elif oldp4x < p4x and  oldp4y == p4y:
+            elif oldp4x + 5 < p4x and  oldp4y == p4y:
                 s.blit(l4[2][dz], (p4x, p4y))
-            elif oldp4x == p4x and  oldp4y > p4y:
+            elif oldp4x == p4x and  oldp4y + 5 < p4y:
                 s.blit(l4[0][dz], (p4x, p4y))
-            elif oldp4x == p4x and  oldp4y > p4y:
+            elif oldp4x == p4x and  oldp4y > p4y + 5:
                 s.blit(l4[3][dz], (p4x, p4y))
-            elif oldp4x > p4x and oldp4y < p4y:
+            elif oldp4x > p4x + 5 and oldp4y + 5 < p4y:
                 s.blit(l4[1][dz], (p4x, p4y))
-            elif oldp4x < p4x and oldp4y > p4y:
+            elif oldp4x + 5 < p4x and oldp4y > p4y + 5:
                 s.blit(l4[2][dz], (p4x, p4y))
-            elif oldp4x < p4x and oldp4y < p4y:
+            elif oldp4x + 5 < p4x and oldp4y + 5 < p4y:
                 s.blit(l4[2][dz], (p4x, p4y))
-            elif oldp4x > p4x and oldp4y > p4y:
+            elif oldp4x > p4x + 5 and oldp4y > p4y + 5:
                 s.blit(l4[1][dz], (p4x, p4y))
             else:
                 s.blit(l4[0][0], (p4x, p4y))
 
 
 
-            if oldp5x > p5x and oldp5y == p5y:
+            if oldp5x > p5x + 5 and oldp5y == p5y:
                 s.blit(l5[1][dz], (p5x, p5y))
-            elif oldp5x < p5x and  oldp5y == p5y:
+            elif oldp5x + 5 < p5x and  oldp5y == p5y:
                 s.blit(l5[2][dz], (p5x, p5y))
-            elif oldp5x == p5x and  oldp5y > p5y:
+            elif oldp5x == p5x and  oldp5y + 5 < p5y:
                 s.blit(l5[0][dz], (p5x, p5y))
-            elif oldp5x == p5x and  oldp5y > p5y:
+            elif oldp5x == p5x and  oldp5y > p5y + 5:
                 s.blit(l5[3][dz], (p5x, p5y))
-            elif oldp5x > p5x and oldp5y < p5y:
+            elif oldp5x > p5x + 5 and oldp5y + 5 < p5y:
                 s.blit(l5[1][dz], (p5x, p5y))
-            elif oldp5x < p5x and oldp5y > p5y:
+            elif oldp5x + 5 < p5x and oldp5y > p5y + 5:
                 s.blit(l5[2][dz], (p5x, p5y))
-            elif oldp5x < p5x and oldp5y < p5y:
+            elif oldp5x + 5 < p5x and oldp5y + 5 < p5y:
                 s.blit(l5[2][dz], (p5x, p5y))
-            elif oldp5x > p5x and oldp5y > p5y:
+            elif oldp5x > p5x + 5 and oldp5y > p5y + 5:
                 s.blit(l5[1][dz], (p5x, p5y))
             else:
                 s.blit(l5[0][0], (p5x, p5y))
@@ -1689,97 +1689,97 @@ class player(pygame.sprite.Sprite):
             else:
                 self.rect.x = player.activecoord(curplayer())[0]
                 self.rect.y = player.activecoord(curplayer())[1]
-            if oldpxo > pxo and oldpyo == pyo:
+            if oldpxo > pxo + 5 and oldpyo == pyo:
                 s.blit(l1[1][dz], (pxo, pyo))
-            elif oldpxo < pxo and oldpyo == pyo:
+            elif oldpxo + 5 < pxo and oldpyo == pyo:
                 s.blit(l1[2][dz], (pxo, pyo))
-            elif oldpxo == pxo and oldpyo > pyo:
+            elif oldpxo == pxo and oldpyo + 5 < pyo:
                 s.blit(l1[0][dz], (pxo, pyo))
-            elif oldpxo == pxo and oldpyo > pyo:
+            elif oldpxo == pxo and oldpyo > pyo + 5:
                 s.blit(l1[3][dz], (pxo, pyo))
-            elif oldpxo > pxo and oldpyo < pyo:
+            elif oldpxo > pxo + 5 and oldpyo + 5 < pyo:
                 s.blit(l1[1][dz], (pxo, pyo))
-            elif oldpxo < pxo and oldpyo > pyo:
+            elif oldpxo + 5 < pxo and oldpyo > pyo + 5:
                 s.blit(l1[2][dz], (pxo, pyo))
-            elif oldpxo < pxo and oldpyo < pyo:
+            elif oldpxo + 5 < pxo and oldpyo + 5 < pyo:
                 s.blit(l1[2][dz], (pxo, pyo))
-            elif oldpxo > pxo and oldpyo > pyo:
+            elif oldpxo > pxo + 5 and oldpyo > pyo + 5:
                 s.blit(l1[1][dz], (pxo, pyo))
             else:
                 s.blit(l1[0][0], (pxo, pyo))
 
-            if oldp2xo > p2xo and oldp2yo == p2yo:
+            if oldp2xo > p2xo + 5 and oldp2yo == p2yo:
                 s.blit(l2[1][dz], (p2xo, p2yo))
-            elif oldp2xo < p2xo and oldp2yo == p2yo:
+            elif oldp2xo + 5 < p2xo and oldp2yo == p2yo:
                 s.blit(l2[2][dz], (p2xo, p2yo))
-            elif oldp2xo == p2xo and oldp2yo > p2yo:
+            elif oldp2xo == p2xo and oldp2yo + 5 < p2yo:
                 s.blit(l2[0][dz], (p2xo, p2yo))
-            elif oldp2xo == p2xo and oldp2yo > p2yo:
+            elif oldp2xo == p2xo and oldp2yo > p2yo + 5:
                 s.blit(l2[3][dz], (p2xo, p2yo))
-            elif oldp2xo > p2xo and oldp2yo < p2yo:
+            elif oldp2xo > p2xo + 5 and oldp2yo + 5 < p2yo:
                 s.blit(l2[1][dz], (p2xo, p2yo))
-            elif oldp2xo < p2xo and oldp2yo > p2yo:
+            elif oldp2xo + 5 < p2xo and oldp2yo > p2yo + 5:
                 s.blit(l2[2][dz], (p2xo, p2yo))
-            elif oldp2xo < p2xo and oldp2yo < p2yo:
+            elif oldp2xo + 5 < p2xo and oldp2yo + 5 < p2yo:
                 s.blit(l2[2][dz], (p2xo, p2yo))
-            elif oldp2xo > p2xo and oldp2yo > p2yo:
+            elif oldp2xo > p2xo + 5 and oldp2yo > p2yo + 5:
                 s.blit(l2[1][dz], (p2xo, p2yo))
             else:
                 s.blit(l2[0][0], (p2xo, p2yo))
 
-            if oldp3xo > p3xo and oldp3yo == p3yo:
+            if oldp3xo > p3xo + 5 and oldp3yo == p3yo:
                 s.blit(l3[1][dz], (p3xo, p3yo))
-            elif oldp3xo < p3xo and oldp3yo == p3yo:
+            elif oldp3xo + 5 < p3xo and oldp3yo == p3yo:
                 s.blit(l3[2][dz], (p3xo, p3yo))
-            elif oldp3xo == p3xo and oldp3yo > p3yo:
+            elif oldp3xo == p3xo and oldp3yo + 5 < p3yo:
                 s.blit(l3[0][dz], (p3xo, p3yo))
-            elif oldp3xo == p3xo and oldp3yo > p3yo:
+            elif oldp3xo == p3xo and oldp3yo > p3yo + 5:
                 s.blit(l3[3][dz], (p3xo, p3yo))
-            elif oldp3xo > p3xo and oldp3yo < p3yo:
+            elif oldp3xo > p3xo + 5 and oldp3yo + 5 < p3yo:
                 s.blit(l3[1][dz], (p3xo, p3yo))
-            elif oldp3xo < p3xo and oldp3yo > p3yo:
+            elif oldp3xo + 5 < p3xo and oldp3yo > p3yo + 5:
                 s.blit(l3[2][dz], (p3xo, p3yo))
-            elif oldp3xo < p3xo and oldp3yo < p3yo:
+            elif oldp3xo + 5 < p3xo and oldp3yo + 5 < p3yo:
                 s.blit(l3[2][dz], (p3xo, p3yo))
-            elif oldp3xo > p3xo and oldp3yo > p3yo:
+            elif oldp3xo > p3xo + 5 and oldp3yo > p3yo + 5:
                 s.blit(l3[1][dz], (p3xo, p3yo))
             else:
                 s.blit(l3[0][0], (p3xo, p3yo))
 
-            if oldp4xo > p4xo and oldp4yo == p4yo:
+            if oldp4xo > p4xo + 5 and oldp4yo == p4yo:
                 s.blit(l4[1][dz], (p4xo, p4yo))
-            elif oldp4xo < p4xo and oldp4yo == p4yo:
+            elif oldp4xo + 5 < p4xo and oldp4yo == p4yo:
                 s.blit(l4[2][dz], (p4xo, p4yo))
-            elif oldp4xo == p4xo and oldp4yo > p4yo:
+            elif oldp4xo == p4xo and oldp4yo + 5 < p4yo:
                 s.blit(l4[0][dz], (p4xo, p4yo))
-            elif oldp4xo == p4xo and oldp4yo > p4yo:
+            elif oldp4xo == p4xo and oldp4yo > p4yo + 5:
                 s.blit(l4[3][dz], (p4xo, p4yo))
-            elif oldp4xo > p4xo and oldp4yo < p4yo:
+            elif oldp4xo > p4xo + 5 and oldp4yo + 5 < p4yo:
                 s.blit(l4[1][dz], (p4xo, p4yo))
-            elif oldp4xo < p4xo and oldp4yo > p4yo:
+            elif oldp4xo + 5 < p4xo and oldp4yo > p4yo + 5:
                 s.blit(l4[2][dz], (p4xo, p4yo))
-            elif oldp4xo < p4xo and oldp4yo < p4yo:
+            elif oldp4xo + 5 < p4xo and oldp4yo + 5 < p4yo:
                 s.blit(l4[2][dz], (p4xo, p4yo))
-            elif oldp4xo > p4xo and oldp4yo > p4yo:
+            elif oldp4xo > p4xo + 5 and oldp4yo > p4yo + 5:
                 s.blit(l4[1][dz], (p4xo, p4yo))
             else:
                 s.blit(l4[0][0], (p4xo, p4yo))
 
-            if oldp5xo > p5xo and oldp5yo == p5yo:
+            if oldp5xo > p5xo + 5 and oldp5yo == p5yo:
                 s.blit(l5[1][dz], (p5xo, p5yo))
-            elif oldp5xo < p5xo and oldp5yo == p5yo:
+            elif oldp5xo + 5 < p5xo and oldp5yo == p5yo:
                 s.blit(l5[2][dz], (p5xo, p5yo))
-            elif oldp5xo == p5xo and oldp5yo > p5yo:
+            elif oldp5xo == p5xo and oldp5yo + 5 < p5yo:
                 s.blit(l5[0][dz], (p5xo, p5yo))
-            elif oldp5xo == p5xo and oldp5yo > p5yo:
+            elif oldp5xo == p5xo and oldp5yo > p5yo + 5:
                 s.blit(l5[3][dz], (p5xo, p5yo))
-            elif oldp5xo > p5xo and oldp5yo < p5yo:
+            elif oldp5xo > p5xo + 5 and oldp5yo + 5 < p5yo:
                 s.blit(l5[1][dz], (p5xo, p5yo))
-            elif oldp5xo < p5xo and oldp5yo > p5yo:
+            elif oldp5xo + 5 < p5xo and oldp5yo > p5yo + 5:
                 s.blit(l5[2][dz], (p5xo, p5yo))
-            elif oldp5xo < p5xo and oldp5yo < p5yo:
+            elif oldp5xo + 5 < p5xo and oldp5yo + 5 < p5yo:
                 s.blit(l5[2][dz], (p5xo, p5yo))
-            elif oldp5xo > p5xo and oldp5yo > p5yo:
+            elif oldp5xo > p5xo + 5 and oldp5yo > p5yo + 5:
                 s.blit(l5[1][dz], (p5xo, p5yo))
             else:
                 s.blit(l5[0][0], (p5xo, p5yo))
@@ -2404,46 +2404,46 @@ l5 = [[pygame.image.load("down1.png").convert(), pygame.image.load("down2.png").
       pygame.image.load("right3.png").convert(),pygame.image.load("right4.png").convert()],
       [pygame.image.load("up1.png").convert(),pygame.image.load("up2.png").convert(),
       pygame.image.load("up3.png").convert(),pygame.image.load("up4.png").convert()]]
-f1 = [[pygame.image.load("down1.png").convert(), pygame.image.load("down2.png").convert(),
-      pygame.image.load("down3.png").convert(), pygame.image.load("down4.png").convert()],
-      [pygame.image.load("left1.png").convert(), pygame.image.load("left2.png").convert(),
-      pygame.image.load("left3.png").convert(), pygame.image.load("left4.png").convert()],
-      [pygame.image.load("right1.png").convert(),pygame.image.load("right2.png").convert(),
-      pygame.image.load("right3.png").convert(),pygame.image.load("right4.png").convert()],
-      [pygame.image.load("up1.png").convert(),pygame.image.load("up2.png").convert(),
-      pygame.image.load("up3.png").convert(),pygame.image.load("up4.png").convert()]]
-f2 = [[pygame.image.load("down1.png").convert(), pygame.image.load("down2.png").convert(),
-      pygame.image.load("down3.png").convert(), pygame.image.load("down4.png").convert()],
-      [pygame.image.load("left1.png").convert(), pygame.image.load("left2.png").convert(),
-      pygame.image.load("left3.png").convert(), pygame.image.load("left4.png").convert()],
-      [pygame.image.load("right1.png").convert(),pygame.image.load("right2.png").convert(),
-      pygame.image.load("right3.png").convert(),pygame.image.load("right4.png").convert()],
-      [pygame.image.load("up1.png").convert(),pygame.image.load("up2.png").convert(),
-      pygame.image.load("up3.png").convert(),pygame.image.load("up4.png").convert()]]
-f3 = [[pygame.image.load("down1.png").convert(), pygame.image.load("down2.png").convert(),
-      pygame.image.load("down3.png").convert(), pygame.image.load("down4.png").convert()],
-      [pygame.image.load("left1.png").convert(), pygame.image.load("left2.png").convert(),
-      pygame.image.load("left3.png").convert(), pygame.image.load("left4.png").convert()],
-      [pygame.image.load("right1.png").convert(),pygame.image.load("right2.png").convert(),
-      pygame.image.load("right3.png").convert(),pygame.image.load("right4.png").convert()],
-      [pygame.image.load("up1.png").convert(),pygame.image.load("up2.png").convert(),
-      pygame.image.load("up3.png").convert(),pygame.image.load("up4.png").convert()]]
-f4 = [[pygame.image.load("down1.png").convert(), pygame.image.load("down2.png").convert(),
-      pygame.image.load("down3.png").convert(), pygame.image.load("down4.png").convert()],
-      [pygame.image.load("left1.png").convert(), pygame.image.load("left2.png").convert(),
-      pygame.image.load("left3.png").convert(), pygame.image.load("left4.png").convert()],
-      [pygame.image.load("right1.png").convert(),pygame.image.load("right2.png").convert(),
-      pygame.image.load("right3.png").convert(),pygame.image.load("right4.png").convert()],
-      [pygame.image.load("up1.png").convert(),pygame.image.load("up2.png").convert(),
-      pygame.image.load("up3.png").convert(),pygame.image.load("up4.png").convert()]]
-f5 = [[pygame.image.load("down1.png").convert(), pygame.image.load("down2.png").convert(),
-      pygame.image.load("down3.png").convert(), pygame.image.load("down4.png").convert()],
-      [pygame.image.load("left1.png").convert(), pygame.image.load("left2.png").convert(),
-      pygame.image.load("left3.png").convert(), pygame.image.load("left4.png").convert()],
-      [pygame.image.load("right1.png").convert(),pygame.image.load("right2.png").convert(),
-      pygame.image.load("right3.png").convert(),pygame.image.load("right4.png").convert()],
-      [pygame.image.load("up1.png").convert(),pygame.image.load("up2.png").convert(),
-      pygame.image.load("up3.png").convert(),pygame.image.load("up4.png").convert()]]
+f1 = [[pygame.image.load("odown1.png").convert(), pygame.image.load("odown2.png").convert(),
+      pygame.image.load("odown3.png").convert(), pygame.image.load("odown4.png").convert()],
+      [pygame.image.load("oleft1.png").convert(), pygame.image.load("oleft2.png").convert(),
+      pygame.image.load("oleft3.png").convert(), pygame.image.load("oleft4.png").convert()],
+      [pygame.image.load("oright1.png").convert(),pygame.image.load("oright2.png").convert(),
+      pygame.image.load("oright3.png").convert(),pygame.image.load("oright4.png").convert()],
+      [pygame.image.load("oup1.png").convert(),pygame.image.load("oup2.png").convert(),
+      pygame.image.load("oup3.png").convert(),pygame.image.load("oup4.png").convert()]]
+f2 = [[pygame.image.load("odown1.png").convert(), pygame.image.load("odown2.png").convert(),
+      pygame.image.load("odown3.png").convert(), pygame.image.load("odown4.png").convert()],
+      [pygame.image.load("oleft1.png").convert(), pygame.image.load("oleft2.png").convert(),
+      pygame.image.load("oleft3.png").convert(), pygame.image.load("oleft4.png").convert()],
+      [pygame.image.load("oright1.png").convert(),pygame.image.load("oright2.png").convert(),
+      pygame.image.load("oright3.png").convert(),pygame.image.load("oright4.png").convert()],
+      [pygame.image.load("oup1.png").convert(),pygame.image.load("oup2.png").convert(),
+      pygame.image.load("oup3.png").convert(),pygame.image.load("oup4.png").convert()]]
+f3 = [[pygame.image.load("odown1.png").convert(), pygame.image.load("odown2.png").convert(),
+      pygame.image.load("odown3.png").convert(), pygame.image.load("odown4.png").convert()],
+      [pygame.image.load("oleft1.png").convert(), pygame.image.load("oleft2.png").convert(),
+      pygame.image.load("oleft3.png").convert(), pygame.image.load("oleft4.png").convert()],
+      [pygame.image.load("oright1.png").convert(),pygame.image.load("oright2.png").convert(),
+      pygame.image.load("oright3.png").convert(),pygame.image.load("oright4.png").convert()],
+      [pygame.image.load("oup1.png").convert(),pygame.image.load("oup2.png").convert(),
+      pygame.image.load("oup3.png").convert(),pygame.image.load("oup4.png").convert()]]
+f4 = [[pygame.image.load("odown1.png").convert(), pygame.image.load("odown2.png").convert(),
+      pygame.image.load("odown3.png").convert(), pygame.image.load("odown4.png").convert()],
+      [pygame.image.load("oleft1.png").convert(), pygame.image.load("oleft2.png").convert(),
+      pygame.image.load("oleft3.png").convert(), pygame.image.load("oleft4.png").convert()],
+      [pygame.image.load("oright1.png").convert(),pygame.image.load("oright2.png").convert(),
+      pygame.image.load("oright3.png").convert(),pygame.image.load("oright4.png").convert()],
+      [pygame.image.load("oup1.png").convert(),pygame.image.load("oup2.png").convert(),
+      pygame.image.load("oup3.png").convert(),pygame.image.load("oup4.png").convert()]]
+f5 = [[pygame.image.load("odown1.png").convert(), pygame.image.load("odown2.png").convert(),
+      pygame.image.load("odown3.png").convert(), pygame.image.load("odown4.png").convert()],
+      [pygame.image.load("oleft1.png").convert(), pygame.image.load("oleft2.png").convert(),
+      pygame.image.load("oleft3.png").convert(), pygame.image.load("oleft4.png").convert()],
+      [pygame.image.load("oright1.png").convert(),pygame.image.load("oright2.png").convert(),
+      pygame.image.load("oright3.png").convert(),pygame.image.load("oright4.png").convert()],
+      [pygame.image.load("oup1.png").convert(),pygame.image.load("oup2.png").convert(),
+      pygame.image.load("oup3.png").convert(),pygame.image.load("oup4.png").convert()]]
 img1 = pygame.image.load("PG1.png").convert()
 img2 = pygame.image.load("SG.png").convert()
 img3 = pygame.image.load("PG2.png").convert()
