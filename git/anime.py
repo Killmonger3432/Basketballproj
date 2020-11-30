@@ -1018,7 +1018,7 @@ class opponent(pygame.sprite.Sprite):
                 s.blit(f1[2][dz], (ox, oy))
             elif oldox > ox + 0 and oldoy > oy + 0:
                 s.blit(f1[1][dz], (ox, oy))
-             else:
+            else:
                 s.blit(f1[0][0], (ox, oy))
 
             if oldo2x > o2x + 0 and oldo2y == o2y:
