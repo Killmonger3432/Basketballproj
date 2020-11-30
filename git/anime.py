@@ -1018,7 +1018,7 @@ class opponent(pygame.sprite.Sprite):
             elif oldox > ox and oldoy > oy:
                 s.blit(f1[1][dz], (ox, oy))
             else:
-                s.blit(f1[1][dz], (ox, oy))
+                s.blit(f1[0][0], (ox, oy))
 
             if oldo2x > o2x and oldo2y == o2y:
                 s.blit(f2[1][dz], (o2x, o2y))
@@ -1037,7 +1037,7 @@ class opponent(pygame.sprite.Sprite):
             elif oldo2x > o2x and oldo2y > o2y:
                 s.blit(f2[1][dz], (o2x, o2y))
             else:
-                s.blit(f2[1][dz], (o2x, o2y))
+                s.blit(f2[0][0], (o2x, o2y))
 
             if oldo3x > o3x and oldo3y == o3y:
                 s.blit(f3[1][dz], (o3x, o3y))
@@ -1056,7 +1056,7 @@ class opponent(pygame.sprite.Sprite):
             elif oldo3x > o3x and oldo3y > o3y:
                 s.blit(f3[1][dz], (o3x, o3y))
             else:
-                s.blit(f3[1][dz], (o3x, o3y))
+                s.blit(f3[0][0], (o3x, o3y))
 
             if oldo4x > o4x and oldo4y == o4y:
                 s.blit(f4[1][dz], (o4x, o4y))
@@ -1075,7 +1075,7 @@ class opponent(pygame.sprite.Sprite):
             elif oldo4x > o4x and oldo4y > o4y:
                 s.blit(f4[1][dz], (o4x, o4y))
             else:
-                s.blit(f4[1][dz], (o4x, o4y))
+                s.blit(f4[0][0], (o4x, o4y))
 
 
             if oldo5x > o5x and oldo5y == o5x:
@@ -1095,7 +1095,7 @@ class opponent(pygame.sprite.Sprite):
             elif oldo5x > o5x and oldo5y > o5x:
                 s.blit(f5[1][dz], (o5x, o5x))
             else:
-                s.blit(f5[1][dz], (o5x, o5x))
+                s.blit(f5[0][0], (o5x, o5x))
         elif status == "OFFENSE":
 
 
@@ -1600,7 +1600,7 @@ class player(pygame.sprite.Sprite):
             elif oldpx > px and oldpy > py:
                 s.blit(l1[1][dz], (px, py))
             else:
-                s.blit(l1[1][dz], (px, py))
+                s.blit(l1[0][0], (px, py))
 
 
             if oldp2x > p2x and oldp2y == p2y:
@@ -1620,7 +1620,7 @@ class player(pygame.sprite.Sprite):
             elif oldp2x > p2x and oldp2y > p2y:
                 s.blit(l2[1][dz], (p2x, p2y))
             else:
-                s.blit(l2[1][dz], (p2x, p2y))
+                s.blit(l2[0][0], (p2x, p2y))
 
 
             if oldp3x > p3x and oldp3y == p3y:
@@ -1640,7 +1640,7 @@ class player(pygame.sprite.Sprite):
             elif oldp3x > p3x and oldp3y > p3y:
                 s.blit(l3[1][dz], (p3x, p3y))
             else:
-                s.blit(l3[1][dz], (p3x, p3y))
+                s.blit(l3[0][0], (p3x, p3y))
 
 
 
@@ -1661,7 +1661,7 @@ class player(pygame.sprite.Sprite):
             elif oldp4x > p4x and oldp4y > p4y:
                 s.blit(l4[1][dz], (p4x, p4y))
             else:
-                s.blit(l4[1][dz], (p4x, p4y))
+                s.blit(l4[0][0], (p4x, p4y))
 
 
 
@@ -1682,7 +1682,7 @@ class player(pygame.sprite.Sprite):
             elif oldp5x > p5x and oldp5y > p5y:
                 s.blit(l5[1][dz], (p5x, p5y))
             else:
-                s.blit(l5[1][dz], (p5x, p5y))
+                s.blit(l5[0][0], (p5x, p5y))
         elif status == "OFFENSE":
             if notransit:
                 pass
@@ -1706,7 +1706,7 @@ class player(pygame.sprite.Sprite):
             elif oldpxo > pxo and oldpyo > pyo:
                 s.blit(l1[1][dz], (pxo, pyo))
             else:
-                s.blit(l1[1][dz], (pxo, pyo))
+                s.blit(l1[0][0], (pxo, pyo))
 
             if oldp2xo > p2xo and oldp2yo == p2yo:
                 s.blit(l2[1][dz], (p2xo, p2yo))
@@ -1725,7 +1725,7 @@ class player(pygame.sprite.Sprite):
             elif oldp2xo > p2xo and oldp2yo > p2yo:
                 s.blit(l2[1][dz], (p2xo, p2yo))
             else:
-                s.blit(l2[1][dz], (p2xo, p2yo))
+                s.blit(l2[0][0], (p2xo, p2yo))
 
             if oldp3xo > p3xo and oldp3yo == p3yo:
                 s.blit(l3[1][dz], (p3xo, p3yo))
@@ -1744,7 +1744,7 @@ class player(pygame.sprite.Sprite):
             elif oldp3xo > p3xo and oldp3yo > p3yo:
                 s.blit(l3[1][dz], (p3xo, p3yo))
             else:
-                s.blit(l3[1][dz], (p3xo, p3yo))
+                s.blit(l3[0][0], (p3xo, p3yo))
 
             if oldp4xo > p4xo and oldp4yo == p4yo:
                 s.blit(l4[1][dz], (p4xo, p4yo))
@@ -1763,7 +1763,7 @@ class player(pygame.sprite.Sprite):
             elif oldp4xo > p4xo and oldp4yo > p4yo:
                 s.blit(l4[1][dz], (p4xo, p4yo))
             else:
-                s.blit(l4[1][dz], (p4xo, p4yo))
+                s.blit(l4[0][0], (p4xo, p4yo))
 
             if oldp5xo > p5xo and oldp5yo == p5yo:
                 s.blit(l5[1][dz], (p5xo, p5yo))
@@ -1782,7 +1782,7 @@ class player(pygame.sprite.Sprite):
             elif oldp5xo > p5xo and oldp5yo > p5yo:
                 s.blit(l5[1][dz], (p5xo, p5yo))
             else:
-                s.blit(l5[1][dz], (p5xo, p5yo))
+                s.blit(l5[0][0], (p5xo, p5yo))
         if dz +1 == 4 :
             dz= 0
         else :
