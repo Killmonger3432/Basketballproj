@@ -269,99 +269,7 @@ def nonpcollide():
         collside(p3x, p3y, p5x, p5y)
 
 
-def coll2():
-    global ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y
-    if a1 == 1:
-        if pygame.sprite.collide_rect(o1, o4):
-            o4x -= 3
-        if pygame.sprite.collide_rect(o2, o4):
-            o4x += 3
-            o4y -= 3
-        if pygame.sprite.collide_rect(o2, o1):
-            o2x -= 3
-            o2y += 3
-        if pygame.sprite.collide_rect(o2, o3):
-            o3y += 5
-        if pygame.sprite.collide_rect(o5, o4):
-            o5y += 3
-    elif a1 == 2:
-        if pygame.sprite.collide_rect(o1, o5):
-            if sec <= 8:
-                o5x += 3
-            else:
-                oy += 3
-        if pygame.sprite.collide_rect(o3, o5):
-            o5x -= 3
-            o5y += 3
-        if pygame.sprite.collide_rect(o3, o1):
-            o3x -= 3
-            oy -= 3
-    elif a1 == 5:
-        if pygame.sprite.collide_rect(o2, o4):
-            if sec <= 7:
-                o4y += 3
-            else:
-                o4y -= 3
-        if pygame.sprite.collide_rect(o1, o5):
-            o5y -= 3
-    elif a1 == 6:
-        if pygame.sprite.collide_rect(o3, o5):
-            o5y -= 3
-    elif a1 == 8:
-        if pygame.sprite.collide_rect(o1, o4):
-            o4x -= 3
-    elif a1 == 9:
-        if pygame.sprite.collide_rect(o2, o5):
-            o5x -= 3
-    elif a1 == 10:
-        if pygame.sprite.collide_rect(o2, o3):
-            o3x += 5
-        if pygame.sprite.collide_rect(o3, o4):
-            o4x -= 5
 
-
-def boundforall():
-    global px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y
-    if px >= 675:
-        px = 675
-    if px <= 30:
-        px = 30
-    if py <= 15:
-        py = 15
-    if py >= 390:
-        py = 390
-    if p2x >= 675:
-        p2x = 675
-    if p2x <= 30:
-        p2x = 30
-    if p2y <= 15:
-        p2y = 15
-    if p2y >= 390:
-        p2y = 390
-    if p3x >= 675:
-        p3x = 675
-    if p3x <= 30:
-        p3x = 30
-    if p3y <= 15:
-        p3y = 15
-    if p3y >= 390:
-        p3y = 390
-    if p4x >= 675:
-        p4x = 675
-    if p4x <= 30:
-        p4x = 30
-    if p4y <= 15:
-        p4y = 15
-    if p4y >= 390:
-        p4y = 390
-    if p5x >= 675:
-        p5x = 675
-    if p5x <= 30:
-        p5x = 30
-    if p5y <= 15:
-        p5y = 15
-    if p5y >= 390:
-        p5y = 390
 
 
 class opponent(pygame.sprite.Sprite):
@@ -414,13 +322,13 @@ class opponent(pygame.sprite.Sprite):
             ex, ey = 115, 300
             a2x, a2y = 310, 250
             b2x, b2y = 405, 320
-            c2x, c2y = 85, 390
-            d2x, d2y = 85, 280
+            c2x, c2y = 85, 339.5
+            d2x, d2y = 85, 250
             e2x, e2y = 185, 155
         elif a1 == 2:
             ax, ay = 400, 330
             bx, by = 400, 80
-            cx, cy = 85, 390
+            cx, cy = 85, 339.5
             dx, dy = 105, 120
             ex, ey = 330, 200
             a2x, a2y = 305, 160
@@ -429,8 +337,8 @@ class opponent(pygame.sprite.Sprite):
             d2x, d2y = 150, 250
             e2x, e2y = 90, 120
         elif a1 == 3:
-            ax, ay = 85, 390
-            bx, by = 85, 20
+            ax, ay = 85, 339.5
+            bx, by = 85, 0
             cx, cy = 450, 120
             dx, dy = 270, 280
             ex, ey = 270, 130
@@ -440,9 +348,9 @@ class opponent(pygame.sprite.Sprite):
             d2x, d2y = 270, 300
             e2x, e2y = 270, 110
         elif a1 == 4:
-            ax, ay = 85, 20
+            ax, ay = 85, 0
             bx, by = 465, 200
-            cx, cy = 85, 390
+            cx, cy = 85, 339.5
             dx, dy = 240, 280
             ex, ey = 240, 130
             a2x, a2y = 85, 80
@@ -454,12 +362,12 @@ class opponent(pygame.sprite.Sprite):
         elif a1 == 5:
             ax, ay = 185, 300
             bx, by = 130, 100
-            cx, cy = 70, 390
+            cx, cy = 70, 339.5
             dx, dy = 390, 80
             ex, ey = 310, 150
             a2x, a2y = 325, 220
             b2x, b2y = 450, 120
-            c2x, c2y = 270, 30
+            c2x, c2y = 270, 0
             d2x, d2y = 230, 120
             e2x, e2y = 130, 250
         elif a1 == 6:
@@ -474,49 +382,51 @@ class opponent(pygame.sprite.Sprite):
             d2x, d2y = 130, 160
             e2x, e2y = 230, 290
         elif a1 == 7:
-            ax, ay = 160, 390
+            ax, ay = 160, 339.5
             bx, by = 250, 120
             cx, cy = 250, 290
-            dx, dy = 110, 15
-            ex, ey = 110, 390
-            a2x, a2y = 265, 390
+            dx, dy = 110, 0
+            ex, ey = 110, 339.5
+            a2x, a2y = 265, 339.5
             b2x, b2y = 110, 290
             c2x, c2y = 110, 110
             d2x, d2y = 310, 110
             e2x, e2y = 310, 290
         elif a1 == 8:
-            ax, ay = 160, 20
+            ax, ay = 160, 0
             bx, by = 250, 120
             cx, cy = 250, 290
-            dx, dy = 110, 15
-            ex, ey = 110, 390
-            a2x, a2y = 265, 15
+            dx, dy = 110, 0
+            ex, ey = 110, 339.5
+            a2x, a2y = 265, 0
             b2x, b2y = 110, 110
             c2x, c2y = 110, 290
             d2x, d2y = 290, 290
             e2x, e2y = 290, 110
         elif a1 == 9:
             ax, ay = 305, 280
-            bx, by = 85, 390
-            cx, cy = 310, 15
+            bx, by = 85, 339.5
+            cx, cy = 310, 0
             dx, dy = 390, 200
             ex, ey = 130, 150
             a2x, a2y = 125, 320
-            b2x, b2y = 270, 390
+            b2x, b2y = 270, 339.5
             c2x, c2y = 465, 195
             d2x, d2y = 290, 110
             e2x, e2y = 90, 90
         elif a1 == 10:
             ax, ay = 305, 120
-            bx, by = 350, 390
-            cx, cy = 90, 15
+            bx, by = 350, 339.5
+            cx, cy = 90, 0
             dx, dy = 150, 250
             ex, ey = 390, 210
             a2x, a2y = 145, 80
             b2x, b2y = 470, 210
-            c2x, c2y = 305, 15
+            c2x, c2y = 305, 0
             d2x, d2y = 90, 310
             e2x, e2y = 310, 290
+
+            
         step = max(abs(ax - ox), abs(ay - oy))
         step2 = max(abs(bx - o2x), abs(by - o2y))
         step3 = max(abs(cx - o3x), abs(cy - o3y))
@@ -527,69 +437,74 @@ class opponent(pygame.sprite.Sprite):
         step8 = max(abs(c2x - o3x), abs(c2y - o3y))
         step9 = max(abs(d2x - o4x), abs(d2y - o4y))
         step10 = max(abs(e2x - o5x), abs(e2y - o5y))
+        
         if fin == True:
-            if math.dist([a2x, a2y], [ox, oy]) <= 3:
-                ox = a2x*clock.tick(20)
-                oy = a2y*clock.tick(20)
-                if math.dist([b2x, b2y], [o2x, o2y]) <= 3:
+            if math.dist([a2x, a2y], [ox, oy]) <= 10:
+                ox = a2x
+                oy = a2y
+                if math.dist([b2x, b2y], [o2x, o2y]) <= 10:
                     o2x = b2x
                     o2y = b2y
-                    if math.dist([c2x, c2y], [o3x, o3y]) <= 3:
+                    if math.dist([c2x, c2y], [o3x, o3y]) <= 10:
                         o3x = c2x
                         o3y = c2y
-                        if math.dist([d2x, d2y], [o4x, o4y]) <= 3:
+                        if math.dist([d2x, d2y], [o4x, o4y]) <= 10:
                             o4x = d2x
                             o4y = d2y
-                            if math.dist([e2x, e2y], [o5x, o5y]) <= 3:
+                            if math.dist([e2x, e2y], [o5x, o5y]) <= 10:
                                 o5x = e2x
                                 o5y = e2y
                             else:
-                                o5x += ((e2x - o5x) / step10) * 1.2
-                                o5y += ((e2y - o5y) / step10) * 1.2
+                                o5x += ((e2x - o5x) / step10) * 15
+                                o5y += ((e2y - o5y) / step10) * 15
                         else:
-                            o4x += ((d2x - o4x) / step9) * 1.2
-                            o4y += ((d2y - o4y) / step9) * 1.2
+                            o4x += ((d2x - o4x) / step9) * 15
+                            o4y += ((d2y - o4y) / step9) * 15
                     else:
-                        o3x += ((c2x - o3x) / step8) * 1.2
-                        o3y += ((c2y - o3y) / step8) * 1.2
+                        o3x += ((c2x - o3x) / step8) * 15
+                        o3y += ((c2y - o3y) / step8) * 15
                 else:
-                    o2x += ((b2x - o2x) / step7) * 1.2
-                    o2y += ((b2y - o2y) / step7) * 1.2
+                    o2x += ((b2x - o2x) / step7) * 15
+                    o2y += ((b2y - o2y) / step7) * 15
+                
             else:
-                ox += ((a2x - ox) / step6) * 1.2
-                oy += ((a2y - oy) / step6) * 1.2
+                ox += ((a2x - ox) / step6) * 15
+                oy += ((a2y - oy) / step6) * 15
         else:
-            if math.dist([ax, ay], [ox, oy]) <= 3:
+            if math.dist([ax, ay], [ox, oy]) <= 10:
                 ox = ax
                 oy = ay
-                if math.dist([bx, by], [o2x, o2y]) <= 3:
+                if math.dist([bx, by], [o2x, o2y]) <= 10:
                     o2x = bx
                     o2y = by
-                    if math.dist([cx, cy], [o3x, o3y]) <= 3:
+                    if math.dist([cx, cy], [o3x, o3y]) <= 10:
                         o3x = cx
                         o3y = cy
-                        if math.dist([dx, dy], [o4x, o4y]) <= 3:
+                        if math.dist([dx, dy], [o4x, o4y]) <= 10:
                             o4x = dx
                             o4y = dy
-                            if math.dist([ex, ey], [o5x, o5y]) <= 3:
+                    
+                            if math.dist([ex, ey], [o5x, o5y]) <= 10:
                                 o5x = ex
                                 o5y = ey
                                 fin = True
                             else:
-                                o5x += ((ex - o5x) / step5) * 1.2
-                                o5y += ((ey - o5y) / step5) * 1.2
+                                o5x += ((ex - o5x) / step5) * 15
+                                o5y += ((ey - o5y) / step5) * 15
                         else:
-                            o4x += ((dx - o4x) / step4) * 1.2
-                            o4y += ((dy - o4y) / step4) * 1.2
+                            o4x += ((dx - o4x) / step4) * 15
+                            o4y += ((dy - o4y) / step4) * 15
+                            
                     else:
-                        o3x += ((cx - o3x) / step3) * 1.2
-                        o3y += ((cy - o3y) / step3) * 1.2
+                        o3x += ((cx - o3x) / step3) * 15
+                        o3y += ((cy - o3y) / step3) * 15
+                        
                 else:
-                    o2x += ((bx - o2x) / step2) * 1.2
-                    o2y += ((by - o2y) / step2) * 1.2
+                    o2x += ((bx - o2x) / step2) * 15
+                    o2y += ((by - o2y) / step2) * 15
             else:
-                ox += ((ax - ox) / step) * 1.2
-                oy += ((ay - oy) / step) * 1.2
+                ox += ((ax - ox) / step) * 15
+                oy += ((ay - oy) / step) * 15
 
     def move_towards_player(self):
         global oxo, oyo, o2xo, o2yo, o3xo, o3yo, o4xo, o4yo, o5xo, o5yo
@@ -929,8 +844,9 @@ class opponent(pygame.sprite.Sprite):
             if shoot == False:
                 if movement == True:
                     opponent.shot(self, curvalO(), plycurval())
-            if sec == 18:
+            if sec == 3:
                 self.Z = 25
+                
 
         score = 0
         if TPD(opponent.activecoord(self)[0], opponent.activecoord(self)[1]):
@@ -971,18 +887,13 @@ class opponent(pygame.sprite.Sprite):
 
         return score
 
-    def win(self):
-        if sc >= 21:
-            wintext = "YOU LOSE"
-            winblit = winfont.render(wintext, True, [0, 0, 0], [155, 0, 0])
-            s.blit(winblit, wincenter)
-            wintext2 = "Exit window to close game"
-            winblit2 = winfont2.render(wintext2, True, [0, 0, 0], [155, 0, 0])
-            s.blit(winblit2, wincenter2)
 
     def update(self):
-        global ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y
+        global ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y ,dz1
+        global movestat1,movestat2,movestat3,movestat4,movestat5
         global oxo, oyo, o2xo, o2yo, o3xo, o3yo, o4xo, o4yo, o5xo, o5yo
+        global oldox,oldoy,oldo2x,oldo2y,oldo3x,oldo3y,oldo4x,oldo4y,oldo5x,oldo5y
+        global oldoxo, oldoyo, oldo2xo, oldo2yo, oldo3xo, oldo3yo, oldo4xo, oldo4yo, oldo5xo, oldo5yo
         if status == 'DEFENSE':
             if notransit:
                 if shoot == False:
@@ -990,25 +901,266 @@ class opponent(pygame.sprite.Sprite):
                         opponent.oppmove(self)
                 opponent.boundaryD(self)
         elif status == 'OFFENSE':
-            self = activedefender()
-            if notransit:
+           self = activedefender()
+           if notransit:
                 if shoot == False:
                     if coll == False:
                         opponent.move_towards_player(self)
                 opponent.boundaryO(self)
 
+
         if status == "DEFENSE":
-            s.blit(f4[0][0], (o4x, o4y))
-            s.blit(f2[0][0], (o2x, o2y))
-            s.blit(f3[0][0], (o3x, o3y))
-            s.blit(f1[0][0], (ox, oy))
-            s.blit(f5[0][0], (o5x, o5y))
+            if oldox > ox  + 0 and oldoy == oy:
+                s.blit(f1[1][dz], (ox, oy))
+                movestat1="L"
+            elif oldox + 0 < ox and oldoy == oy:
+                s.blit(f1[2][dz], (ox, oy))
+                movestat1="R"
+            elif oldox == ox and oldoy < oy + 0:
+                s.blit(f1[0][dz], (ox, oy))
+                movestat1="D"
+            elif oldox == ox and oldoy > oy + 0:
+                s.blit(f1[3][dz], (ox, oy))
+                movestat1="U"
+            elif oldox > ox + 0 and oldoy + 0 < oy:
+                s.blit(f1[1][dz], (ox, oy))
+                movestat1="L"
+            elif oldox + 0 < ox and oldoy > oy + 0:
+                s.blit(f1[2][dz], (ox, oy))
+                movestat1="R"
+            elif oldox + 0 < ox and oldoy + 0 < oy:
+                s.blit(f1[2][dz], (ox, oy))
+                movestat1="R"
+            elif oldox > ox + 0 and oldoy > oy + 0:
+                s.blit(f1[1][dz], (ox, oy))
+                movestat1="L"
+            elif oldox==ox and oldoy==oy:
+                s.blit(f1[0][0], (ox, oy))
+                movestat1="S"
+
+            if oldo2x > o2x + 0 and oldo2y == o2y:
+                s.blit(f2[1][dz], (o2x, o2y))
+                movestat2="L"
+            elif oldo2x + 0 < o2x and oldo2y == o2y:
+                s.blit(f2[2][dz], (o2x, o2y))
+                movestat2="R"
+            elif oldo2x == o2x and oldo2y + 0 < o2y :
+                s.blit(f2[0][dz], (o2x, o2y))
+                movestat2="D"
+            elif oldo2x == o2x and oldo2y > o2y + 0:
+                s.blit(f2[3][dz], (o2x, o2y))
+                movestat2="U"
+            elif oldo2x > o2x + 0 and oldo2y + 0 < o2y:
+                s.blit(f2[1][dz], (o2x, o2y))
+                movestat2="L"
+            elif oldo2x + 0 < o2x and oldo2y > o2y + 0:
+                s.blit(f2[2][dz], (o2x, o2y))
+                movestat2="L"
+            elif oldo2x + 0 < o2x and oldo2y + 0 < o2y:
+                s.blit(f2[2][dz], (o2x, o2y))
+                movestat2="R"
+            elif oldo2x > o2x + 0 and oldo2y > o2y + 0:
+                s.blit(f2[1][dz], (o2x, o2y))
+                movestat2="L"
+            elif oldo2x==o2x and oldo2y==o2y:
+                s.blit(f2[0][0], (o2x, o2y))
+                movestat2="S"
+
+            if oldo3x > o3x + 0 and oldo3y == o3y:
+                s.blit(f3[1][dz], (o3x, o3y))
+                movestat3="L"
+            elif oldo3x + 0 < o3x and oldo3y == o3y:
+                s.blit(f3[2][dz], (o3x, o3y))
+                movestat3="R"
+            elif oldo3x == o3x and oldo3y + 0 < o3y:
+                s.blit(f3[0][dz], (o3x, o3y))
+                movestat3="D"
+            elif oldo3x == o3x and oldo3y > o3y + 0:
+                s.blit(f3[3][dz], (o3x, o3y))
+                movestat3="U"
+            elif oldo3x > o3x + 0 and oldo3y + 0 < o3y:
+                s.blit(f3[1][dz], (o3x, o3y))
+                movestat3="L"
+            elif oldo3x + 0 < o3x and oldo3y > o3y + 0:
+                s.blit(f3[2][dz], (o3x, o3y))
+                movestat3="R"
+            elif oldo3x + 0 < o3x and oldo3y + 0 < o3y:
+                s.blit(f3[2][dz], (o3x, o3y))
+                movestat3="R"
+            elif oldo3x > o3x + 0 and oldo3y > o3y + 0:
+                s.blit(f3[1][dz], (o3x, o3y))
+                movestat3="L"
+            elif oldo3x==o3x and oldo3y==o3y:
+                s.blit(f3[0][0], (o3x, o3y))
+                movestat3="S"
+
+            if oldo4x > o4x + 0 and oldo4y == o4y:
+                
+                s.blit(f4[1][dz], (o4x, o4y))
+                movestat4="L"
+            elif oldo4x + 0 < o4x and oldo4y == o4y:
+                s.blit(f4[2][dz], (o4x, o4y))
+                movestat4="R"
+            elif oldo4x == o4x and oldo4y + 0 < o4y:
+                
+                s.blit(f4[0][dz], (o4x, o4y))
+                movestat4="D"
+            elif oldo4x == o4x and oldo4y > o4y + 0:
+               
+                s.blit(f4[3][dz], (o4x, o4y))
+                movestat4="U"
+            elif oldo4x > o4x + 0 and oldo4y + 0 < o4y:
+                s.blit(f4[1][dz], (o4x, o4y))
+                movestat4="L"
+            elif oldo4x + 0 < o4x and oldo4y > o4y + 0:
+                s.blit(f4[2][dz], (o4x, o4y))
+                movestat4="R"
+            elif oldo4x + 0 < o4x and oldo4y + 0 < o4y:
+                movestat4="R"
+                s.blit(f4[2][dz], (o4x, o4y))
+            elif oldo4x > o4x + 0 and oldo4y > o4y + 0:
+                s.blit(f4[1][dz], (o4x, o4y))
+                movestat4="L"
+            elif oldo4x==o4x and oldo4y==o4y:
+                s.blit(f4[0][0], (o4x, o4y))
+                movestat4="S"
+
+            if oldo5x > o5x + 0 and oldo5y == o5y:
+                s.blit(f5[1][dz], (o5x, o5y))
+                movestat5="L"
+            elif oldo5x + 0 < o5x and oldo5y == o5y:
+                s.blit(f5[2][dz], (o5x, o5y))
+                movestat5="R"
+            elif oldo5x == o5x and oldo5y + 0 < o5y:
+                s.blit(f5[0][dz], (o5x, o5y))
+                movestat5="D"
+            elif oldo5x == o5x and oldo5y > o5y + 0:
+                s.blit(f5[3][dz], (o5x, o5y))
+                movestat5="U"
+            elif oldo5x > o5x + 0 and oldo5y + 0 < o5y:
+                s.blit(f5[1][dz], (o5x, o5y))
+                movestat5="L"
+            elif oldo5x + 0 < o5x and oldo5y > o5y + 0:
+                s.blit(f5[2][dz], (o5x, o5y))
+                movestat5="R"
+            elif oldo5x + 0 < o5x and oldo5y + 0 < o5y:
+                s.blit(f5[2][dz], (o5x, o5y))
+                movestat5="R"
+            elif oldo5x > o5x + 0 and oldo5y > o5y + 0:
+                s.blit(f5[1][dz], (o5x, o5y))
+                movestat5="L"
+            elif oldo5x==o5x and oldo5y==o5y:
+                s.blit(f5[0][0], (o5x, o5y))
+                movestat5="S"
         elif status == "OFFENSE":
-            s.blit(f1[0][0], (oxo, oyo))
-            s.blit(f2[0][0], (o2xo, o2yo))
-            s.blit(f3[0][0], (o3xo, o3yo))
-            s.blit(f4[0][0], (o4xo, o4yo))
-            s.blit(f5[0][0], (o5xo, o5yo))
+
+
+
+            if oldoxo > oxo + 0 and oldoyo == oyo:
+                s.blit(f1[1][dz], (oxo, oyo))
+            elif oldoxo + 0 < oxo and oldoyo == oyo:
+                s.blit(f1[2][dz], (oxo, oyo))
+            elif oldoxo == oxo and oldoyo + 0 < oyo:
+                s.blit(f1[0][dz], (oxo, oyo))
+            elif oldoxo == oxo and oldoyo > oyo + 0:
+                s.blit(f1[3][dz], (oxo, oyo))
+            elif oldoxo > oxo + 0 and oldoyo + 0 < oyo:
+                s.blit(f1[1][dz], (oxo, oyo))
+            elif oldoxo + 0 < oxo and oldoyo > oyo + 0:
+                s.blit(f1[2][dz], (oxo, oyo))
+            elif oldoxo + 0 < oxo and oldoyo + 0 < oyo:
+                s.blit(f1[2][dz], (oxo, oyo))
+            elif oldoxo > oxo + 0 and oldoyo > oyo + 0:
+                s.blit(f1[1][dz], (oxo, oyo))
+            else:
+                s.blit(f1[0][0], (oxo, oyo))
+
+
+            if oldo2xo > o2xo + 0 and oldo2yo == o2yo:
+                s.blit(f2[1][dz], (o2xo, o2yo))
+            elif oldo2xo + 0 < o2xo and oldo2yo == o2yo:
+                s.blit(f2[2][dz], (o2xo, o2yo))
+            elif oldo2xo == o2xo and oldo2yo + 0 < o2yo:
+                s.blit(f2[0][dz], (o2xo, o2yo))
+            elif oldo2xo == o2xo and oldo2yo > o2yo + 0:
+                s.blit(f2[3][dz], (o2xo, o2yo))
+            elif oldo2xo > o2xo + 0 and oldo2yo + 0 < o2yo:
+                s.blit(f2[1][dz], (o2xo, o2yo))
+            elif oldo2xo + 0 < o2xo and oldo2yo > o2yo + 0:
+                s.blit(f2[2][dz], (o2xo, o2yo))
+            elif oldo2xo + 0 < o2xo and oldo2yo + 0 < o2yo:
+                s.blit(f2[2][dz], (o2xo, o2yo))
+            elif oldo2xo > o2xo + 0 and oldo2yo > o2yo + 0:
+                s.blit(f2[1][dz], (o2xo, o2yo))
+            else:
+                s.blit(f2[0][0], (o2xo, o2yo))
+
+
+            if oldo3xo > o3xo + 0 and oldo3yo == o3yo:
+                s.blit(f3[1][dz], (o3xo, o3yo))
+            elif oldo3xo + 0 < o3xo and oldo3yo == o3yo:
+                s.blit(f3[2][dz], (o3xo, o3yo))
+            elif oldo3xo == o3xo and oldo3yo + 0 < o3yo:
+                s.blit(f3[0][dz], (o3xo, o3yo))
+            elif oldo3xo == o3xo and oldo3yo > o3yo + 0:
+                s.blit(f3[3][dz], (o3xo, o3yo))
+            elif oldo3xo > o3xo + 0 and oldo3yo + 0 < o3yo:
+                s.blit(f3[1][dz], (o3xo, o3yo))
+            elif oldo3xo + 0 < o3xo and oldo3yo > o3yo + 0:
+                s.blit(f3[2][dz], (o3xo, o3yo))
+            elif oldo3xo + 0 < o3xo and oldo3yo + 0 < o3yo:
+                s.blit(f3[2][dz], (o3xo, o3yo))
+            elif oldo3xo > o3xo + 0 and oldo3yo > o3yo + 0:
+                s.blit(f3[1][dz], (o3xo, o3yo))
+            else:
+                s.blit(f3[0][0], (o3xo, o3yo))
+
+
+            if oldo4xo > o4xo + 0 and oldo4yo == o4yo:
+                s.blit(f4[1][dz], (o4xo, o4yo))
+            elif oldo4xo + 0 < o4xo and oldo4yo == o4yo:
+                s.blit(f4[2][dz], (o4xo, o4yo))
+            elif oldo4xo == o4xo and oldo4yo + 0 < o4yo:
+                s.blit(f4[0][dz], (o4xo, o4yo))
+            elif oldo4xo == o4xo and oldo4yo > o4yo + 0:
+                s.blit(f4[3][dz], (o4xo, o4yo))
+            elif oldo4xo > o4xo + 0 and oldo4yo + 0 < o4yo:
+                s.blit(f4[1][dz], (o4xo, o4yo))
+            elif oldo4xo + 0 < o4xo and oldo4yo > o4yo + 0:
+                s.blit(f4[2][dz], (o4xo, o4yo))
+            elif oldo4xo + 0 < o4xo and oldo4yo + 0 < o4yo:
+                s.blit(f4[2][dz], (o4xo, o4yo))
+            elif oldo4xo > o4xo + 0 and oldo4yo > o4yo + 0:
+                s.blit(f4[1][dz], (o4xo, o4yo))
+            else:
+                s.blit(f4[0][0], (o4xo, o4yo))
+
+
+            if oldo5xo > o5xo + 0 and oldo5yo == o5yo:
+                s.blit(f5[1][dz], (o5xo, o5yo))
+            elif oldo5xo + 0 < o5xo and oldo5yo == o5yo:
+                s.blit(f5[2][dz], (o5xo, o5yo))
+            elif oldo5xo == o5xo and oldo5yo + 0 < o5yo:
+                s.blit(f5[0][dz], (o5xo, o5yo))
+            elif oldo5xo == o5xo and oldo5yo > o5yo + 0:
+                s.blit(f5[3][dz], (o5xo, o5yo))
+            elif oldo5xo > o5xo + 0 and oldo5yo + 0 < o5yo:
+                s.blit(f5[1][dz], (o5xo, o5yo))
+            elif oldo5xo + 0 < o5xo and oldo5yo > o5yo + 0:
+                s.blit(f5[2][dz], (o5xo, o5yo))
+            elif oldo5xo + 0 < o5xo and oldo5yo + 0 < o5yo:
+                s.blit(f5[2][dz], (o5xo, o5yo))
+            elif oldo5xo > o5xo + 0 and oldo5yo > o5yo + 0:
+                s.blit(f5[1][dz], (o5xo, o5yo))
+            else:
+                s.blit(f5[0][0], (o5xo, o5yo))
+
+        if dz1 +1 == 4 :
+            dz1= 0
+        else :
+            dz1= dz +1
+        oldox, oldoy, oldo2x, oldo2y, oldo3x, oldo3y, oldo4x, oldo4y, oldo5x, oldo5y = ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y
+        oldoxo, oldoyo, oldo2xo, oldo2yo, oldo3xo, oldo3yo, oldo4xo, oldo4yo, oldo5xo, oldo5yo = oxo, oyo, o2xo, o2yo, o3xo, o3yo, o4xo, o4yo, o5xo, o5yo
 
 
 
@@ -1035,42 +1187,42 @@ class player(pygame.sprite.Sprite):
             px = 675
         if px <= 30:
             px = 30
-        if py <= 15:
-            py = 15
-        if py >= 390:
-            py = 390
+        if py <= 0:
+            py = 0
+        if py >= 339.5:
+            py = 339.5
         if p2x >= 675:
             p2x = 675
         if p2x <= 30:
             p2x = 30
-        if p2y <= 15:
-            p2y = 15
-        if p2y >= 390:
-            p2y = 390
+        if p2y <= 0:
+            p2y = 0
+        if p2y >= 339.5:
+            p2y = 339.5
         if p3x >= 675:
             p3x = 675
         if p3x <= 30:
             p3x = 30
-        if p3y <= 15:
-            p3y = 15
-        if p3y >= 390:
-            p3y = 390
+        if p3y <= 0:
+            p3y = 0
+        if p3y >= 339.5:
+            p3y = 339.5
         if p4x >= 675:
             p4x = 675
         if p4x <= 30:
             p4x = 30
-        if p4y <= 15:
-            p4y = 15
-        if p4y >= 390:
-            p4y = 390
+        if p4y <= 0:
+            p4y = 0
+        if p4y >= 339.5:
+            p4y = 339.5
         if p5x >= 675:
             p5x = 675
         if p5x <= 30:
             p5x = 30
-        if p5y <= 15:
-            p5y = 15
-        if p5y >= 390:
-            p5y = 390
+        if p5y <= 0:
+            p5y = 0
+        if p5y >= 339.5:
+            p5y = 339.5
 
     def boundaryO(self):
         global pxo, pyo, p2xo, p2yo, p3xo, p3yo, p4xo, p4yo, p5xo, p5yo
@@ -1078,42 +1230,42 @@ class player(pygame.sprite.Sprite):
             pxo = 1365
         if pxo <= 725:
             pxo = 725
-        if pyo <= 15:
-            pyo = 15
-        if pyo >= 390:
-            pyo = 390
+        if pyo <=0:
+            pyo = 0
+        if pyo >= 339.5:
+            pyo = 339.5
         if p2xo >= 1365:
             p2xo = 1365
         if p2xo <= 725:
             p2xo = 725
-        if p2yo <= 15:
-            p2yo = 15
-        if p2yo >= 390:
-            p2yo = 390
+        if p2yo <= 0:
+            p2yo = 0
+        if p2yo >= 339.5:
+            p2yo = 339.5
         if p3xo >= 1365:
             p3xo = 1365
         if p3xo <= 725:
             p3xo = 725
-        if p3yo <= 15:
-            p3yo = 15
-        if p3yo >= 390:
-            p3yo = 390
+        if p3yo <= 0:
+            p3yo = 0
+        if p3yo >= 339.5:
+            p3yo = 339.5
         if p4xo >= 1365:
             p4xo = 1365
         if p4xo <= 725:
             p4xo = 725
-        if p4yo <= 15:
-            p4yo = 15
-        if p4yo >= 390:
-            p4yo = 390
+        if p4yo <= 0:
+            p4yo = 0
+        if p4yo >= 339.5:
+            p4yo = 339.5
         if p5xo >= 1365:
             p5xo = 1365
         if p5xo <= 725:
             p5xo = 725
-        if p5yo <= 15:
-            p5yo = 15
-        if p5yo >= 390:
-            p5yo = 390
+        if p5yo <= 0:
+            p5yo = 0
+        if p5yo >= 339.5:
+            p5yo = 339.5
 
     def collide(self, y, x2, y2):
         if pygame.sprite.collide_rect(self, y):
@@ -1151,9 +1303,6 @@ class player(pygame.sprite.Sprite):
             elif self == p5:
                 z = [p5xo, p5yo]
             return z
-
-    def sta(self):
-        return self.rect.x, self.rect.y
 
     def movement(self, x, y):
         self.movex += x
@@ -1322,7 +1471,7 @@ class player(pygame.sprite.Sprite):
             elif self.shotchance < 23:
                 stat1 = "M"
                 self.score = 0
-            notransit = False
+            #notransit = False
 
             return self.score
 
@@ -1335,7 +1484,9 @@ class player(pygame.sprite.Sprite):
         player5 = False
         global px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y
         global pxo, pyo, p2xo, p2yo, p3xo, p3yo, p4xo, p4yo, p5xo, p5yo
-
+        global oldpx, oldpy, oldp2x, oldp2y, oldp3x, oldp3y, oldp4x, oldp4y, oldp5x, oldp5y
+        global oldpxo, oldpyo, oldp2xo, oldp2yo, oldp3xo, oldp3yo, oldp4xo, oldp4yo, oldp5xo, oldp5yo
+         
         if status == "DEFENSE":
             if defplayer == "pg":
                 player1 = True
@@ -1384,343 +1535,213 @@ class player(pygame.sprite.Sprite):
             if notransit:
                 player.boundaryO(self)
         if status == "DEFENSE":
-            if notransit:
-                pass
+
+            if oldpx > px + 0 and oldpy == py:
+                s.blit(l1[1][dz], (px, py))
+            elif oldpx + 0 < px and  oldpy == py:
+                s.blit(l1[2][dz], (px, py))
+            elif oldpx == px and  oldpy + 0 < py:
+                s.blit(l1[0][dz], (px, py))
+            elif oldpx == px and  oldpy > py + 0:
+                s.blit(l1[3][dz], (px, py))
+            elif oldpx > px + 0 and oldpy + 0 < py:
+                s.blit(l1[1][dz], (px, py))
+            elif oldpx + 0 < px and oldpy > py + 0:
+                s.blit(l1[2][dz], (px, py))
+            elif oldpx + 0 < px and oldpy + 0 < py:
+                s.blit(l1[2][dz], (px, py))
+            elif oldpx > px + 0 and oldpy > py + 0:
+                s.blit(l1[1][dz], (px, py))
             else:
-                self.rect.x = player.activecoord(useplayer())[0]
-                self.rect.y = player.activecoord(useplayer())[1]
-            if player1 :
-                if UP:
-                    s.blit(l1[3][dz], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif DOWN:
-                    s.blit(l1[0][dz], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif LEFT:
-                    s.blit(l1[1][dz], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif RIGHT:
-                    s.blit(l1[2][dz], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                else:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-            elif player2:
-                if UP:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[3][dz], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif DOWN:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][dz], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif LEFT:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[1][dz], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif RIGHT:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[2][dz], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                else:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-            elif player3:
-                if UP:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[3][dz], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif DOWN:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][dz], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif LEFT:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[1][dz], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif RIGHT:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[2][dz], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                else:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-            elif player4:
-                if UP:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[3][dz], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif DOWN:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][dz], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif LEFT:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[1][dz], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                elif RIGHT:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[2][dz], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-                else:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-            elif player5:
-                if UP:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[3][dz], (p5x, p5y))
-                elif DOWN:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][dz], (p5x, p5y))
-                elif LEFT:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[1][dz], (p5x, p5y))
-                elif RIGHT:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[2][dz], (p5x, p5y))
-                else:
-                    s.blit(l1[0][0], (px, py))
-                    s.blit(l2[0][0], (p2x, p2y))
-                    s.blit(l3[0][0], (p3x, p3y))
-                    s.blit(l4[0][0], (p4x, p4y))
-                    s.blit(l5[0][0], (p5x, p5y))
-            else :
                 s.blit(l1[0][0], (px, py))
-                s.blit(l2[0][0], (p2x, p2y))
-                s.blit(l3[0][0], (p3x, p3y))
-                s.blit(l4[0][0], (p4x, p4y))
-                s.blit(l5[0][0], (p5x, p5y))
-        elif status == "OFFENSE":
-            if notransit:
-                pass
+            
+
+
+            if oldp2x > p2x + 0 and oldp2y == p2y:
+                s.blit(l2[1][dz], (p2x, p2y))
+            elif oldp2x + 0 < p2x and  oldp2y == p2y:
+                s.blit(l2[2][dz], (p2x, p2y))
+            elif oldp2x == p2x and  oldp2y + 0 < p2y:
+                s.blit(l2[0][dz], (p2x, p2y))
+            elif oldp2x == p2x and  oldp2y > p2y + 0:
+                s.blit(l2[3][dz], (p2x, p2y))
+            elif oldp2x > p2x + 0 and oldp2y + 0 < p2y:
+                s.blit(l2[1][dz], (p2x, p2y))
+            elif oldp2x + 0 < p2x and oldp2y > p2y + 0:
+                s.blit(l2[2][dz], (p2x, p2y))
+            elif oldp2x + 0 < p2x and oldp2y + 0 < p2y:
+                s.blit(l2[2][dz], (p2x, p2y))
+            elif oldp2x > p2x + 0 and oldp2y > p2y + 0:
+                s.blit(l2[1][dz], (p2x, p2y))
             else:
-                self.rect.x = player.activecoord(curplayer())[0]
-                self.rect.y = player.activecoord(curplayer())[1]
-            if player1:
-                if UP:
-                    s.blit(l1[3][dz], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif DOWN:
-                    s.blit(l1[0][dz], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif RIGHT:
-                    s.blit(l1[2][dz], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif LEFT:
-                    s.blit(l1[1][dz], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                else:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-            elif player2:
-                if UP:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[3][dz], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif DOWN:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][dz], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif RIGHT:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[2][dz], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif LEFT:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[1][dz], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                else:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-            elif player3:
-                if UP:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[3][dz], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif DOWN:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][dz], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif RIGHT:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[2][dz], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif LEFT:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[1][dz], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                else:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-            elif player4:
-                if UP:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[3][dz], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif DOWN:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][dz], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif RIGHT:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[2][dz], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                elif LEFT:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[1][dz], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-                else:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
-            elif player5:
-                if UP:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[3][dz], (p5xo, p5yo))
-                elif DOWN:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][dz], (p5xo, p5yo))
-                elif RIGHT:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[2][dz], (p5xo, p5yo))
-                elif LEFT:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[1][dz], (p5xo, p5yo))
-                else:
-                    s.blit(l1[0][0], (pxo, pyo))
-                    s.blit(l2[0][0], (p2xo, p2yo))
-                    s.blit(l3[0][0], (p3xo, p3yo))
-                    s.blit(l4[0][0], (p4xo, p4yo))
-                    s.blit(l5[0][0], (p5xo, p5yo))
+                s.blit(l2[0][0], (p2x, p2y))
+            
+
+            if oldp3x > p3x + 0 and oldp3y == p3y:
+                s.blit(l3[1][dz], (p3x, p3y))
+            elif oldp3x + 0 < p3x and  oldp3y == p3y:
+                s.blit(l3[2][dz], (p3x, p3y))
+            elif oldp3x == p3x and  oldp3y + 0 < p3y:
+                s.blit(l3[0][dz], (p3x, p3y))
+            elif oldp3x == p3x and  oldp3y > p3y + 0:
+                s.blit(l3[3][dz], (p3x, p3y))
+            elif oldp3x > p3x + 0 and oldp3y + 0 < p3y:
+                s.blit(l3[1][dz], (p3x, p3y))
+            elif oldp3x + 0 < p3x and oldp3y > p3y + 0:
+                s.blit(l3[2][dz], (p3x, p3y))
+            elif oldp3x + 0 < p3x and oldp3y + 0 < p3y:
+                s.blit(l3[2][dz], (p3x, p3y))
+            elif oldp3x > p3x + 0 and oldp3y > p3y + 0:
+                s.blit(l3[1][dz], (p3x, p3y))
+            else:
+                s.blit(l3[0][0], (p3x, p3y))
+            
+
+
+            if oldp4x > p4x + 0 and oldp4y == p4y :
+                s.blit(l4[1][dz], (p4x, p4y))
+            elif oldp4x + 0 < p4x and  oldp4y == p4y:
+                s.blit(l4[2][dz], (p4x, p4y))
+            elif oldp4x == p4x and  oldp4y + 0 < p4y:
+                s.blit(l4[0][dz], (p4x, p4y))
+            elif oldp4x == p4x and  oldp4y > p4y + 0:
+                s.blit(l4[3][dz], (p4x, p4y))
+            elif oldp4x > p4x + 0 and oldp4y + 0 < p4y:
+                s.blit(l4[1][dz], (p4x, p4y))
+            elif oldp4x + 0 < p4x and oldp4y > p4y + 0:
+                s.blit(l4[2][dz], (p4x, p4y))
+            elif oldp4x + 0 < p4x and oldp4y + 0 < p4y:
+                s.blit(l4[2][dz], (p4x, p4y))
+            elif oldp4x > p4x + 0 and oldp4y > p4y + 0:
+                s.blit(l4[1][dz], (p4x, p4y))
+            else:
+                s.blit(l4[0][0], (p4x, p4y))
+            
+
+
+            if oldp5x > p5x + 0 and oldp5y == p5y:
+                s.blit(l5[1][dz], (p5x, p5y))
+            elif oldp5x + 0 < p5x and oldp5y == p5y:
+                s.blit(l5[2][dz], (p5x, p5y))
+            elif oldp5x == p5x and  oldp5y + 0 < p5y:
+                s.blit(l5[0][dz], (p5x, p5y))
+            elif oldp5x == p5x and  oldp5y > p5y + 0:
+                s.blit(l5[3][dz], (p5x, p5y))
+            elif oldp5x > p5x + 0 and oldp5y + 0 < p5y:
+                s.blit(l5[1][dz], (p5x, p5y))
+            elif oldp5x + 0 < p5x and oldp5y > p5y + 0:
+                s.blit(l5[2][dz], (p5x, p5y))
+            elif oldp5x + 0 < p5x and oldp5y + 0 < p5y:
+                s.blit(l5[2][dz], (p5x, p5y))
+            elif oldp5x > p5x + 0 and oldp5y > p5y + 0:
+                s.blit(l5[1][dz], (p5x, p5y))
+            else:
+                s.blit(l5[0][0], (p5x, p5y))
+            
+        elif status == "OFFENSE":
+          
+            if oldpxo > pxo + 0 and oldpyo == pyo:
+                s.blit(l1[1][dz], (pxo, pyo))
+            elif oldpxo + 0 < pxo and oldpyo == pyo:
+                s.blit(l1[2][dz], (pxo, pyo))
+            elif oldpxo == pxo and oldpyo + 0 < pyo:
+                s.blit(l1[0][dz], (pxo, pyo))
+            elif oldpxo == pxo and oldpyo > pyo + 0:
+                s.blit(l1[3][dz], (pxo, pyo))
+            elif oldpxo > pxo + 0 and oldpyo + 0 < pyo:
+                s.blit(l1[1][dz], (pxo, pyo))
+            elif oldpxo + 0 < pxo and oldpyo > pyo + 0:
+                s.blit(l1[2][dz], (pxo, pyo))
+            elif oldpxo + 0 < pxo and oldpyo + 0 < pyo:
+                s.blit(l1[2][dz], (pxo, pyo))
+            elif oldpxo > pxo + 0 and oldpyo > pyo + 0:
+                s.blit(l1[1][dz], (pxo, pyo))
             else:
                 s.blit(l1[0][0], (pxo, pyo))
+            
+            if oldp2xo > p2xo + 0 and oldp2yo == p2yo:
+                s.blit(l2[1][dz], (p2xo, p2yo))
+            elif oldp2xo + 0 < p2xo and oldp2yo == p2yo:
+                s.blit(l2[2][dz], (p2xo, p2yo))
+            elif oldp2xo == p2xo and oldp2yo + 0 < p2yo:
+                s.blit(l2[0][dz], (p2xo, p2yo))
+            elif oldp2xo == p2xo and oldp2yo > p2yo + 0:
+                s.blit(l2[3][dz], (p2xo, p2yo))
+            elif oldp2xo > p2xo + 0 and oldp2yo + 0 < p2yo:
+                s.blit(l2[1][dz], (p2xo, p2yo))
+            elif oldp2xo + 0 < p2xo and oldp2yo > p2yo + 0:
+                s.blit(l2[2][dz], (p2xo, p2yo))
+            elif oldp2xo + 0 < p2xo and oldp2yo + 0 < p2yo:
+                s.blit(l2[2][dz], (p2xo, p2yo))
+            elif oldp2xo > p2xo + 0 and oldp2yo > p2yo + 0:
+                s.blit(l2[1][dz], (p2xo, p2yo))
+            else:
                 s.blit(l2[0][0], (p2xo, p2yo))
+            
+            if oldp3xo > p3xo + 0 and oldp3yo == p3yo:
+                s.blit(l3[1][dz], (p3xo, p3yo))
+            elif oldp3xo + 0 < p3xo and oldp3yo == p3yo:
+                s.blit(l3[2][dz], (p3xo, p3yo))
+            elif oldp3xo == p3xo and oldp3yo + 0 < p3yo:
+                s.blit(l3[0][dz], (p3xo, p3yo))
+            elif oldp3xo == p3xo and oldp3yo > p3yo + 0:
+                s.blit(l3[3][dz], (p3xo, p3yo))
+            elif oldp3xo > p3xo + 0 and oldp3yo + 0 < p3yo:
+                s.blit(l3[1][dz], (p3xo, p3yo))
+            elif oldp3xo + 0 < p3xo and oldp3yo > p3yo + 0:
+                s.blit(l3[2][dz], (p3xo, p3yo))
+            elif oldp3xo + 0 < p3xo and oldp3yo + 0 < p3yo:
+                s.blit(l3[2][dz], (p3xo, p3yo))
+            elif oldp3xo > p3xo + 0 and oldp3yo > p3yo + 0:
+                s.blit(l3[1][dz], (p3xo, p3yo))
+            else:
                 s.blit(l3[0][0], (p3xo, p3yo))
+            
+            if oldp4xo > p4xo + 0 and oldp4yo == p4yo:
+                s.blit(l4[1][dz], (p4xo, p4yo))
+            elif oldp4xo + 0 < p4xo and oldp4yo == p4yo:
+                s.blit(l4[2][dz], (p4xo, p4yo))
+            elif oldp4xo == p4xo and oldp4yo + 0 < p4yo:
+                s.blit(l4[0][dz], (p4xo, p4yo))
+            elif oldp4xo == p4xo and oldp4yo > p4yo + 0:
+                s.blit(l4[3][dz], (p4xo, p4yo))
+            elif oldp4xo > p4xo + 0 and oldp4yo + 0 < p4yo:
+                s.blit(l4[1][dz], (p4xo, p4yo))
+            elif oldp4xo + 0 < p4xo and oldp4yo > p4yo + 0:
+                s.blit(l4[2][dz], (p4xo, p4yo))
+            elif oldp4xo + 0 < p4xo and oldp4yo + 0 < p4yo:
+                s.blit(l4[2][dz], (p4xo, p4yo))
+            elif oldp4xo > p4xo + 0 and oldp4yo > p4yo + 0:
+                s.blit(l4[1][dz], (p4xo, p4yo))
+            else:
                 s.blit(l4[0][0], (p4xo, p4yo))
+            
+            
+            if oldp5xo > p5xo + 0 and oldp5yo == p5yo:
+                s.blit(l5[1][dz], (p5xo, p5yo))
+            elif oldp5xo + 0 < p5xo and oldp5yo == p5yo:
+                s.blit(l5[2][dz], (p5xo, p5yo))
+            elif oldp5xo == p5xo and oldp5yo + 0 < p5yo:
+                s.blit(l5[0][dz], (p5xo, p5yo))
+            elif oldp5xo == p5xo and oldp5yo > p5yo + 0:
+                s.blit(l5[3][dz], (p5xo, p5yo))
+            elif oldp5xo > p5xo + 0 and oldp5yo + 0 < p5yo:
+                s.blit(l5[1][dz], (p5xo, p5yo))
+            elif oldp5xo + 0 < p5xo and oldp5yo > p5yo + 0:
+                s.blit(l5[2][dz], (p5xo, p5yo))
+            elif oldp5xo + 0 < p5xo and oldp5yo + 0 < p5yo:
+                s.blit(l5[2][dz], (p5xo, p5yo))
+            elif oldp5xo > p5xo + 0 and oldp5yo > p5yo + 0:
+                s.blit(l5[1][dz], (p5xo, p5yo))
+            else:
                 s.blit(l5[0][0], (p5xo, p5yo))
+            
         if dz +1 == 4 :
             dz= 0
         else :
             dz = dz +1
+        oldpx, oldpy, oldp2x, oldp2y, oldp3x, oldp3y, oldp4x, oldp4y, oldp5x, oldp5y = px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y
+        oldpxo, oldpyo, oldp2xo, oldp2yo, oldp3xo, oldp3yo, oldp4xo, oldp4yo, oldp5xo, oldp5yo = pxo, pyo, p2xo, p2yo, p3xo, p3yo, p4xo, p4yo, p5xo, p5yo
 
 
 class ball:
@@ -1761,40 +1782,29 @@ class ball:
         return self.state
 
     def collision(self, x2, y2):
-        if math.dist((self.x, self.y), (x2, y2)) < 20:
-            self.ballmovex = 0
-            self.ballmovey = 0
-            return True
-
-    def collisionb(self, x2, y2):
-        if math.dist([self.x], [x2]) <= 10:
-            if math.dist([self.y], [y2]) <= 5:
+        if math.dist([self.x],[x2])<=30:
+            if math.dist([self.y],[y2])<=30:
+                
+            
                 self.ballmovex = 0
                 self.ballmovey = 0
                 return True
 
-    def collisionO(self, x2, y2):
-        if math.dist((self.x, self.y), (x2, y2)) <= 10:
-            self.ballmovex, self.ballmovey = 0, 0
-            return True
+    def collisionb(self, x2, y2):
+        
+        if math.dist([self.x], [x2]) <= 50:
+            if math.dist([self.y], [y2]) <= 30:
+                self.ballmovex = 0
+                self.ballmovey = 0
+                return True
+
 
     def movement(self, x2, y2):
-        global disfn
 
         self.number = max(abs(x2 - self.x), abs(y2 - self.y))
         self.ballmovex = float(x2 - self.x) / self.number
         self.ballmovey = float(y2 - self.y) / self.number
         self.state = "M"
-        if shoot == False:
-
-            if math.dist((self.x, self.y), (x2, y2)) <= 100:
-                disfn = "T1"
-            elif math.dist((self.x, self.y), (x2, y2)) <= 300 and math.dist((self.x, self.y), (x2, y2)) > 100:
-                disfn = "T2"
-            else:
-                disfn = "T3"
-        else:
-            disfn = "T0"
 
     def cor(self):
         return [self.x, self.y]
@@ -1820,11 +1830,11 @@ class ball:
                         elif ball.collision(self, p5x, p5y):
                             self.state = "D5"
                             coll = True
-                    if ball.collision(self, ox, oy) or ball.collision(self, o2x, o2y) or ball.collision(self, o3x,
-                                                                                                        o3y) or ball.collision(
-                            self, o4x, o4y) or ball.collision(self, o5x, o5y):
-                        self.state = "P"
-                        movement = True
+                        
+                        elif ball.collision(self, ox, oy) or ball.collision(self, o2x, o2y) or ball.collision(self, o3x,o3y) or ball.collision(self, o4x, o4y) or ball.collision(self, o5x, o5y):
+                            self.state = "P"
+                            movement = True
+                
                 if coll:
                     blittime = pygame.time.get_ticks() + 1500
                     stat1 = "I"
@@ -1832,60 +1842,117 @@ class ball:
                 setD = True
             if setD == True:
                 self.state = "D1"
-                transition()
-
+                self.x=px+70
+                self.y=py+60
+                transitiond()
             ball.boundaryD(self)
             if self.state == "M":
 
-                if disfn == "T1":
-                    fx = 1.5
-                elif disfn == "T2":
-                    fx = 2
-                elif disfn == "T0":
-                    fx = 3
-                else:
-                    fx = 1.5
-                self.x += self.ballmovex * 1.5
-                self.y += self.ballmovey * 1.5
-
+                self.x += self.ballmovex * 50
+                self.y += self.ballmovey * 50
             elif self.state == "P":
                 if offopp == "pg":
-                    self.x = ox
-                    self.y = oy + 20
+                    if movestat1=="U":
+                        self.x = ox + 50
+                        self.y = oy + 20
+                    elif movestat1=="D":
+                        self.x=ox+50
+                        self.y=oy+90
+                    elif movestat1=="L":
+                        self.x=ox
+                        self.y=oy+60
+                    elif movestat1=="R":
+                        self.x=ox+75
+                        self.y=oy+60
+                    else:
+                        self.x=ox+60
+                        self.y=oy+50
                 elif offopp == "sg":
-                    self.x = o2x
-                    self.y = o2y + 20
+                    if movestat2=="U":
+                        self.x = o2x + 50
+                        self.y = o2y + 20
+                    elif movestat2=="D":
+                        self.x=o2x+50
+                        self.y=o2y+90
+                    elif movestat2=="L":
+                        self.x=o2x
+                        self.y=o2y+60
+                    elif movestat2=="R":
+                        self.x=o2x+75
+                        self.y=o2y+60
+                    else:
+                        self.x=o2x+60
+                        self.y=o2y+50
                 elif offopp == "sf":
-                    self.x = o3x
-                    self.y = o3y + 20
+                    if movestat3=="U":
+                        self.x = o3x + 50
+                        self.y = o3y + 20
+                    elif movestat3=="D":
+                        self.x=o3x+50
+                        self.y=o3y+90
+                    elif movestat3=="L":
+                        self.x=o3x
+                        self.y=o3y+60
+                    elif movestat3=="R":
+                        self.x=o3x+75
+                        self.y=o3y+60
+                    else:
+                        self.x=o3x+60
+                        self.y=o3y+50
                 elif offopp == "pf":
-                    self.x = o4x
-                    self.y = o4y + 20
+                    if movestat4=="U":
+                        self.x = o4x + 50
+                        self.y = o4y + 20
+                    elif movestat4=="D":
+                        self.x=o4x+50
+                        self.y=o4y+90
+                    elif movestat4=="L":
+                        self.x=o4x
+                        self.y=o4y+60
+                    elif movestat4=="R":
+                        self.x=o4x+75
+                        self.y=o4y+60
+                    else:
+                        self.x=o4x+60
+                        self.y=o4y+50
                 elif offopp == "c":
-                    self.x = o5x
-                    self.y = o5y + 20
+                    if movestat5=="U":
+                        self.x = o5x + 50
+                        self.y = o5y + 20
+                    elif movestat5=="D":
+                        self.x=o5x+50
+                        self.y=o5y+90
+                    elif movestat5=="L":
+                        self.x=o5x
+                        self.y=o5y+60
+                    elif movestat5=="R":
+                        self.x=o5x+75
+                        self.y=o5y+60
+                    else:
+                        self.x=o5x+60
+                        self.y=o5y+50
             else:
                 if self.state == "D1":
-                    self.x = px + 50
-                    self.y = py + 20
+                    self.x = px + 75
+                    self.y = py + 60
                     defplayer = "pg"
                 elif self.state == "D2":
-                    self.x = p2x + 50
-                    self.y = p2y + 20
+                    self.x = p2x + 75
+                    self.y = p2y + 60
                     defplayer = "sg"
                 elif self.state == "D3":
-                    self.x = p3x + 50
-                    self.y = p3y + 20
+                    self.x = p3x + 75
+                    self.y = p3y + 50
                     defplayer = "sf"
                 elif self.state == "D4":
-                    self.x = p4x + 50
-                    self.y = p4y + 20
+                    self.x = p4x + 75
+                    self.y = p4y + 60
                     defplayer = "pf"
                 elif self.state == "D5":
-                    self.x = p5x + 50
-                    self.y = p5y + 20
+                    self.x = p5x + 75
+                    self.y = p5y + 60
                     defplayer = "c"
-                transition()
+                transitiond()
 
         elif status == "OFFENSE":
             if shoot == False:
@@ -1906,57 +1973,124 @@ class ball:
                         elif ball.collision(self, o5xo, o5yo):
                             self.state = "D5"
                             collo = True
-                    if ball.collision(self, pxo, pyo) or ball.collision(self, p2xo, p2yo) or ball.collision(self, p3xo,
-                                                                                                            p3yo) or ball.collision(
-                            self, p4xo, p4yo) or ball.collision(self, p5xo, p5yo):
-                        self.state = "P"
+                        elif ball.collision(self, pxo, pyo) or ball.collision(self, p2xo, p2yo) or ball.collision(self, p3xo,p3yo) or ball.collision(self, p4xo, p4yo) or ball.collision(self, p5xo, p5yo):
+                            self.state = "P"
                 if collo == True:
                     blittime = pygame.time.get_ticks() + 1500
                     stat1 = "I"
-
-            if ball.collisionO(self, c2x, c2y):
+            
+            if ball.collisionb(self, c2x, c2y):
                 setO = True
             if setO == True:
-                transition()
+                
                 self.x = oxo
-                self.y = oyo + 20
+                self.y = oyo + 60
+                transitiono()
             ball.boundaryO(self)
             if self.state == "M":
                 self.x += self.ballmovex*50
+                
                 self.y += self.ballmovey*50
+                
             elif self.state == "P":
                 if activeplayer == "pg":
-                    self.x = pxo + 50
-                    self.y = pyo + 20
+                    if UP:
+                        self.x = pxo + 50
+                        self.y = pyo + 20
+                    elif DOWN:
+                        self.x=pxo+50
+                        self.y=pyo+90
+                    elif RIGHT:
+                        self.x=pxo+75
+                        self.y=pyo+60
+                    elif LEFT:
+                        self.x=pxo
+                        self.y=pyo+60
+                    else:
+                        self.x=pxo+60
+                        self.y=pyo+50
                 elif activeplayer == "sg":
-                    self.x = p2xo + 50
-                    self.y = p2yo + 20
+                    if UP:
+                        self.x = p2xo + 50
+                        self.y = p2yo + 20
+                    elif DOWN:
+                        self.x=p2xo+50
+                        self.y=p2yo+90
+                    elif RIGHT:
+                        self.x=p2xo+75
+                        self.y=p2yo+60
+                    elif LEFT:
+                        self.x=p2xo
+                        self.y=p2yo+60
+                    else:
+                        self.x=p2xo+60
+                        self.y=p2yo+50
                 elif activeplayer == "sf":
-                    self.x = p3xo + 50
-                    self.y = p3yo + 20
+                    if UP:
+                        self.x = p3xo + 50
+                        self.y = p3yo + 20
+                    elif DOWN:
+                        self.x=p3xo+50
+                        self.y=p3yo+90
+                    elif RIGHT:
+                        self.x=p3xo+75
+                        self.y=p3yo+60
+                    elif LEFT:
+                        self.x=p3xo
+                        self.y=p3yo+60
+                    else:
+                        self.x=p3xo+60
+                        self.y=p3yo+50
                 elif activeplayer == "pf":
-                    self.x = p4xo + 50
-                    self.y = p4yo + 20
+                    if UP:
+                        self.x = p4xo + 50
+                        self.y = p4yo + 20
+                    elif DOWN:
+                        self.x=p4xo+50
+                        self.y=p4yo+90
+                    elif RIGHT:
+                        self.x=p4xo+75
+                        self.y=p4yo+60
+                    elif LEFT:
+                        self.x=p4xo
+                        self.y=p4yo+60
+                    else:
+                        self.x=p4xo+60
+                        self.y=p4yo+50
                 elif activeplayer == "c":
-                    self.x = p5xo + 50
-                    self.y = p5yo + 20
+                    if UP:
+                        self.x = p5xo + 50
+                        self.y = p5yo + 20
+                    elif DOWN:
+                        self.x=p5xo+50
+                        self.y=p5yo+90
+                    elif RIGHT:
+                        self.x=p5xo+75
+                        self.y=p5yo+60
+                    elif LEFT:
+                        self.x=p5xo
+                        self.y=p5yo+60
+                    else:
+                        self.x=p5xo+60
+                        self.y=p5yo+50
             else:
+                
                 if self.state == "D1":
                     self.x = oxo
-                    self.y = oyo
+                    self.y = oyo+60
                 elif self.state == "D2":
                     self.x = o2xo
-                    self.y = o2yo
+                    self.y = o2yo+60
                 elif self.state == "D3":
                     self.x = o3xo
-                    self.y = o3yo
+                    self.y = o3yo+60
                 elif self.state == "D4":
                     self.x = o4xo
-                    self.y = o4yo
+                    self.y = o4yo+60
                 elif self.state == "D5":
                     self.x = o5xo
-                    self.y = o5yo
-                transition()
+                    self.y = o5yo+60
+                transitiono()
         pygame.draw.circle(s, (255, 140, 0), [self.x, self.y], self.rad)
 
 
@@ -1999,197 +2133,223 @@ def plycurval():
         return valp5[3:5]
 
 
-def transition():
-    global px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y
-    global ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y
+        
+def transitiono():
     global oxo, oyo, o2xo, o2yo, o3xo, o3yo, o4xo, o4yo, o5xo, o5yo
     global pxo, pyo, p2xo, p2yo, p3xo, p3yo, p4xo, p4yo, p5xo, p5yo
-    global status, coll, setO, setD, sec, a1, collo, stat1
-    global notransit, shoot, dtime, otime, activeplayer, movement
-
+    global status, setO, sec, a1, collo, stat1
+    global notransit, shoot, dtime, otime, movement,defplayer,traover
     notransit = False
-    if status == "DEFENSE":
-        coll = False
-        shoot = False
-        ax, ay = 725, 200
-        bx, by = 1050, 40
-        cx, cy = 1050, 360
-        dx, dy = 1250, 120
-        ex, ey = 1250, 290
-        fx, fy = 925, 200
-        gx, gy = 1100, 90
-        hx, hy = 1100, 320
-        ix, iy = 1300, 160
-        jx, jy = 1300, 255
-        step1 = max(abs(ax - px), abs(ay - py))
-        step2 = max(abs(bx - p2x), abs(by - p2y))
-        step3 = max(abs(cx - p3x), abs(cy - p3y))
-        step4 = max(abs(dx - p4x), abs(dy - p4y))
-        step5 = max(abs(ex - p5x), abs(ey - p5y))
-        step6 = max(abs(fx - ox), abs(fy - oy))
-        step7 = max(abs(gx - o2x), abs(gy - o2y))
-        step8 = max(abs(hx - o3x), abs(hy - o3y))
-        step9 = max(abs(ix - o4x), abs(iy - o4y))
-        step10 = max(abs(jx - o5x), abs(jy - o5y))
-        try:
-            px += (ax - px) / step1
-            py += (ay - py) / step1
-        except:
-            pass
-        try:
-            p2x += (bx - p2x) / step2
-            p2y += (by - p2y) / step2
-        except:
-            pass
-        try:
-            p3x += (cx - p3x) / step3
-            p3y += (cy - p3y) / step3
-        except:
-            pass
-        try:
-            p4x += (dx - p4x) / step4
-            p4y += (dy - p4y) / step4
-        except:
-            pass
-        try:
-            p5x += (ex - p5x) / step5
-            p5y += (ey - p5y) / step5
-        except:
-            pass
-        if math.dist([ox, oy], [fx, fy]) <= 1:
-            ox, oy = fx, fy
-        else:
-            ox += (fx - ox) / step6
-            oy += (fy - oy) / step6
-        if math.dist([o2x, o2y], [gx, gy]) <= 1:
-            o2x, o2y = gx, gy
-        else:
-            o2x += (gx - o2x) / step7
-            o2y += (gy - o2y) / step7
-        if math.dist([o3x, o3y], [hx, hy]) <= 1:
-            o3x, o3y = hx, hy
-        else:
-            o3x += (hx - o3x) / step8
-            o3y += (hy - o3y) / step8
+    sec = 5
+    traover=False
+    collo = False
+    shoot = False
+    ax, ay = 500, 160
+    bx, by = 285, 50
+    cx, cy = 285, 320
+    dx, dy = 90, 110
+    ex, ey = 85, 250
+    fx, fy = 675, 160
+    gx, gy = 365, 0
+    hx, hy = 370, 339.5
+    ix, iy = 145, 70
+    jx, jy = 145, 260
+    step1 = max(abs(ax - pxo), abs(ay - pyo))
+    step2 = max(abs(bx - p2xo), abs(by - p2yo))
+    step3 = max(abs(cx - p3xo), abs(cy - p3yo))
+    step4 = max(abs(dx - p4xo), abs(dy - p4yo))
+    step5 = max(abs(ex - p5xo), abs(ey - p5yo))
+    step6 = max(abs(fx - oxo), abs(fy - oyo))
+    step7 = max(abs(gx - o2xo), abs(gy - o2yo))
+    step8 = max(abs(hx - o3xo), abs(hy - o3yo))
+    step9 = max(abs(ix - o4xo), abs(iy - o4yo))
+    step10 = max(abs(jx - o5xo), abs(jy - o5yo))
+    if math.dist([pxo, pyo], [ax, ay]) <= 10:
+        pxo, pyo = ax, ay
+        step1 = 0
+    else:
+        pxo += ((ax - pxo) / step1)*20
+        pyo += ((ay - pyo) / step1)*20
+    if math.dist([p2xo, p2yo], [bx, by]) <= 10:
+        p2xo, p2yo = bx, by
+        step2 = 0
+    else:
+        p2xo += ((bx - p2xo) / step2)*20
+        p2yo += ((by - p2yo) / step2)*20
+    if math.dist([p3xo, p3yo], [cx, cy]) <= 10:
+        p3xo, p3yo = cx, cy
+        step3 = 0
+    else:
+        p3xo += ((cx - p3xo) / step3)*20
+        p3yo += ((cy - p3yo) / step3)*20
+        
+    if math.dist([p4xo, p4yo], [dx, dy]) <= 10:
+        p4xo, p4yo = dx, dy
+        step4 = 0
+    else:
+        p4xo += ((dx - p4xo) / step4)*20
+        p4yo += ((dy - p4yo) / step4)*20
+    if math.dist([p5xo, p5yo], [ex, ey]) <= 10:
+        p5xo, p5yo = ex, ey
+        step5 = 0
+    else:
+        p5xo += ((ex - p5xo) / step5)*20
+        p5yo += ((ey - p5yo) / step5)*20
+    if math.dist([oxo, oyo], [fx, fy]) <= 10:
+        oxo, oyo = fx, fy
+        step6 = 0
+    else:
+        oxo += ((fx - oxo) / step6)*20
+        oyo += ((fy - oyo) / step6)*20
+    if math.dist([o2xo, o2yo], [gx, gy]) <= 10:
+        o2xo, o2yo = gx, gy
 
-        if math.dist([o4x, o4y], [ix, iy]) <= 1:
-            o4x, o4y = ix, iy
-        else:
-            o4x += (ix - o4x) / step9
-            o4y += (iy - o4y) / step9
-        if math.dist([o5x, o5y], [jx, jy]) <= 1:
-            o5x, o5y = jx, jy
-        else:
-            o5x += (jx - o5x) / step10
-            o5y += (jy - o5y) / step10
-        if step1 == 0 and step2 == 0 and step3 == 0 and step4 == 0 and step5 == 0 and step6 == 0 and step7 == 0 and step8 == 0 and step9 == 0 and step10 == 0:
-            coll = False
-            setD = False
-            notransit = True
-            ball.state(B2, "P")
-            dtime = 0
-            movement = True
-            activeplayer = "pg"
-            otime = pygame.time.get_ticks() + 21000
-            status = "OFFENSE"
-            px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y = 500, 200, 285, 90, 285, 320, 85, 160, 85, 255
-            ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y = 675, 200, 365, 35, 370, 370, 145, 120, 145, 290
-
-    if status == "OFFENSE":
-        sec = 5
-        collo = False
-        shoot = False
-        ax, ay = 500, 200
-        bx, by = 285, 90
-        cx, cy = 285, 320
-        dx, dy = 85, 160
-        ex, ey = 85, 255
-        fx, fy = 675, 200
-        gx, gy = 365, 35
-        hx, hy = 370, 370
-        ix, iy = 145, 120
-        jx, jy = 145, 290
-        step1 = max(abs(ax - pxo), abs(ay - pyo))
-        step2 = max(abs(bx - p2xo), abs(by - p2yo))
-        step3 = max(abs(cx - p3xo), abs(cy - p3yo))
-        step4 = max(abs(dx - p4xo), abs(dy - p4yo))
-        step5 = max(abs(ex - p5xo), abs(ey - p5yo))
-        step6 = max(abs(fx - oxo), abs(fy - oyo))
-        step7 = max(abs(gx - o2xo), abs(gy - o2yo))
-        step8 = max(abs(hx - o3xo), abs(hy - o3yo))
-        step9 = max(abs(ix - o4xo), abs(iy - o4yo))
-        step10 = max(abs(jx - o5xo), abs(jy - o5yo))
-        try:
-            pxo += (ax - pxo) / step1
-            pyo += (ay - pyo) / step1
-        except:
-            pass
-        try:
-            p2xo += (bx - p2xo) / step2
-            p2yo += (by - p2yo) / step2
-        except:
-            pass
-        try:
-            p3xo += (cx - p3xo) / step3
-            p3yo += (cy - p3yo) / step3
-        except:
-            pass
-        try:
-            p4xo += (dx - p4xo) / step4
-            p4yo += (dy - p4yo) / step4
-        except:
-            pass
-        try:
-            p5xo += (ex - p5xo) / step5
-            p5yo += (ey - p5yo) / step5
-        except:
-            pass
-        if math.dist([oxo, oyo], [fx, fy]) <= 1:
-            oxo, oyo = fx, fy
-            step6 = 0
-        else:
-            oxo += (fx - oxo) / step6
-            oyo += (fy - oyo) / step6
-        if math.dist([o2xo, o2yo], [gx, gy]) <= 1:
-            o2xo, o2yo = gx, gy
-
-        else:
-            o2xo += (gx - o2xo) / step7
-            o2yo += (gy - o2yo) / step7
-        if math.dist([o3xo, o3yo], [hx, hy]) <= 1:
-            o3xo, o3yo = hx, hy
-        else:
-            o3xo += (hx - o3xo) / step8
-            o3yo += (hy - o3yo) / step8
-
-        if math.dist([o4xo, o4yo], [ix, iy]) <= 1:
-            o4xo, o4yo = ix, iy
-        else:
-            o4xo += (ix - o4xo) / step9
-            o4yo += (iy - o4yo) / step9
-        if math.dist([o5xo, o5yo], [jx, jy]) <= 1:
-            o5xo, o5yo = jx, jy
-        else:
-            o5xo += (jx - o5xo) / step10
-            o5yo += (jy - o5yo) / step10
-        if step1 == 0 and step2 == 0 and step3 == 0 and step4 == 0 and step5 == 0 and step6 == 0 and step7 == 0 and step8 == 0 and step9 == 0 and step10 == 0:
-            notransit = True
-            a1 = random.randint(1, 10)
-            dtime = pygame.time.get_ticks() + 21000
-            otime = 0
-            o4x, o5x = o4xo, o5xo
-            o4y, o5y = o4yo, o5yo
-            o3x, o3y, o2x, o2y, ox, oy = o3xo, o3yo, o2xo, o2yo, oxo, oyo
-            defplayer = "pg"
-            ball.state(b1, "P")
-            activeopp = "pg"
-            setO = False
-            stat1 = "P"
-            status = "DEFENSE"
-            pxo, pyo, p2xo, p2yo, p3xo, p3yo, p4xo, p4yo, p5xo, p5yo = 725, 200, 1050, 40, 1050, 360, 1250, 120, 1250, 290
-            oxo, oyo, o2xo, o2yo, o3xo, o3yo, o4xo, o4yo, o5xo, o5yo = 925, 200, 1100, 90, 1100, 320, 1300, 160, 1300, 255
+    else:
+        o2xo += ((gx - o2xo) / step7)*20
+        o2yo += ((gy - o2yo) / step7)*20
+        
+    if math.dist([o3xo, o3yo], [hx, hy]) <= 11:
+        o3xo, o3yo = hx, hy
+    else:
+        o3xo += ((hx - o3xo) / step8)*20
+        o3yo += ((hy - o3yo) / step8)*20
+        
+    if math.dist([o4xo, o4yo], [ix, iy]) <= 10:
+        o4xo, o4yo = ix, iy
+    else:
+        o4xo += ((ix - o4xo) / step9)*20
+        o4yo += ((iy - o4yo) / step9)*20
+        
+    if math.dist([o5xo, o5yo], [jx, jy]) <= 10:
+        o5xo, o5yo = jx, jy
+        
+    else:
+        o5xo += ((jx - o5xo) / step10)*20
+        o5yo += ((jy - o5yo) / step10)*20
+        
+    if step1 == 0 and step2 == 0 and step3 == 0 and step4 == 0 and step5 == 0 and step6 == 0 and step7 == 0 and step8 == 0 and step9 == 0 and step10 == 0:
+        notransit=True
+        a1 = random.randint(1, 10)
+        dtime = pygame.time.get_ticks() + 21000
+        otime = 0
+        defplayer = "pg"
+        ball.state(b1, "P")
+        activeopp = "pg"
+        setO = False
+        stat1 = "P"
+        status = "DEFENSE"
+        pxo, pyo, p2xo, p2yo, p3xo, p3yo, p4xo, p4yo, p5xo, p5yo = 725, 160, 1050, 0, 1050, 339.5, 1250, 70, 1250, 260
+        oxo, oyo, o2xo, o2yo, o3xo, o3yo, o4xo, o4yo, o5xo, o5yo = 925, 160, 1100, 30, 1100, 320, 1300, 110, 1300, 240
 
 
+def transitiond():
+    global px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y
+    global ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y
+    global status, coll, setD, sec, stat1
+    global notransit,shoot, dtime, otime, activeplayer, movement,traover
+    notransit = False
+    #traover=False
+    sec=5
+    coll = False
+    shoot = False
+    ax, ay = 725, 160
+    bx, by = 1050, 0
+    cx, cy = 1050, 339.5
+    dx, dy = 1250, 70
+    ex, ey = 1250, 260
+    fx, fy = 925, 160
+    gx, gy = 1100, 30
+    hx, hy = 1100, 320
+    ix, iy = 1300, 110
+    jx, jy = 1300, 240
+    step1 = max(abs(ax - px), abs(ay - py))
+    step2 = max(abs(bx - p2x), abs(by - p2y))
+    step3 = max(abs(cx - p3x), abs(cy - p3y))
+    step4 = max(abs(dx - p4x), abs(dy - p4y))
+    step5 = max(abs(ex - p5x), abs(ey - p5y))
+    step6 = max(abs(fx - ox), abs(fy - oy))
+    step7 = max(abs(gx - o2x), abs(gy - o2y))
+    step8 = max(abs(hx - o3x), abs(hy - o3y))
+    step9 = max(abs(ix - o4x), abs(iy - o4y))
+    step10 = max(abs(jx - o5x), abs(jy - o5y))
+    if math.dist([px, py], [ax, ay]) <= 11:
+        px, py = ax, ay
+        step1 = 0
+    else:
+        px += ((ax - px) / step1)*20
+        py += ((ay - py) / step1)*20
+    if math.dist([p2x, p2y], [bx, by]) <= 11:
+        p2x, p2y = bx, by
+        step2 = 0
+    else:
+        p2x += ((bx - p2x) / step2)*20
+        p2y += ((by - p2y) / step2)*20
+    if math.dist([p3x, p3y], [cx, cy]) <= 11:
+        p3x, p3y = cx, cy
+        step3 = 0
+    else:
+        p3x += ((cx - p3x) / step3)*20
+        p3y += ((cy - p3y) / step3)*20
+    if math.dist([p4x, p4y], [dx, dy]) <= 11:
+        p4x, p4y = dx, dy
+        step4 = 0
+    else:
+        p4x += ((dx - p4x) / step4)*20
+        p4y += ((dy - p4y) / step4)*20
+    if math.dist([p5x, p5y], [ex, ey]) <= 11:
+        p5x, p5y = ex, ey
+        step5 = 0
+    else:
+        p5x += ((ex - p5x) / step5)*20
+        p5y += ((ey - p5y) / step5)*20
+    if math.dist([ox, oy], [fx, fy]) <= 11:
+        ox, oy = fx, fy
+        step6 = 0
+    else:
+        ox += ((fx - ox) / step6)*20
+        oy += ((fy - oy) / step6)*20
+    if math.dist([o2x, o2y], [gx, gy]) <= 11:
+        o2x, o2y = gx, gy
+        step7=0
+    else:
+        o2x += ((gx - o2x) / step7)*20
+        o2y += ((gy - o2y) / step7)*20
+        
+    if math.dist([o3x, o3y], [hx, hy]) <= 11:
+        o3x, o3y = hx, hy
+        step8=0
+    else:
+        o3x += ((hx - o3x) / step8)*20
+        o3y += ((hy - o3y) / step8)*20
+        
+    if math.dist([o4x, o4y], [ix, iy]) <=11:
+        o4x, o4y = ix, iy
+        step9=0
+    else:
+        o4x += ((ix - o4x) / step9)*20
+        o4y += ((iy - o4y) / step9)*20
+        
+    if math.dist([o5x, o5y], [jx, jy]) <= 11:
+        o5x, o5y = jx, jy
+        step10=0
+        
+    else:
+        o5x += ((jx - o5x) / step10)*20
+        o5y += ((jy - o5y) / step10)*20
+    if step1 == 0 and step2 == 0 and step3 == 0 and step4 == 0 and step5 == 0 and step6 == 0 and step7 == 0 and step8 == 0 and step9 == 0 and step10 == 0:
+        traover = True
+        ghgf=True
+        coll=False
+        setD = False
+        ball.state(B2, "P")
+        dtime = 0
+        movement = True
+        activeplayer = "pg"
+        otime = pygame.time.get_ticks() + 21000
+        status = "OFFENSE"
+        px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y = 500, 160, 285, 50, 285, 320, 90, 110, 85, 250
+        ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y = 675, 160, 365, 0, 370, 339.5, 145, 70, 145, 260
+    
 def over():
     global OVER
     if sc > 21:
@@ -2344,58 +2504,58 @@ l5 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.
 for i in l5:
     for j in i:
         j.set_colorkey((255,255,255))
-f1 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-      pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-      [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-      pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-      [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-      pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-      [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-      pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+f1 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
+      pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
+      [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
+      pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
+      [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
+      pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
+      [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
+      pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
 for i in f1:
     for j in i:
         j.set_colorkey((255,255,255))
-f2 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-      pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-      [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-      pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-      [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-      pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-      [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-      pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+f2 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
+      pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
+      [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
+      pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
+      [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
+      pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
+      [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
+      pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
 for i in f2:
     for j in i:
         j.set_colorkey((255,255,255))
-f3 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-      pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-      [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-      pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-      [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-      pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-      [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-      pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+f3 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
+      pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
+      [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
+      pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
+      [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
+      pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
+      [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
+      pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
 for i in f3:
     for j in i:
         j.set_colorkey((255,255,255))
-f4 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-      pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-      [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-      pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-      [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-      pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-      [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-      pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+f4 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
+      pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
+      [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
+      pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
+      [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
+      pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
+      [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
+      pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
 for i in f4:
     for j in i:
         j.set_colorkey((255,255,255))
-f5 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-      pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-      [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-      pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-      [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-      pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-      [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-      pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+f5 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
+      pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
+      [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
+      pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
+      [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
+      pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
+      [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
+      pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
 for i in f5:
     for j in i:
         j.set_colorkey((255,255,255))
@@ -2444,11 +2604,15 @@ pass2 = True
 pass3 = True
 pass4 = True
 pass5 = True
-pass1dur = 1
+movestat1="N"
+movestat2="N"
+movestat3="N"
+movestat4="N"
+movestat5="N"
+pass1dur = random.randint(3,6)
 pass2dur = random.randint(7, 9)
 pass3dur = random.randint(11, 13)
 pass4dur = random.randint(15, 17)
-pass5dur = random.randint(3, 5)
 a1 = random.randint(1, 10)
 block = False
 shoot = False
@@ -2456,7 +2620,9 @@ coll = False
 collo = False
 movement = True
 move = True
+traover= False
 fin = False
+dz ,dz1 = 0 , 0
 setO = False
 setD = False
 OVER = False
@@ -2494,18 +2660,23 @@ itext = "INTERCEPTED"
 icenter = (580, 40)
 status = 'OFFENSE'
 notransit = True
-px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y = 500, 200, 285, 90, 285, 320, 85, 160, 85, 255
-ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y = 675, 200, 365, 35, 370, 370, 145, 120, 145, 290
+px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y = 500, 160, 285, 50, 285, 320, 90, 110, 85, 240
+oldpx,oldpy,oldp2x,oldp2y,oldp3x,oldp3y,oldp4x,oldp4y,oldp5x,oldp5y = px, py, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y
+ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y = 675, 160, 365, 0, 370, 339.5, 145, 70, 145, 260
+oldox,oldoy,oldo2x,oldo2y,oldo3x,oldo3y,oldo4x,oldo4y,oldo5x,oldo5y = ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y
 b1 = ball(ox, oy + 40)
 cx, cy = 85, 217
-pxo, pyo, p2xo, p2yo, p3xo, p3yo, p4xo, p4yo, p5xo, p5yo = 725, 200, 1050, 40, 1050, 360, 1250, 120, 1250, 290
-oxo, oyo, o2xo, o2yo, o3xo, o3yo, o4xo, o4yo, o5xo, o5yo = 925, 200, 1100, 90, 1100, 320, 1300, 160, 1300, 255
+pxo, pyo, p2xo, p2yo, p3xo, p3yo, p4xo, p4yo, p5xo, p5yo = 725, 160, 1050, 0, 1050, 339.5, 1250, 70, 1250, 260
+oldpxo,oldpyo,oldp2xo,oldp2yo,oldp3xo,oldp3yo,oldp4xo,oldp4yo,oldp5xo,oldp5yo = pxo, pyo, p2xo, p2yo, p3xo, p3yo, p4xo, p4yo, p5xo, p5yo
+oxo, oyo, o2xo, o2yo, o3xo, o3yo, o4xo, o4yo, o5xo, o5yo = 925, 160, 1100, 30, 1100, 320, 1300, 110, 1300, 240
+oldoxo, oldoyo, oldo2xo, oldo2yo, oldo3xo, oldo3yo, oldo4xo, oldo4yo, oldo5xo, oldo5yo = oxo, oyo, o2xo, o2yo, o3xo, o3yo, o4xo, o4yo, o5xo, o5yo
 B2 = ball(pxo, pyo)
 c2x, c2y = 1375, 225
 blittime = None
 dtime = 22000
 otime = 22000
 i = True
+ghgf=False
 clock = pygame.time.Clock()
 coord = []
 b, b2 = 280, 130
@@ -2612,13 +2783,16 @@ while RUN:
     scoretxt = str(scp) + " - " + str(sc)
     zpr = [[ox, oy], [o2x, o2y], [o3x, o3y], [o4x, o4y], [o5x, o5y]]
     text = font.render(scoretxt, True, [155, 0, 0], [0, 0, 0])
-    nonpcollide()
     s.blit(text, textcenter)
+   # nonpcollide()
+    if traover==True:
+        notransit=True
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        elif event.type == pygame.KEYDOWN:
+        
+        if event.type == pygame.KEYDOWN:
             if notransit == True:
                 if status == 'DEFENSE':
                     if event.key == pygame.K_LEFT or event.key == pygame.K_a:
@@ -2626,7 +2800,7 @@ while RUN:
                         RIGHT = False
                         UP = False
                         DOWN = False
-                        player.movement(curplayer(),0.5, 0)
+                        player.movement(curplayer(),-0.5, 0)
                     elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                         player.movement(curplayer(), 0.5, 0)
                         RIGHT = True
@@ -2655,7 +2829,8 @@ while RUN:
                         defplayer = "pf"
                     elif event.key == pygame.K_5:
                         defplayer = "c"
-                elif status == 'OFFENSE':
+                elif status=="OFFENSE":
+                    
                     if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                         LEFT = True
                         RIGHT = False
