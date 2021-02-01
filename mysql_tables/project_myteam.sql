@@ -33,8 +33,7 @@ CREATE TABLE `myteam` (
   `Defense_Inside` int NOT NULL,
   `Passing` int NOT NULL,
   `image` varchar(100) DEFAULT NULL,
-  `points` int NOT NULL DEFAULT '0',
-  `img1` varchar(4) DEFAULT NULL
+  `points` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -42,9 +41,7 @@ CREATE TABLE `myteam` (
 -- Dumping data for table `myteam`
 --
 
-LOCK TABLES `myteam` WRITE;
 /*!40000 ALTER TABLE `myteam` DISABLE KEYS */;
-INSERT INTO `myteam` VALUES ('15','Nikola Jokic','C',94,93,96,92,93,99,'nikolajokic.png',0,'i2'),('20','John Collins','PF',92,91,95,90,90,92,'johncollins.png',0,'pf6'),('11','Kyrie Irving','PG',94,97,95,88,84,94,'kyrieirving.png',0,'im3'),('2','Kawhi Leonard','SF',95,91,97,96,99,93,'kawhileonard.png',0,'ar3'),('13','Paul George','SG',94,92,96,97,93,92,'paulgeorge.png',0,'a3'),('3','Andre Drummond','C',85,81,93,86,94,82,'andredrummond.png',0,'i2');
 /*!40000 ALTER TABLE `myteam` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

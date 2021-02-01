@@ -34,7 +34,6 @@ CREATE TABLE `players` (
   `Passing` int NOT NULL,
   `image` varchar(100) NOT NULL,
   `points` int NOT NULL,
-  `img1` varchar(4) DEFAULT NULL,
   PRIMARY KEY (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

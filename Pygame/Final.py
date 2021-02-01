@@ -2402,7 +2402,8 @@ def draft(): #draft
     background_label =Label(root, image=Img)
     background_label.Img = Img
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
-    db=mysql.connector.connect(host='localhost',database='project',user='root',password='Agasthya0112')
+    db=mysql.connector.connect(host='localhost',database='project',user='root',password='Killonillmoger3432',auth_plugin="mysql_native_password")
+    
     mycur=db.cursor()
     im1 = ImageTk.PhotoImage(Image.open("stephcurry.png"))
     im2 = ImageTk.PhotoImage(Image.open("russelwestbrook.png"))
@@ -3218,7 +3219,7 @@ if RUN==True:
         for j in i:
             j.set_colorkey((255,255,255))
     
-    con=mysql.connector.connect(host='localhost',database='project',user='root',password='Agasthya0112')
+    con=mysql.connector.connect(host='localhost',database='project',user='root',password='Killmonillmoger3432',auth_pluplgin="mysql_native_password")
     cursor = con.cursor(buffered=True)
     cheer=pygame.mixer.Sound("cheer.wav")
     boo=pygame.mixer.Sound("boo.wav")

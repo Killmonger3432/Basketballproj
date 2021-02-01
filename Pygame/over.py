@@ -235,7 +235,7 @@ def abc(s1,s2,s3,s4,s5,k1,k2,k3,k4,k5,valp1,valp2,valp3,valp4,valp5,valo1,valo2,
                     if event.key==pygame.K_l:
                         leaders()
         pygame.display.update()
-db=mysql.connector.connect(host='localhost',database='project',user='root',password='Agasthya0112')
+db=mysql.connector.connect(host='localhost',database='project',user='root',password='Killmonger3432',auth_plugin="mysql_native_password")
 cur=db.cursor()
 sql1="select * from results"
 cur.execute(sql1)
