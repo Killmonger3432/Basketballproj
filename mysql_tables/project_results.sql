@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
--- Host: localhost    Database: project
+-- Host: localhost    Database: project_swisheroo
 -- ------------------------------------------------------
 -- Server version	8.0.19
 

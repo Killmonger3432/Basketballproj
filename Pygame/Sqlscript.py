@@ -1,7 +1,21 @@
 import mysql.connector
 import re
-db=mysql.connector.connect(user="root", host="localhost",passwd="Killmonger3432",auth_plugin="mysql_native_password",database="project")
-c=db.cursor()
+a=input("Enter your MySQL user name (usually root)")
+b=input("Enter your MySQL host (usually localhost)")
+c=input("Enter your MySQL remote Password(No security risk)")
+try:
+    db=mysql.connector.connect(user=a, host=b,passwd=c,auth_plugin="mysql_native_password")
+    cur=db.cursor()
+    cur.execute("Create DATABASE if not exists project_swisheroo")
+    db.commit()
+    cur.close()
+    db.close()
+    db=mysql.connector.connect(user=a, host=b,passwd=c,auth_plugin="mysql_native_password",database="project_swisheroo")
+    cur=db.cursor()
+except:
+    print("connection error, check your details")
+    print("User Name entered=",a,"Host=",b,"Password=",c)
+
 def exec_sql_file(cursor, sql_file):
     statement = ""
 
@@ -16,6 +30,15 @@ def exec_sql_file(cursor, sql_file):
             cursor.execute(statement)
 
             statement = ""
-exec_sql_file(c,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_myteam.sql')
-exec_sql_file(c,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_players.sql')
-exec_sql_file(c,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_results.sql')
+try:
+    exec_sql_file(cur,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_myteam.sql')
+    exec_sql_file(cur,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_players.sql')
+    exec_sql_file(cur,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_results.sql')
+except:
+    pass
+def create_det():
+    global c,a,b
+    sql_pwd=c
+    sql_user=a
+    sql_host=b
+    return sql_host,sql_pwd,sql_user
