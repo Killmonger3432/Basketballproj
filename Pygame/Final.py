@@ -1,3 +1,4 @@
+import PipInstall
 import pygame
 import random
 import math
@@ -2385,7 +2386,7 @@ from tkinter import ttk
 from tkinter.ttk import *
 from tkinter import messagebox
 import mysql.connector
-from pil import ImageTk,Image
+from PIL import ImageTk,Image
 def draft(): #draft
     root=Tk()
     root.title("Draft")
