@@ -5,5 +5,5 @@ This is a Two-Dimensional Basketball Game built completely using python and its 
 
 # Directions:
 
-To play you can simply clone the repository and run the **Final.py** file. The only prerequisite is installation of MySQL and Python. All the necessary modules will be installed if not already on system by a script, same goes for all databases and tables.
+To play you can simply clone the repository and run the **Final.py** file. The only prerequisite is installation of MySQL and Python. All the necessary modules will be installed if not already on system by a script, same goes for all databases and tables. Enjoy
 
