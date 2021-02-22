@@ -1,4 +1,5 @@
 import PipInstall
+import Sqlscript
 import pygame
 import random
 import math
