@@ -6,4 +6,4 @@ import os
 b=os.path.dirname(os.path.abspath("project_myteam.sql"))
 print("S",b)
 print("N",os.path.abspath(os.getcwd()))
-print("F",os.path.abspath(os.path.expanduser("/project_players.sql")))
+print(os.path.abspath("mysql_tables/project_myteam.sql"))
