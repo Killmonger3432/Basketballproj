@@ -8,7 +8,7 @@ from sys import exit
 from over import *
 import warnings
 from Sqlscript import create_det
-sqluser,sqlhost,sqlpwd=create_det()[0],create_det[1],create_det[2]
+sqlhost,sqlpwd,sqluser=create_det()
 
 warnings.filterwarnings("ignore")
 pygame.init()
@@ -2390,7 +2390,7 @@ from tkinter import ttk
 from tkinter.ttk import *
 from tkinter import messagebox
 import mysql.connector
-from PIL import ImageTk,Image
+from pil import ImageTk,Image
 def draft(): #draft
     root=Tk()
     root.title("Draft")
@@ -2401,12 +2401,14 @@ def draft(): #draft
     width=800
     height=800
     img = Image.open("Courtn2.png")
+    
     width,height=800,800
     img = img.resize((width,height), Image.ANTIALIAS)
     Img =  ImageTk.PhotoImage(img)
     background_label =Label(root, image=Img)
     background_label.Img = Img
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
+    print(sqlhost)
     db=mysql.connector.connect(host=sqlhost,database='project_swisheroo',user=sqluser,password=sqlpwd,auth_plugin="mysql_native_password")
     
     mycur=db.cursor()
@@ -2429,7 +2431,7 @@ def draft(): #draft
     i4 = ImageTk.PhotoImage(Image.open("rudygobert.png"))
     i5 = ImageTk.PhotoImage(Image.open("hassanwhiteside.png"))
     i6 = ImageTk.PhotoImage(Image.open("kristapsporzingis.png"))
-    i7 = ImageTk.PhotoImage(Image.open("bamadabeyo.png"))
+    i7 = ImageTk.PhotoImage(Image.open("bamadebayo.png"))
     i8 = ImageTk.PhotoImage(Image.open("clintcapela.png"))
     i9=ImageTk.PhotoImage(Image.open("nikolavucevic.png"))
     i10=ImageTk.PhotoImage(Image.open("stevenadams.png"))

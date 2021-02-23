@@ -1,5 +1,5 @@
 import mysql.connector
-import re
+import re,os
 a=input("Enter your MySQL user name (usually root)")
 b=input("Enter your MySQL host (usually localhost)")
 c=input("Enter your MySQL remote Password(No security risk)")
@@ -31,11 +31,14 @@ def exec_sql_file(cursor, sql_file):
 
             statement = ""
 try:
-    exec_sql_file(cur,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_myteam.sql')
+    
+    exec_sql_file(cur,'mysql_tables/project_myteam.sql')
     exec_sql_file(cur,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_players.sql')
     exec_sql_file(cur,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_results.sql')
 except:
     pass
+
+print(os.path.abspath("project_myteam.sql"))
 def create_det():
     global c,a,b
     sql_pwd=c

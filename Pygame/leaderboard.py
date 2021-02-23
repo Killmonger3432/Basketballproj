@@ -13,7 +13,7 @@ def leaders():
     headblit=headfont.render(headtext,True,[0,0,0],[155,0,0])
     boardfont=pygame.font.SysFont(headingdef,20)
     boardcenter=(100,70)
-    sqluser,sqlhost,sqlpwd=create_det[0],create_det[1],create_det[2]
+    sqlhost,sqlpwd,sqluser=create_det()
     db=mysql.connector.connect(host=sqlhost,database='project_swisheroo',user=sqluser,password=sqlpwd)
     cur=db.cursor()
     sql1="select name,points from players order by points desc"

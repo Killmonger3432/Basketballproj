@@ -5,7 +5,7 @@ from Sqlscript import create_det
 def abc(s1,s2,s3,s4,s5,k1,k2,k3,k4,k5,valp1,valp2,valp3,valp4,valp5,valo1,valo2,valo3,valo4,valo5):
     s=pygame.display.set_mode([1450,800])
     pygame.init()
-    sql_host,sql_user,sql_pwd=create_det[0],create_det[1],create_det[2]
+    sql_host,sql_pwd,sql_user=create_det()
     fontdef3=pygame.font.get_fonts()[0]
     winfont2=pygame.font.SysFont(fontdef3,30)
     wincenter2=(560,125)
