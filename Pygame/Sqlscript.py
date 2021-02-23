@@ -31,14 +31,15 @@ def exec_sql_file(cursor, sql_file):
 
             statement = ""
 try:
-    
-    exec_sql_file(cur,'mysql_tables/project_myteam.sql')
-    exec_sql_file(cur,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_players.sql')
-    exec_sql_file(cur,'/Users/agasthya/Pygame_BasketballGame/mysql_tables/project_results.sql')
+    k1-os.path.abspath("mysql_tables/project_myteam.sql")
+    k2=os.path.abspath("mysql_tables/project_players.sql")
+    k3=os.path.abspath("mysql_tables/project_results.sql")
+    exec_sql_file(cur,k1)
+    exec_sql_file(cur,k2)
+    exec_sql_file(cur,k3)
 except:
     pass
 
-print(os.path.abspath("project_myteam.sql"))
 def create_det():
     global c,a,b
     sql_pwd=c
