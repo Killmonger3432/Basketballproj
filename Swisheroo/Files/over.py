@@ -5,7 +5,10 @@ from Sqlscript import create_det
 def abc(s1,s2,s3,s4,s5,k1,k2,k3,k4,k5,valp1,valp2,valp3,valp4,valp5,valo1,valo2,valo3,valo4,valo5):
     s=pygame.display.set_mode([1450,800])
     pygame.init()
-    sql_host,sql_pwd,sql_user=create_det()
+    try:
+        sql_host,sql_pwd,sql_user=create_det()
+    except:
+        return 
     fontdef3=pygame.font.get_fonts()[0]
     winfont2=pygame.font.SysFont(fontdef3,30)
     wincenter2=(560,125)
@@ -26,13 +29,13 @@ def abc(s1,s2,s3,s4,s5,k1,k2,k3,k4,k5,valp1,valp2,valp3,valp4,valp5,valo1,valo2,
     r2font=pygame.font.SysFont(rfontdef,15)
     r2text="Game 5 refers to the 5th game before this"
     ltext="Press L to see the leaderboard"
-    img1=pygame.image.load(str(valp1[5])).convert()
-    img2=pygame.image.load(str(valp2[5])).convert()
-    img3=pygame.image.load(str(valp3[5])).convert()
-    img4=pygame.image.load(str(valp4[5])).convert()
-    img5=pygame.image.load(str(valp5[5])).convert()
-    COURT=pygame.image.load("Courtn2.png").convert()
-    icon=pygame.image.load("icon2.jpeg").convert()
+    img1=pygame.image.load("PlyCards/"+str(valp1[5])).convert()
+    img2=pygame.image.load("PlyCards/"+str(valp2[5])).convert()
+    img3=pygame.image.load("PlyCards/"+str(valp3[5])).convert()
+    img4=pygame.image.load("PlyCards/"+str(valp4[5])).convert()
+    img5=pygame.image.load("PlyCards/"+str(valp5[5])).convert()
+    COURT=pygame.image.load("Icons_and_Background/Courtn2.png").convert()
+    icon=pygame.image.load("Icons_and_Background/icon.png").convert()
     pygame.display.set_icon(icon)
     if s1+s2+s3+s4+s5>k1+k2+k3+k4+k5:
         r=True
@@ -63,7 +66,7 @@ def abc(s1,s2,s3,s4,s5,k1,k2,k3,k4,k5,valp1,valp2,valp3,valp4,valp5,valo1,valo2,
     
     if r:
         wintext= "YOU WIN"
-        pygame.mixer.music.load("CHA.mp3")
+        pygame.mixer.music.load("Audio/CHA.mp3")
         pygame.mixer.music.play(start=39)
         if res==[]:
             sql2='insert into results(Game_1) value("W")'
@@ -103,7 +106,7 @@ def abc(s1,s2,s3,s4,s5,k1,k2,k3,k4,k5,valp1,valp2,valp3,valp4,valp5,valo1,valo2,
             
     else:
         wintext= "YOU LOSE"
-        pygame.mixer.music.load("SOS.mp3")
+        pygame.mixer.music.load("Audio/SOS.mp3")
         pygame.mixer.music.play(start=0)
         
         if res==[]:

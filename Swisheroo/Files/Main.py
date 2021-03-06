@@ -5,10 +5,16 @@ import random
 import math
 import mysql.connector
 from sys import exit
+import os
 from over import *
 import warnings
 from Sqlscript import create_det
-sqlhost,sqlpwd,sqluser=create_det()
+
+
+try:
+    sqlhost,sqlpwd,sqluser=create_det()
+except:
+    exit()
 
 warnings.filterwarnings("ignore")
 pygame.init()
@@ -62,7 +68,6 @@ def curplayer(): #returns current player when they have ball
     elif defplayer=="c":
         return p5
 def useplayer():
-    global textp #returns current player when we have ball
     if activeplayer=="pg":
         return p1
     elif activeplayer=="sg":
@@ -296,7 +301,7 @@ class opponent(pygame.sprite.Sprite):
     def __init__(self, imagefile, x, y, xo, yo):
         super().__init__()
         pygame.sprite.Sprite.__init__(self)
-        self.load = pygame.image.load(imagefile).convert()
+        self.load = pygame.image.load("Sprites/"+str(imagefile)).convert()
         self.rect = self.load.get_rect()
         self.movex = 0
         self.movey = 0
@@ -334,7 +339,6 @@ class opponent(pygame.sprite.Sprite):
         global ox, oy, o2x, o2y, o3x, o3y, o4x, o4y, o5x, o5y
         global fin
         
-        hoopdis = math.dist([self.rect.x, self.rect.y], [65, 202.5])
         if a1 == 1:
             ax, ay = 405, 80
             bx, by = 85, 15
@@ -1179,8 +1183,7 @@ class player(pygame.sprite.Sprite):
     def __init__(self, imagefile, x, y, xo, yo):
         super().__init__()
         pygame.sprite.Sprite.__init__(self)
-
-        self.load = pygame.image.load(imagefile).convert()
+        self.load = pygame.image.load("Sprites/"+str(imagefile)).convert()
         self.movex = 0
         self.movey = 0
         self.rect = self.load.get_rect()
@@ -2395,12 +2398,12 @@ def draft(): #draft
     root=Tk()
     root.title("Draft")
     root.geometry('800x800')
-    img=Image.open("icon.png")
+    img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
     img=ImageTk.PhotoImage(img)
     root.iconphoto(False,img)
     width=800
     height=800
-    img = Image.open("Courtn2.png")
+    img = Image.open(os.path.abspath("Icons_and_Background/courtn2.png"))
     
     width,height=800,800
     img = img.resize((width,height), Image.ANTIALIAS)
@@ -2408,82 +2411,80 @@ def draft(): #draft
     background_label =Label(root, image=Img)
     background_label.Img = Img
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
-    print(sqlhost)
     db=mysql.connector.connect(host=sqlhost,database='project_swisheroo',user=sqluser,password=sqlpwd,auth_plugin="mysql_native_password")
     
     mycur=db.cursor()
-    im1 = ImageTk.PhotoImage(Image.open("stephcurry.png"))
-    im2 = ImageTk.PhotoImage(Image.open("russelwestbrook.png"))
-    im3 = ImageTk.PhotoImage(Image.open("kyrieirving.png"))
-    im4 = ImageTk.PhotoImage(Image.open("chrispaul.png"))
-    im5 = ImageTk.PhotoImage(Image.open("damianlillard.png"))
-    im6 = ImageTk.PhotoImage(Image.open("kembawalker.png"))
-    im7 = ImageTk.PhotoImage(Image.open("traeyoung.png"))
-    im8 = ImageTk.PhotoImage(Image.open("bensimmons.png"))
-    im9 = ImageTk.PhotoImage(Image.open("deaaronfox.png"))
-    im10 = ImageTk.PhotoImage(Image.open("kylelowry.png"))
-    im11 = ImageTk.PhotoImage(Image.open("jamorant.png"))
-    im12=ImageTk.PhotoImage(Image.open("dangelorussel.png"))
+    im1 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/stephcurry.png")))
+    im2 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/russelwestbrook.png")))
+    im3 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/kyrieirving.png")))
+    im4 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/chrispaul.png")))
+    im5 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/damianlillard.png")))
+    im6 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/kembawalker.png")))
+    im7 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/traeyoung.png")))
+    im8 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/bensimmons.png")))
+    im9 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/deaaronfox.png")))
+    im10 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/kylelowry.png")))
+    im11 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/jamorant.png")))
+    im12=ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/dangelorussel.png")))
 
-    i1 = ImageTk.PhotoImage(Image.open("joelembid.png"))
-    i2 = ImageTk.PhotoImage(Image.open("nikolajokic.png"))
-    i3 = ImageTk.PhotoImage(Image.open("karlanthonytowns.png"))
-    i4 = ImageTk.PhotoImage(Image.open("rudygobert.png"))
-    i5 = ImageTk.PhotoImage(Image.open("hassanwhiteside.png"))
-    i6 = ImageTk.PhotoImage(Image.open("kristapsporzingis.png"))
-    i7 = ImageTk.PhotoImage(Image.open("bamadebayo.png"))
-    i8 = ImageTk.PhotoImage(Image.open("clintcapela.png"))
-    i9=ImageTk.PhotoImage(Image.open("nikolavucevic.png"))
-    i10=ImageTk.PhotoImage(Image.open("stevenadams.png"))
-    i11=ImageTk.PhotoImage(Image.open("andredrummond.png"))
-    i12=ImageTk.PhotoImage(Image.open("montrezlharrel.png"))
+    i1 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/joelembid.png")))
+    i2 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/nikolajokic.png")))
+    i3 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/karlanthonytowns.png")))
+    i4 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/rudygobert.png")))
+    i5 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/hassanwhiteside.png")))
+    i6 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/kristapsporzingis.png")))
+    i7 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/bamadebayo.png")))
+    i8 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/clintcapela.png")))
+    i9=ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/nikolavucevic.png")))
+    i10=ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/stevenadams.png")))
+    i11=ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/andredrummond.png")))
+    i12=ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/montrezlharrel.png")))
 
-    a1 = ImageTk.PhotoImage(Image.open('jamesharden.png'))
-    a2 = ImageTk.PhotoImage(Image.open("lukadoncic.png"))
-    a3 = ImageTk.PhotoImage(Image.open("paulgeorge.png"))
-    a4 = ImageTk.PhotoImage(Image.open("bradleybeal.png"))
-    a5 = ImageTk.PhotoImage(Image.open("klaythompson.png"))
-    a6 = ImageTk.PhotoImage(Image.open("devinbooker.png"))
-    a7 = ImageTk.PhotoImage(Image.open("cjmcollum.png"))
-    a8 = ImageTk.PhotoImage(Image.open("donovanmitchell.png"))
-    a9 = ImageTk.PhotoImage(Image.open("victoroladipo.png"))
-    a10 = ImageTk.PhotoImage(Image.open("zachlavine.png"))
-    a11 = ImageTk.PhotoImage(Image.open("jaylenbrown.png"))
-    a12 = ImageTk.PhotoImage(Image.open("shaigalexander.png"))
+    a1 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/jamesharden.png")))
+    a2 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/lukadoncic.png")))
+    a3 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/paulgeorge.png")))
+    a4 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/bradleybeal.png")))
+    a5 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/klaythompson.png")))
+    a6 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/devinbooker.png")))
+    a7 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/cjmcollum.png")))
+    a8 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/donovanmitchell.png")))
+    a9 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/victoroladipo.png")))
+    a10 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/zachlavine.png")))
+    a11 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/jaylenbrown.png")))
+    a12 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/shaigalexander.png")))
 
-    pf1 = ImageTk.PhotoImage(Image.open('gantetokounmpo.png'))
-    pf2 = ImageTk.PhotoImage(Image.open("anthonydavis.png"))
-    pf3 = ImageTk.PhotoImage(Image.open("pascalsiakam.png"))
-    pf4 = ImageTk.PhotoImage(Image.open("jaysontatum.png"))
-    pf5 = ImageTk.PhotoImage(Image.open("zionwilliamson.png"))
-    pf6 = ImageTk.PhotoImage(Image.open("johncollins.png"))
-    pf7 = ImageTk.PhotoImage(Image.open("blakegriffin.png"))
-    pf8 = ImageTk.PhotoImage(Image.open("domantassabonis.png"))
-    pf9 = ImageTk.PhotoImage(Image.open("danilogallinari.png"))
-    pf10 = ImageTk.PhotoImage(Image.open("jarenjacksonjr.png"))
-    pf11 = ImageTk.PhotoImage(Image.open("alhorford.png"))
-    pf12 = ImageTk.PhotoImage(Image.open("kevinlove.png"))
+    pf1 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/gantetokounmpo.png")))
+    pf2 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/anthonydavis.png")))
+    pf3 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/pascalsiakam.png")))
+    pf4 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/jaysontatum.png")))
+    pf5 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/zionwilliamson.png")))
+    pf6 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/johncollins.png")))
+    pf7 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/blakegriffin.png")))
+    pf8 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/domantassabonis.png")))
+    pf9 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/danilogallinari.png")))
+    pf10 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/jarenjacksonjr.png")))
+    pf11 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/alhorford.png")))
+    pf12 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/kevinlove.png")))
 
-    ar1 = ImageTk.PhotoImage(Image.open('lebronjames.png'))
-    ar2 = ImageTk.PhotoImage(Image.open("kevindurant.png"))
-    ar3 = ImageTk.PhotoImage(Image.open("kawhileonard.png"))
-    ar4 = ImageTk.PhotoImage(Image.open("jimmybutler.png"))
-    ar5 = ImageTk.PhotoImage(Image.open("khrismiddleton.png"))
-    ar6 = ImageTk.PhotoImage(Image.open("demarderozan.png"))
-    ar7 = ImageTk.PhotoImage(Image.open("brandoningram.png"))
-    ar8 = ImageTk.PhotoImage(Image.open("tobiasharris.png"))
-    ar9 = ImageTk.PhotoImage(Image.open("gordonhayward.png"))
-    ar10 = ImageTk.PhotoImage(Image.open("andrewwiggins.png"))
-    ar11 = ImageTk.PhotoImage(Image.open("tjwarren.png"))
-    ar12 = ImageTk.PhotoImage(Image.open("jonathanisaac.png"))
+    ar1 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/lebronjames.png")))
+    ar2 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/kevindurant.png")))
+    ar3 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/kawhileonard.png")))
+    ar4 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/jimmybutler.png")))
+    ar5 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/khrismiddleton.png")))
+    ar6 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/demarderozan.png")))
+    ar7 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/brandoningram.png")))
+    ar8 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/tobiasharris.png")))
+    ar9 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/gordonhayward.png")))
+    ar10 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/andrewwiggins.png")))
+    ar11 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/tjwarren.png")))
+    ar12 = ImageTk.PhotoImage(Image.open(os.path.abspath("PlyCards/jonathanisaac.png")))
 
     sflist=[ar1,ar2,ar3,ar4,ar5,ar6,ar7,ar8,ar9,ar10,ar11,ar12]
     pflist=[pf1,pf2,pf3,pf4,pf5,pf6,pf7,pf8,pf9,pf10,pf11,pf12]
     sglist=[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12]
     centerlist=[i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12]
     l3 = [im1, im2, im3, im4, im5, im6, im7, im8, im9, im10, im11,im12]
-    x=im1.height()
-    y=im1.width()
+
     sql = "select * from players where position='C' order by Overall desc"
     mycur.execute(sql)
     result = mycur.fetchall()
@@ -2492,7 +2493,6 @@ def draft(): #draft
     for i in range(len(l)):
         l4.append("\'{}\'".format(l[i][1]))
     listc = l4[:12]
-    nlist=[]
     sql = "select * from players where position='SG' order by Overall desc"
     mycur.execute(sql)
     result = mycur.fetchall()
@@ -2508,10 +2508,10 @@ def draft(): #draft
         
         new = Toplevel(root)
         new.geometry('1000x900')
-        img=Image.open("icon.png")
+        img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
         img=ImageTk.PhotoImage(img)
         new.iconphoto(False,img)
-        img = Image.open("Courtn2.png")
+        img = Image.open(os.path.abspath("Icons_and_Background/Courtn2.png"))
         width,height=1000,1000
         img = img.resize((width,height), Image.ANTIALIAS)
         Img =  ImageTk.PhotoImage(img)
@@ -2533,9 +2533,10 @@ def draft(): #draft
         index=[]
         for i in range(len(res)):
             name.append("\'{}\'".format(res[i][1]))
-            index.append("\"{}\"".format(res[i][9]))
+            index.append("\"{}\"".format("PlyCards/"+str(res[i][9])))
         imgs=[]
         l2 = []
+        
         def dele():
             sql="""DELETE FROM myteam where Name = %s"""
             
@@ -2638,7 +2639,7 @@ def draft(): #draft
 
     def sg():
         new2=Toplevel(root)
-        img=Image.open("icon.png")
+        img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
         img=ImageTk.PhotoImage(img)
         new2.iconphoto(False,img)
         new2.title("Shooting Guard")
@@ -2666,8 +2667,7 @@ def draft(): #draft
         new2.grab_set()
         #new.grab_release()
         r=StringVar()
-        bn=-1
-        img = Image.open("Courtn2.png")
+        img = Image.open(os.path.abspath("Icons_and_Background/courtn2.png"))
         img = img.resize((1300,1200), Image.ANTIALIAS)
         Img =  ImageTk.PhotoImage(img)
         background_label =Label(frame2, image=Img)
@@ -2706,7 +2706,7 @@ def draft(): #draft
     nlist=[]
     def pf():
         new2=Toplevel(root)
-        img=Image.open("icon.png")
+        img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
         img=ImageTk.PhotoImage(img)
         new2.iconphoto(False,img)
         new2.title("Power Forward")
@@ -2734,8 +2734,8 @@ def draft(): #draft
         new2.grab_set()
         #new.grab_release()
         r=StringVar()
-        bn=-1
-        img = Image.open("Courtn2.png")
+         
+        img = Image.open(os.path.abspath("Icons_and_Background/courtn2.png"))
         img = img.resize((1300,1200), Image.ANTIALIAS)
         Img =  ImageTk.PhotoImage(img)
         background_label =Label(frame2, image=Img)
@@ -2764,7 +2764,7 @@ def draft(): #draft
 
     def center():
         new2=Toplevel(root)
-        img=Image.open("icon.png")
+        img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
         img=ImageTk.PhotoImage(img)
         new2.iconphoto(False,img)
         new2.title("Center")
@@ -2792,8 +2792,8 @@ def draft(): #draft
 
         new2.grab_set()
         r=StringVar()
-        bn=-1
-        img = Image.open("Courtn2.png")
+         
+        img = Image.open(os.path.abspath("Icons_and_Background/courtn2.png"))
         img = img.resize((1300,1200), Image.ANTIALIAS)
         Img =  ImageTk.PhotoImage(img)
         background_label =Label(frame2, image=Img)
@@ -2832,7 +2832,7 @@ def draft(): #draft
     nlist=[]
     def sf():
         new2=Toplevel(root)
-        img=Image.open("icon.png")
+        img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
         img=ImageTk.PhotoImage(img)
         new2.iconphoto(False,img)
         new2.title("Small Forward")
@@ -2861,8 +2861,8 @@ def draft(): #draft
         new2.grab_set()
         #new.grab_release()
         r=StringVar()
-        bn=-1
-        img = Image.open("Courtn2.png")
+         
+        img = Image.open(os.path.abspath("Icons_and_Background/courtn2.png"))
         img = img.resize((1300,1200), Image.ANTIALIAS)
         Img =  ImageTk.PhotoImage(img)
         background_label =Label(frame2, image=Img)
@@ -2903,7 +2903,7 @@ def draft(): #draft
 
     def pg():
         new3=Toplevel(root)
-        img=Image.open("icon.png")
+        img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
         img=ImageTk.PhotoImage(img)
         new3.iconphoto(False,img)
         new3.title("Point Guard")
@@ -2931,8 +2931,8 @@ def draft(): #draft
         new3.grab_set()
         #new.grab_release()
         r=StringVar()
-        bn=-1
-        img = Image.open("Courtn2.png")
+         
+        img = Image.open(os.path.abspath("Icons_and_Background/courtn2.png"))
         img = img.resize((1300,1200), Image.ANTIALIAS)
         Img =  ImageTk.PhotoImage(img)
         background_label =Label(frame3, image=Img)
@@ -2963,14 +2963,14 @@ def draft(): #draft
     def q():
         
         new=Toplevel(root)
-        img=Image.open("icon.png")
+        img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
         img=ImageTk.PhotoImage(img)
         new.iconphoto(False,img)
         new.geometry('650x650')
         new.title("Music Settings")
         new.attributes("-topmost", True)
         width,height=650,650
-        img = Image.open("Courtn2.png")
+        img = Image.open(os.path.abspath("Icons_and_Background/courtn2.png"))
         img = img.resize((width,height), Image.ANTIALIAS)
         Img =  ImageTk.PhotoImage(img)
         background_label =Label(new, image=Img)
@@ -2980,11 +2980,11 @@ def draft(): #draft
         i=[("Imperial March - Darth Vader Theme","Imp"),("In The End - Linkin Park","ITE"),("We Are the Champions - Queen","CHA"),("Enter Sandman - Metallica","ENS"),("New Divide - Linkin Park","NEW"),("Teenagers - My Chemical Romance","TEN"),("Welcome to the Black Parade- MCR","TBP"),("Sweet Child O' Mine - Guns N' Roses","SCM"),("Don't Cry - Guns N' Roses","DOC"),("Star Wars Main Theme","STW"),("Papercut - Linkin Park","PAP"),("Rap God - Eminem","RAP"),("Lose Yourself - Eminem","LOY"),("Boulevard of Broken Dreams - Green Day","BBD"),("Jesus of Suburbia - Green Day","JSB"),("Why Do We Fall? - Hanz Zimmer","WDW"),("S.T.A.Y - Hans Zimmer (Interstellar Theme)","INT"),("Humble - Kendrick Lamar","HUM"),("DNA - Kendrick Lamar","DNA"),("Master Of Puppets - Metallica","MOP"),("Smells Like Teen Spirit - Nirvana","SLT"),("Sound of Silence - Simon and Garfunkel","SOS")]                                                                                                                                                                                                                                                                                                
         k=[]
         for y in i:
-            m=str(y[1]+str('.mp3'))
+            m=str("Audio/"+y[1]+str('.mp3'))
             pygame.mixer.music.queue(str(m))
         def play():
             pygame.mixer.music.unload()
-            o=str(z.get())+ str('.mp3')
+            o=str("Audio/")+str(z.get())+ str('.mp3')
             pygame.mixer.music.load(o)
             pygame.mixer.music.set_volume(0.2)
             pygame.mixer.music.play()
@@ -3025,11 +3025,11 @@ def draft(): #draft
 root=Tk()
 root.title("Welcome Page")
 root.geometry('1000x1000')
-img=Image.open("icon.png")
+img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
 img=ImageTk.PhotoImage(img)
 
 root.iconphoto(False,img)
-pygame.mixer.music.load("STW.mp3")
+pygame.mixer.music.load(os.path.abspath("Audio/STW.mp3"))
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play() 
 def resize_image(event):
@@ -3051,14 +3051,14 @@ def s():
 def q():
     
     new=Toplevel(root)
-    img=Image.open("icon.png")
+    img=Image.open(os.path.abspath("Icons_and_Background/icon.png"))
     img=ImageTk.PhotoImage(img)
     new.iconphoto(False,img)
     new.geometry('650x650')
     new.title("Music Settings")
     new.attributes("-topmost", True)
     width,height=650,650
-    img = Image.open("Courtn2.png")
+    img = Image.open(os.path.abspath("Icons_and_Background/courtn2.png"))
     img = img.resize((width,height), Image.ANTIALIAS)
     Img =  ImageTk.PhotoImage(img)
     background_label =Label(new, image=Img)
@@ -3068,11 +3068,11 @@ def q():
     i=[("Imperial March - Darth Vader Theme","Imp"),("In The End - Linkin Park","ITE"),("We Are the Champions - Queen","CHA"),("Enter Sandman - Metallica","ENS"),("New Divide - Linkin Park","NEW"),("Teenagers - My Chemical Romance","TEN"),("Welcome to the Black Parade- MCR","TBP"),("Sweet Child O' Mine - Guns N' Roses","SCM"),("Don't Cry - Guns N' Roses","DOC"),("Star Wars Main Theme","STW"),("Papercut - Linkin Park","PAP"),("Rap God - Eminem","RAP"),("Lose Yourself - Eminem","LOY"),("Boulevard of Broken Dreams - Green Day","BBD"),("Jesus of Suburbia - Green Day","JSB"),("Why Do We Fall? - Hanz Zimmer","WDW"),("S.T.A.Y - Hans Zimmer (Interstellar Theme)","INT"),("Humble - Kendrick Lamar","HUM"),("DNA - Kendrick Lamar","DNA"),("Master Of Puppets - Metallica","MOP"),("Smells Like Teen Spirit - Nirvana","SLT"),("Sound of Silence - Simon and Garfunkel","SOS")]                                                                                                                                                                                                                                                                                                
     k=[]
     for y in i:
-        m=str(y[1]+str('.mp3'))
+        m=str("Audio/"+y[1]+str('.mp3'))
         pygame.mixer.music.queue(str(m))
     def play():
         pygame.mixer.music.unload()
-        o=str(z.get())+ str('.mp3')
+        o=str("Audio/")+str(z.get())+ str('.mp3')
         pygame.mixer.music.load(o)
         pygame.mixer.music.set_volume(0.2)
         pygame.mixer.music.play()
@@ -3096,7 +3096,7 @@ def q():
     l3.place(x=250,y=600)
 
     messagebox.showinfo("Guide","Click on any radio button to change the song")
-image = Image.open('courtn3.png')
+image = Image.open(os.path.abspath("Icons_and_Background/courtn3.png"))
 copy_of_image = image.copy()
 photo = ImageTk.PhotoImage(image)
 label = ttk.Label(root, image = photo)
@@ -3112,124 +3112,124 @@ root.mainloop()
 if RUN==True:
     s = pygame.display.set_mode([1450, 800])
     pygame.display.set_caption("Swisheroo")
-    COURT = pygame.image.load("Courtn2.png").convert()
-    icon = pygame.image.load("icon2.jpeg").convert()
+    COURT = pygame.image.load(os.path.abspath("Icons_and_Background/courtn2.png")).convert()
+    icon = pygame.image.load(os.path.abspath("Icons_and_Background/icon.png")).convert()
     pygame.display.set_icon(icon)
-    l1 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-          pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-          [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-          pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-          [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-          pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-          [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-          pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+    l1 = [[pygame.image.load(os.path.abspath("Sprites/down1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/down3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/left1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/left3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/right1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/right3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/up1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/up3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up4.png")).convert_alpha()]]
     for i in l1:
         for j in i:
             j.set_colorkey((255,255,255))
-    l2 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-          pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-          [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-          pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-          [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-          pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-          [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-          pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+    l2 = [[pygame.image.load(os.path.abspath("Sprites/down1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/down3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/left1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/left3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/right1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/right3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/up1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/up3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up4.png")).convert_alpha()]]
     for i in l2:
         for j in i:
             j.set_colorkey((255,255,255))
-    l3 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-          pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-          [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-          pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-          [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-          pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-          [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-          pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+    l3 = [[pygame.image.load(os.path.abspath("Sprites/down1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/down3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/left1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/left3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/right1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/right3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/up1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/up3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up4.png")).convert_alpha()]]
     for i in l3:
         for j in i:
             j.set_colorkey((255,255,255))
-    l4 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-          pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-          [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-          pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-          [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-          pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-          [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-          pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+    l4 = [[pygame.image.load(os.path.abspath("Sprites/down1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/down3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/left1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/left3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/right1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/right3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/up1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/up3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up4.png")).convert_alpha()]]
     for i in l4:
         for j in i:
             j.set_colorkey((255,255,255))
-    l5 = [[pygame.image.load("down1.png").convert_alpha(), pygame.image.load("down2.png").convert_alpha(),
-          pygame.image.load("down3.png").convert_alpha(), pygame.image.load("down4.png").convert_alpha()],
-          [pygame.image.load("left1.png").convert_alpha(), pygame.image.load("left2.png").convert_alpha(),
-          pygame.image.load("left3.png").convert_alpha(), pygame.image.load("left4.png").convert_alpha()],
-          [pygame.image.load("right1.png").convert_alpha(),pygame.image.load("right2.png").convert_alpha(),
-          pygame.image.load("right3.png").convert_alpha(),pygame.image.load("right4.png").convert_alpha()],
-          [pygame.image.load("up1.png").convert_alpha(),pygame.image.load("up2.png").convert_alpha(),
-          pygame.image.load("up3.png").convert_alpha(),pygame.image.load("up4.png").convert_alpha()]]
+    l5 = [[pygame.image.load(os.path.abspath("Sprites/down1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/down3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/down4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/left1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/left3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/left4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/right1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/right3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/right4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/up1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/up3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/up4.png")).convert_alpha()]]
     for i in l5:
         for j in i:
             j.set_colorkey((255,255,255))
-    f1 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
-          pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
-          [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
-          pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
-          [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
-          pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
-          [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
-          pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
+    f1 = [[pygame.image.load(os.path.abspath("Sprites/odown1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/odown3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oleft1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oleft3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oright1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oright3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oup1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oup3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup4.png")).convert_alpha()]]
     for i in f1:
         for j in i:
             j.set_colorkey((255,255,255))
-    f2 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
-          pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
-          [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
-          pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
-          [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
-          pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
-          [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
-          pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
+    f2 = [[pygame.image.load(os.path.abspath("Sprites/odown1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/odown3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oleft1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oleft3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oright1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oright3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oup1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oup3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup4.png")).convert_alpha()]]
     for i in f2:
         for j in i:
             j.set_colorkey((255,255,255))
-    f3 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
-          pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
-          [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
-          pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
-          [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
-          pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
-          [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
-          pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
+    f3 = [[pygame.image.load(os.path.abspath("Sprites/odown1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/odown3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oleft1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oleft3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oright1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oright3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oup1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oup3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup4.png")).convert_alpha()]]
     for i in f3:
         for j in i:
             j.set_colorkey((255,255,255))
-    f4 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
-          pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
-          [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
-          pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
-          [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
-          pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
-          [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
-          pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
+    f4 = [[pygame.image.load(os.path.abspath("Sprites/odown1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/odown3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oleft1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oleft3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oright1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oright3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oup1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oup3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup4.png")).convert_alpha()]]
     for i in f4:
         for j in i:
             j.set_colorkey((255,255,255))
-    f5 = [[pygame.image.load("odown1.png").convert_alpha(), pygame.image.load("odown2.png").convert_alpha(),
-          pygame.image.load("odown3.png").convert_alpha(), pygame.image.load("odown4.png").convert_alpha()],
-          [pygame.image.load("oleft1.png").convert_alpha(), pygame.image.load("oleft2.png").convert_alpha(),
-          pygame.image.load("oleft3.png").convert_alpha(), pygame.image.load("oleft4.png").convert_alpha()],
-          [pygame.image.load("oright1.png").convert_alpha(),pygame.image.load("oright2.png").convert_alpha(),
-          pygame.image.load("oright3.png").convert_alpha(),pygame.image.load("oright4.png").convert_alpha()],
-          [pygame.image.load("oup1.png").convert_alpha(),pygame.image.load("oup2.png").convert_alpha(),
-          pygame.image.load("oup3.png").convert_alpha(),pygame.image.load("oup4.png").convert_alpha()]]
+    f5 = [[pygame.image.load(os.path.abspath("Sprites/odown1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/odown3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/odown4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oleft1.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oleft3.png")).convert_alpha(), pygame.image.load(os.path.abspath("Sprites/oleft4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oright1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oright3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oright4.png")).convert_alpha()],
+          [pygame.image.load(os.path.abspath("Sprites/oup1.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup2.png")).convert_alpha(),
+          pygame.image.load(os.path.abspath("Sprites/oup3.png")).convert_alpha(),pygame.image.load(os.path.abspath("Sprites/oup4.png")).convert_alpha()]]
     for i in f5:
         for j in i:
             j.set_colorkey((255,255,255))
     
-    con=mysql.connector.connect(host=sqlhost,database='project_swisheroo',user=sqluser,password=sqlpwd,auth_pluplgin="mysql_native_password")
+    con=mysql.connector.connect(host=sqlhost,database='project_swisheroo',user=sqluser,password=sqlpwd,auth_plugin="mysql_native_password")
     cursor = con.cursor(buffered=True)
-    cheer=pygame.mixer.Sound("cheer.wav")
-    boo=pygame.mixer.Sound("boo.wav")
+    cheer=pygame.mixer.Sound("Audio/cheer.wav")
+    boo=pygame.mixer.Sound("Audio/boo.wav")
     sql1="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'PG' "
     sql2="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'SG' "
     sql3="Select Name,Shooting_Outside,Shooting_Inside,Defense_Outside,Defense_Inside,image from myteam where position = 'SF' "
@@ -3243,19 +3243,19 @@ if RUN==True:
     cursor.execute(sql1)
     
     valp1=cursor.fetchall()[0]
-    img1=pygame.image.load(str(valp1[5])).convert()
+    img1=pygame.image.load("PlyCards/"+str(valp1[5])).convert()
     cursor.execute(sql2)
     valp2=cursor.fetchall()[0]
-    img2=pygame.image.load(str(valp2[5])).convert()
+    img2=pygame.image.load("PlyCards/"+str(valp2[5])).convert()
     cursor.execute(sql3)
     valp3=cursor.fetchall()[0]
-    img3=pygame.image.load(str(valp3[5])).convert()
+    img3=pygame.image.load("PlyCards/"+str(valp3[5])).convert()
     cursor.execute(sql4)
     valp4=cursor.fetchall()[0]
-    img4=pygame.image.load(str(valp4[5])).convert()
+    img4=pygame.image.load("PlyCards/"+str(valp4[5])).convert()
     cursor.execute(sql5)
     valp5=cursor.fetchall()[0]
-    img5=pygame.image.load(str(valp5[5])).convert()
+    img5=pygame.image.load("PlyCards/"+str(valp5[5])).convert()
     cursor.execute(sql6,(valp1[0],))
     valo1=cursor.fetchall()[0]
     cursor.execute(sql7,(valp2[0],))
@@ -3453,16 +3453,16 @@ if RUN==True:
         s.blit(img3, (624, 520))
         s.blit(img4, (936, 520))
         s.blit(img5, (1250, 520))
-        p1 = player("ply.png", px, py, pxo, pyo)
-        p2 = player("ply2.png", p2x, p2y, p2xo, p2yo)
-        p3 = player("ply3.png", p3x, p3y, p3xo, p3yo)
-        p4 = player("ply4.png", p4x, p4y, p4xo, p4yo)
-        p5 = player("ply5.png", p5x, p5y, p5xo, p5yo)
-        o1 = opponent("opp.png", ox, oy, oxo, oyo)
-        o2 = opponent("opp2.png", o2x, o2y, o2xo, o2yo)
-        o3 = opponent("opp3.png", o3x, o3y, o3xo, o3yo)
-        o4 = opponent("opp4.png", o4x, o4y, o4xo, o4yo)
-        o5 = opponent("opp5.png", o5x, o5y, o5xo, o5yo)
+        p1 = player("down1.png", px, py, pxo, pyo)
+        p2 = player("down1.png", p2x, p2y, p2xo, p2yo)
+        p3 = player("down1.png", p3x, p3y, p3xo, p3yo)
+        p4 = player("down1.png", p4x, p4y, p4xo, p4yo)
+        p5 = player("down1.png", p5x, p5y, p5xo, p5yo)
+        o1 = opponent("odown1.png", ox, oy, oxo, oyo)
+        o2 = opponent("odown1.png", o2x, o2y, o2xo, o2yo)
+        o3 = opponent("odown1.png", o3x, o3y, o3xo, o3yo)
+        o4 = opponent("odown1.png", o4x, o4y, o4xo, o4yo)
+        o5 = opponent("odown1.png", o5x, o5y, o5xo, o5yo)
         scoretxt = str(scp) + " - " + str(sc)
         zpr = [[ox, oy], [o2x, o2y], [o3x, o3y], [o4x, o4y], [o5x, o5y]]
         text = font.render(scoretxt, True, [155, 0, 0], [0, 0, 0])

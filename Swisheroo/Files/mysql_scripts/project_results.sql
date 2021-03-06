@@ -19,10 +19,9 @@
 -- Table structure for table `results`
 --
 
-DROP TABLE IF EXISTS `results`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `results` (
+CREATE TABLE IF NOT EXISTS `results` (
   `Game_1` char(1) DEFAULT NULL,
   `Game_2` char(1) DEFAULT NULL,
   `Game_3` char(1) DEFAULT NULL,

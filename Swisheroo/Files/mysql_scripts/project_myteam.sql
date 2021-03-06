@@ -19,10 +19,10 @@
 -- Table structure for table `myteam`
 --
 
-DROP TABLE IF EXISTS `myteam`;
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `myteam` (
+CREATE TABLE IF NOT EXISTS `myteam` (
   `Jersey_number` char(2) NOT NULL,
   `Name` varchar(20) NOT NULL,
   `Position` char(2) NOT NULL,

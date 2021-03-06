@@ -4,8 +4,9 @@ from Sqlscript import create_det
 def leaders():
     s=pygame.display.set_mode([1450,450])
     pygame.init()
-    COURT=pygame.image.load("Courtn2.png").convert()
-    icon=pygame.image.load("icon2.jpeg").convert()
+    COURT=pygame.image.load("Icons_and_Background/Courtn2.png").convert()
+    icon=pygame.image.load("Icons_and_Background/icon.png").convert()
+    pygame.display.set_icon(icon)
     headingdef=pygame.font.get_fonts()[0]
     headfont=pygame.font.SysFont(headingdef,35)
     headcenter=(580,20)
